@@ -95,10 +95,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="weak实现原理"><a href="#weak实现原理" class="headerlink" title="weak实现原理"></a>weak实现原理</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f331bd5ce8f8">https://www.jianshu.com/p/f331bd5ce8f8</a></li>
-</ol>
-<p>获取oldobj(弱引用所指向的之前对象) unregister,替换为newobj的hashtable, register<br>weak表是hash表，对象的weak指针数组，销毁对象的时候所有weakrefernce置为nil</p>
+        <h2 id="weak实现原理"><a href="#weak实现原理" class="headerlink" title="weak实现原理"></a>weak实现原理</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f331bd5ce8f8">https://www.jianshu.com/p/f331bd5ce8f8</a></p>
+<ul>
+<li>weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t</li>
+<li>获取oldobj(弱引用所指向的之前对象) unregister，替换为newobj的hashtable, register，<br>weak表是hash表，对象的weak指针数组，销毁对象的时候所有weakrefernce置为nil</li>
+</ul>
 
       
     </div>
