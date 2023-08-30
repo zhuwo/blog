@@ -22,3 +22,9 @@ iOS系统会修改这个对象的isa指针，改为指向一个全新的通过Ru
 ## 如何扩大点击区域
 
     事件响应链会调用pointInSide，重写pointInSide，edgeInsets扩大范围检测
+
+## OC实现链式调用
+
+https://juejin.cn/post/7010958824933130253
+
+提供返回block的方法， block内部返回self，返回self是实现链式的核心。
