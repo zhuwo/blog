@@ -14,7 +14,7 @@
 <meta property="og:description" content="weak实现原理参考链接：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;f331bd5ce8f8  weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t 获取oldobj(弱引用所指向的之前对象) unregister，替换为newobj的hashtable, register，weak表是hash表，对象的weak指针数组，销毁对象的时候所有we">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-29T05:48:17.000Z">
-<meta property="article:modified_time" content="2023-08-29T05:54:36.453Z">
+<meta property="article:modified_time" content="2023-08-30T02:58:37.228Z">
 <meta property="article:author" content="zhuwo">
 <meta name="twitter:card" content="summary">
   
@@ -102,6 +102,12 @@
 <li>weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t</li>
 <li>获取oldobj(弱引用所指向的之前对象) unregister，替换为newobj的hashtable, register，<br>weak表是hash表，对象的weak指针数组，销毁对象的时候所有weakrefernce置为nil</li>
 </ul>
+<h2 id="KVO-实现原理"><a href="#KVO-实现原理" class="headerlink" title="KVO 实现原理"></a>KVO 实现原理</h2><p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903593925935117">https://juejin.cn/post/6844903593925935117</a></p>
+<p>iOS系统会修改这个对象的isa指针，改为指向一个全新的通过Runtime动态创建的子类(KVONOtification)，子类拥有自己的set方法实现，set方法实现内部会顺序调用willChangeValueForKey方法、原来的setter方法实现、didChangeValueForKey方法，而didChangeValueForKey方法内部又会调用监听器的observeValueForKeyPath:ofObject:change:context:监听方法。</p>
+<h2 id="如何扩大点击区域"><a href="#如何扩大点击区域" class="headerlink" title="如何扩大点击区域"></a>如何扩大点击区域</h2><pre><code>事件响应链会调用pointInSide，重写pointInSide，edgeInsets扩大范围检测
+</code></pre>
+<h2 id="OC实现链式调用"><a href="#OC实现链式调用" class="headerlink" title="OC实现链式调用"></a>OC实现链式调用</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7010958824933130253">https://juejin.cn/post/7010958824933130253</a></p>
+<p>提供返回block的方法， block内部返回self，返回self是实现链式的核心。</p>
 
       
     </div>
@@ -115,6 +121,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2023/08/30/TZ-Reading-Notes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          TZ_Reading_Notes
+        
+      </div>
+    </a>
   
   
     <a href="/2023/07/12/algorithms/" id="article-nav-older" class="article-nav-link-wrap">
@@ -155,6 +170,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2023/08/30/TZ-Reading-Notes/">TZ_Reading_Notes</a>
+          </li>
         
           <li>
             <a href="/2023/08/29/iOS/">iOS</a>
