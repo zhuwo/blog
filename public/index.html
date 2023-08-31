@@ -160,21 +160,38 @@
 <h2 id="Struct和Class的区别"><a href="#Struct和Class的区别" class="headerlink" title="Struct和Class的区别"></a>Struct和Class的区别</h2><table>
 <thead>
 <tr>
-<th>表头</th>
-<th>表头</th>
+<th>Comparision</th>
+<th>Class</th>
+<th>Structure</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>单元格</td>
-<td>单元格</td>
+<td>Type</td>
+<td>Classes are reference types.</td>
+<td>Structures are value types.</td>
 </tr>
 <tr>
-<td>单元格</td>
-<td>单元格</td>
+<td>Inheritance</td>
+<td>Classes have an inheritance that allows one class to inherit the characteristics of another.</td>
+<td>Structures do not support inheritance.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Class instances are stored on the heap.</td>
+<td>Structure properties are stored on the stack.</td>
+</tr>
+<tr>
+<td>Initializer</td>
+<td>We have to define the initializer manually.</td>
+<td>Struct gets a default initializer automatically.</td>
+</tr>
+<tr>
+<td>Thread−safe</td>
+<td>Classes are not fully thread−safe.</td>
+<td>The structure is thread−safe or singleton at all times.</td>
 </tr>
 </tbody></table>
-<p>｜ Comparision ｜	Class ｜	Structure｜<br>|  —-  | —-  | —-  |<br>｜Type	 | Classes are reference types.	 | Structures are value types. |<br>| Inheritance	 | Classes have an inheritance that allows one class to inherit the characteristics of another.	 | Structures do not support inheritance. |<br>| Storage	 | Class instances are stored on the heap.	 | Structure properties are stored on the stack. |<br>| Initializer	 | We have to define the initializer manually.	 | Struct gets a default initializer automatically. |<br>| Thread−safe	 | Classes are not fully thread−safe.	 | The structure is thread−safe or singleton at all times. |</p>
-
+<h2 id="待定"><a href="#待定" class="headerlink" title="待定"></a>待定</h2>
       
     </div>
     <footer class="article-footer">
