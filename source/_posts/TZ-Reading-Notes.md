@@ -22,6 +22,9 @@ tags:
  ## TZPhotoPickerController
 
   照片选择主体页面。来源，getCameraRollAlbumWithFetchAssets, 获取图片getPhotoWithAsset， 点击图片预览TZPhotoPreviewController。
+  拍照cell，点击跳到系统拍照的ImagePickerController。
+  Done按钮: 按operation获取选择的照片内容并返回，跳出pop presentedViewController。
+  FullImage按钮：showPhotoBytes -> getPhotosBytesWithArray,会获取当前所选的照片的原图大小
 
   ## TZAlbumPickerController
 
@@ -35,3 +38,4 @@ tags:
 
  ## TZPhotoPreviewController
 
+   大页面CollectionView, 每个Cell占满一个屏幕，滚动翻页系统自带collectionView.pagingEnabled。
