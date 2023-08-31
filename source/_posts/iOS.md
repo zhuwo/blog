@@ -36,4 +36,14 @@ https://juejin.cn/post/7010726670181253127
 自动释放池对象AutoreleasePool被销毁时，有可能是当前runloop结束进入休眠，会对池内的所有对象发送release指令。
 本质是有个双向链表存储所有池内对象，一页放满就新建一页，放入新的页面中。
 
+## Struct和Class的区别
 
+|  Comparision   | Class  |  Structure  |
+|  ----  | ----  | ----  |
+|  Type	 | Classes are reference types.	 | Structures are value types. |
+| Inheritance	 | Classes have an inheritance that allows one class to inherit the characteristics of another.	 | Structures do not support inheritance. |
+| Storage	 | Class instances are stored on the heap.	 | Structure properties are stored on the stack. |
+| Initializer	 | We have to define the initializer manually.	 | Struct gets a default initializer automatically. |
+| Thread−safe	 | Classes are not fully thread−safe.	 | The structure is thread−safe or singleton at all times. |
+
+## 待定

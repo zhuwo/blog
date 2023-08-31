@@ -14,7 +14,7 @@
 <meta property="og:description" content="weak实现原理参考链接：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;f331bd5ce8f8  weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t 获取oldobj(弱引用所指向的之前对象) unregister，替换为newobj的hashtable, register，weak表是hash表，对象的weak指针数组，销毁对象的时候所有we">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-08-29T05:48:17.000Z">
-<meta property="article:modified_time" content="2023-08-31T08:39:48.471Z">
+<meta property="article:modified_time" content="2023-08-31T08:46:21.492Z">
 <meta property="article:author" content="zhuwo">
 <meta name="twitter:card" content="summary">
   
@@ -110,6 +110,23 @@
 <p>提供返回block的方法， block内部返回self，返回self是实现链式的核心。</p>
 <h2 id="自动释放池内对象释放时机"><a href="#自动释放池内对象释放时机" class="headerlink" title="自动释放池内对象释放时机"></a>自动释放池内对象释放时机</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7010726670181253127">https://juejin.cn/post/7010726670181253127</a></p>
 <p>自动释放池对象AutoreleasePool被销毁时，有可能是当前runloop结束进入休眠，会对池内的所有对象发送release指令。<br>本质是有个双向链表存储所有池内对象，一页放满就新建一页，放入新的页面中。</p>
+<h2 id="Struct和Class的区别"><a href="#Struct和Class的区别" class="headerlink" title="Struct和Class的区别"></a>Struct和Class的区别</h2><table>
+<thead>
+<tr>
+<th>表头</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td>单元格</td>
+<td>单元格</td>
+</tr>
+</tbody></table>
+<p>｜ Comparision ｜	Class ｜	Structure｜<br>|  —-  | —-  | —-  |<br>｜Type	 | Classes are reference types.	 | Structures are value types. |<br>| Inheritance	 | Classes have an inheritance that allows one class to inherit the characteristics of another.	 | Structures do not support inheritance. |<br>| Storage	 | Class instances are stored on the heap.	 | Structure properties are stored on the stack. |<br>| Initializer	 | We have to define the initializer manually.	 | Struct gets a default initializer automatically. |<br>| Thread−safe	 | Classes are not fully thread−safe.	 | The structure is thread−safe or singleton at all times. |</p>
 
       
     </div>
