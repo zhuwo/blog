@@ -99,12 +99,13 @@
 <h2 id="LxGridViewFlowLayout"><a href="#LxGridViewFlowLayout" class="headerlink" title="LxGridViewFlowLayout"></a>LxGridViewFlowLayout</h2><p>  使用了这个Layout，主要是实现CollectionView Cell可以拖拽的效果，添加了长按的手势识别，不断更新浮动的位置，一旦拖拽的位置到达新的位置，就用<code>performBatchUpdates</code>更新cell位置，已实现拖拽换位置的效果。</p>
 <h2 id="Demo入口"><a href="#Demo入口" class="headerlink" title="Demo入口"></a>Demo入口</h2><p>  拍照和拍视频，使用系统提供的UIImagePickerController;相册使用TZImagePickerController。</p>
 <h2 id="TZImagePickerController"><a href="#TZImagePickerController" class="headerlink" title="TZImagePickerController"></a>TZImagePickerController</h2><p>  是一个UINavigationController，根VC是TZAlbumPickerController。第一次进入，push到TZPhotoPickerController，主要照片选择器。</p>
-<h2 id="TZPhotoPickerController"><a href="#TZPhotoPickerController" class="headerlink" title="TZPhotoPickerController"></a>TZPhotoPickerController</h2><p>  照片选择主体页面。</p>
+<h2 id="TZPhotoPickerController"><a href="#TZPhotoPickerController" class="headerlink" title="TZPhotoPickerController"></a>TZPhotoPickerController</h2><p>  照片选择主体页面。来源，getCameraRollAlbumWithFetchAssets, 获取图片getPhotoWithAsset， 点击图片预览TZPhotoPreviewController。<br>  拍照cell，点击跳到系统拍照的ImagePickerController。<br>  Done按钮: 按operation获取选择的照片内容并返回，跳出pop presentedViewController。<br>  FullImage按钮：showPhotoBytes -&gt; getPhotosBytesWithArray,会获取当前所选的照片的原图大小</p>
 <h2 id="TZAlbumPickerController"><a href="#TZAlbumPickerController" class="headerlink" title="TZAlbumPickerController"></a>TZAlbumPickerController</h2><p>  相册选择列表页面</p>
 <h2 id="TZImageManager"><a href="#TZImageManager" class="headerlink" title="TZImageManager"></a>TZImageManager</h2><pre><code>1. 权限获取和权限状态管理
 2. 照片处理-- Get Album 获得相册/相册数组方法： getCameraRollAlbumWithFetchAssets
-3. 
+3. 获取对应照片：getPhotoWithAsset
 </code></pre>
+<h2 id="TZPhotoPreviewController"><a href="#TZPhotoPreviewController" class="headerlink" title="TZPhotoPreviewController"></a>TZPhotoPreviewController</h2><p>   大页面CollectionView, 每个Cell占满一个屏幕，滚动翻页系统自带collectionView.pagingEnabled。</p>
 
       
     </div>
@@ -154,6 +155,8 @@
 </code></pre>
 <h2 id="OC实现链式调用"><a href="#OC实现链式调用" class="headerlink" title="OC实现链式调用"></a>OC实现链式调用</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7010958824933130253">https://juejin.cn/post/7010958824933130253</a></p>
 <p>提供返回block的方法， block内部返回self，返回self是实现链式的核心。</p>
+<h2 id="自动释放池内对象释放时机"><a href="#自动释放池内对象释放时机" class="headerlink" title="自动释放池内对象释放时机"></a>自动释放池内对象释放时机</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7010726670181253127">https://juejin.cn/post/7010726670181253127</a></p>
+<p>自动释放池对象AutoreleasePool被销毁时，有可能是当前runloop结束进入休眠，会对池内的所有对象发送release指令。<br>本质是有个双向链表存储所有池内对象，一页放满就新建一页，放入新的页面中。</p>
 
       
     </div>
