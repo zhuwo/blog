@@ -46,4 +46,29 @@ https://juejin.cn/post/7010726670181253127
 | Initializer	 | We have to define the initializer manually.	 | Struct gets a default initializer automatically. |
 | Thread−safe	 | Classes are not fully thread−safe.	 | The structure is thread−safe or singleton at all times. |
 
+## Category实现原理
+
+https://juejin.cn/post/6844903602524274696
+
+从源码基本可以看出我们平时使用categroy的方式，对象方法，类方法，协议，和属性都可以找到对应的存储方式。并且我们发现分类结构体中是不存在成员变量的，因此分类中是不允许添加成员变量的。分类中添加的属性并不会帮助我们自动生成成员变量，只会生成get set方法的声明，需要我们自己去实现。
+
+
+category的方法会在运行时加到原来类的方法列表之前，所有category的方法协议会覆盖原来类的方法和协议等。
+
+category中有load方法，先执行原来的load方法，load方法在类加载时候调用,initalize在类第一次使用的时候调用。
+
+
+## 关联对象（添加新的成员变量）
+
+https://juejin.cn/post/6844903605347057672
+
+
+AssociationsManager拥有AssociationsHashMap=>value为ObjectAssociationMap=>valuew为ObjcAssociation（set_assoicated设置的_policy、value）。
+
+
+![Alt text](image.png)
+
+通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。
+
+
 ## 待定

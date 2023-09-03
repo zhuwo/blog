@@ -105,7 +105,7 @@
 <p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
 <p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
 <h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
-<h3 id="iOS支持要点"><a href="#iOS支持要点" class="headerlink" title="iOS支持要点"></a>iOS支持要点</h3><p>NSMapTable<br>NSKeyedArchiver</p>
+<h3 id="iOS支持要点"><a href="#iOS支持要点" class="headerlink" title="iOS支持要点"></a>iOS支持要点</h3><p>NSMapTable, 对key,value弱引用<br>NSKeyedArchiver</p>
 
       
     </div>
@@ -240,6 +240,14 @@
 <td>The structure is thread−safe or singleton at all times.</td>
 </tr>
 </tbody></table>
+<h2 id="Category实现原理"><a href="#Category实现原理" class="headerlink" title="Category实现原理"></a>Category实现原理</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903602524274696">https://juejin.cn/post/6844903602524274696</a></p>
+<p>从源码基本可以看出我们平时使用categroy的方式，对象方法，类方法，协议，和属性都可以找到对应的存储方式。并且我们发现分类结构体中是不存在成员变量的，因此分类中是不允许添加成员变量的。分类中添加的属性并不会帮助我们自动生成成员变量，只会生成get set方法的声明，需要我们自己去实现。</p>
+<p>category的方法会在运行时加到原来类的方法列表之前，所有category的方法协议会覆盖原来类的方法和协议等。</p>
+<p>category中有load方法，先执行原来的load方法，load方法在类加载时候调用,initalize在类第一次使用的时候调用。</p>
+<h2 id="关联对象（添加新的成员变量）"><a href="#关联对象（添加新的成员变量）" class="headerlink" title="关联对象（添加新的成员变量）"></a>关联对象（添加新的成员变量）</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903605347057672">https://juejin.cn/post/6844903605347057672</a></p>
+<p>AssociationsManager拥有AssociationsHashMap&#x3D;&gt;value为ObjectAssociationMap&#x3D;&gt;valuew为ObjcAssociation（set_assoicated设置的_policy、value）。</p>
+<p><img src="/image.png" alt="Alt text"></p>
+<p>通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。</p>
 <h2 id="待定"><a href="#待定" class="headerlink" title="待定"></a>待定</h2>
       
     </div>
