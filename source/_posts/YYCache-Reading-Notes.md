@@ -25,7 +25,9 @@ LRU:
 
 ## DiskCache
 
-拥有YYKVStorage，
+使用YYKVStorage存储到文件或数据库
+YYLinkedMapNode：双向链表，存储节点，
+YYLinkedMap， _head， _tail
 
 dispatch_semaphore_t保证线程安全
 
