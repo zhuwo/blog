@@ -25,11 +25,14 @@ LRU:
 
 ## DiskCache
 
+globalCache存储所有storage的最大NSMapTable
 使用YYKVStorage存储到文件或数据库
 YYLinkedMapNode：双向链表，存储节点，
 YYLinkedMap， _head， _tail
 
 dispatch_semaphore_t保证线程安全
+
+使用LRU删除节点，删除访问时间最老的数据，直到满足大小/个数条件为止
 
 所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。
 
