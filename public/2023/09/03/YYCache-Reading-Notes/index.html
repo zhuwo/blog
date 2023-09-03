@@ -6,15 +6,15 @@
   
   <title>YYCache-Reading-Notes | zhuwo&#39;s Den</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="优秀的Cache库，使用LRU，拥有较好的性能。">
+  <meta name="description" content="优秀的Cache库，使用LRU实现，拥有较好的性能。 结构  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。 MemoryCachemutex保证线程安全，所有操作都加互斥锁 关于剪枝：trimToCost：不断">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YYCache-Reading-Notes">
 <meta property="og:url" content="https://zhuwo.github.op/2023/09/03/YYCache-Reading-Notes/index.html">
 <meta property="og:site_name" content="zhuwo&#39;s Den">
-<meta property="og:description" content="优秀的Cache库，使用LRU，拥有较好的性能。">
+<meta property="og:description" content="优秀的Cache库，使用LRU实现，拥有较好的性能。 结构  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。 MemoryCachemutex保证线程安全，所有操作都加互斥锁 关于剪枝：trimToCost：不断">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-03T04:47:34.000Z">
-<meta property="article:modified_time" content="2023-09-03T04:48:14.217Z">
+<meta property="article:modified_time" content="2023-09-03T08:19:45.291Z">
 <meta property="article:author" content="zhuwo">
 <meta name="twitter:card" content="summary">
   
@@ -97,7 +97,16 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>  优秀的Cache库，使用LRU，拥有较好的性能。</p>
+        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
+<h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
+<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
+<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
+<h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>拥有YYKVStorage，</p>
+<p>dispatch_semaphore_t保证线程安全</p>
+<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
+<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
+<h3 id="iOS支持要点"><a href="#iOS支持要点" class="headerlink" title="iOS支持要点"></a>iOS支持要点</h3><p>NSMapTable<br>NSKeyedArchiver</p>
 
       
     </div>
