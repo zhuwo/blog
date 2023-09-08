@@ -73,6 +73,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-AFNetworking-Reading-Notes" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/09/04/AFNetworking-Reading-Notes/" class="article-date">
+  <time class="dt-published" datetime="2023-09-04T06:25:29.000Z" itemprop="datePublished">2023-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/09/04/AFNetworking-Reading-Notes/">AFNetworking-Reading-Notes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>  知名的网络第三方开源库。</p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
+<li>session的任务的回调收拢，和任务绑定进度回调，https的安全处理也包括了</li>
+</ol>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>AFHTTPSessionManager继承自AFURLSessionManager，使用AFJSONResponseSerializer，AFSecurityPolicy（https）,AFNetworkReachabilityManager（网络状态）NSURLSessionConfiguration（URLSession配置，关于http协议的很多实现，例如http2.0支持keep-alive，保留tcp连接）</p>
+<p>NSURLSession设置的delegateQueue，是回调的时候的处理队列，当设置maxConcurrentOperationCount为1, 可以达到并发的请求串行的进行回调的效果。</p>
+<h2 id="核心类AFURLSessionManager"><a href="#核心类AFURLSessionManager" class="headerlink" title="核心类AFURLSessionManager"></a>核心类AFURLSessionManager</h2><p>首先对所有dataTask,uploadTask,downLoadTask，添加监听代理（可以获取进度）和通知。<br>taskDidResume&#x2F;taskDidSuspend，接收taskResume，并发出通知AFNetworkingTaskDidResumeNotification，taskDidSuspend同理</p>
+<p>所有代理有统一词典管理mutableTaskDelegatesKeyedByTaskIdentifier。任务结束didCompleteWithError，移除代理，并调用taskDidComplete回调。tasksForKeyPath，获取对应任务，留给子类使用。</p>
+<p>hook resume&#x2F;suspend方法，发送对应通知<br>    1. 给请求封装了进度的回调，包括上传&#x2F;下载&#x2F;数据任务.<br>    2. 将NSURLSession的所有代理，包装成了block，跟任务绑定进度</p>
+<p>接收挑战时（didReceiveChallenge），用securityPolicy进行证书认证等SSL流程。</p>
+<h3 id="AFURLSessionTaskSwizzling"><a href="#AFURLSessionTaskSwizzling" class="headerlink" title="_AFURLSessionTaskSwizzling"></a>_AFURLSessionTaskSwizzling</h3><p>傀儡类，给localDataTask(sessionTask)添加af_resume方法，af_suspend方法，并hook系统的resume&#x2F;suspend方法，获取resume和suspend的通知，发送对应通知给AFURLSessionManager。</p>
+<h3 id="AFURLSessionManagerTaskDelegate"><a href="#AFURLSessionManagerTaskDelegate" class="headerlink" title="AFURLSessionManagerTaskDelegate"></a>AFURLSessionManagerTaskDelegate</h3><p>主要是记录进度，并持有进度回调block以便任务能添加进度回调，以及完成任务的回调，同时收拢不同任务（比方说都跟下载进度相关有数据任务、下载任务等都统一收拢到downloadProgress）。</p>
+<p>通过KVO，用来接收进度变化，并回调进度和完成的任务，包含NSURLSessionTaskDelegate、NSURLSessionDataDelegate（下载、上传）、NSURLSessionDownloadDelegate（下载）。</p>
+<h3 id="AFSecurityPolicy"><a href="#AFSecurityPolicy" class="headerlink" title="AFSecurityPolicy"></a>AFSecurityPolicy</h3><pre><code>猜测大概是https的应用，模式有pinningModeCertificate/publicKey/None，none就是什么也不验证，Certificate验证证书所有字段，包括有效期之内，publicKey只验证证书中的公钥。
+pinningModeCertificate模式下，会建立ssl，认证domain的有效性
+</code></pre>
+<h3 id="AFNetworkReachabilityManager"><a href="#AFNetworkReachabilityManager" class="headerlink" title="AFNetworkReachabilityManager"></a>AFNetworkReachabilityManager</h3><pre><code>网络状态检测单例，AFNetworkReachabilityStatus网络状态，wifi/4g/无？，初始化就会用linux系统方法获取reachability，然后startMonitoring方法会注册监听网络状态的变化，并发送通知（如果网络状态变化，SCNetworkReachability系列系统方法）。
+</code></pre>
+<h3 id="AFJSONResponseSerializer"><a href="#AFJSONResponseSerializer" class="headerlink" title="AFJSONResponseSerializer"></a>AFJSONResponseSerializer</h3><p>AFJSONResponseSerializer继承自AFHTTPResponseSerializer，拥有acceptableStatusCodes（2**）和acceptableContentTypes（MINE中的），AFJSONResponseSerializer包含”application&#x2F;json”, @”text&#x2F;json”, @”text&#x2F;javascript”，其中responseObjectForResponse方法，会将错误包装返回</p>
+<h2 id="AFHTTPSessionManager"><a href="#AFHTTPSessionManager" class="headerlink" title="AFHTTPSessionManager"></a>AFHTTPSessionManager</h2><p>对外接口，http协议的get&#x2F;post&#x2F;put&#x2F;delete&#x2F;…</p>
+<p>请求使用AFURLRequestSerialization构建，并用父类方法dataTaskWithRequest发起请求</p>
+<h3 id="AFURLRequestSerialization"><a href="#AFURLRequestSerialization" class="headerlink" title="AFURLRequestSerialization"></a>AFURLRequestSerialization</h3><p>请求的封装（封装复杂的http请求构建）</p>
+<h3 id="AFURLResponseSerialization"><a href="#AFURLResponseSerialization" class="headerlink" title="AFURLResponseSerialization"></a>AFURLResponseSerialization</h3><p>对response的反序列化。</p>
+<h2 id="UIKit"><a href="#UIKit" class="headerlink" title="UIKit"></a>UIKit</h2><h3 id="AFNetworkActivityIndicatorManager"><a href="#AFNetworkActivityIndicatorManager" class="headerlink" title="AFNetworkActivityIndicatorManager"></a>AFNetworkActivityIndicatorManager</h3><pre><code>如何处理网络请求过快？用timer
+如何处理网络请求过多? 用计数器表示
+</code></pre>
+<h2 id="iOS基础知识"><a href="#iOS基础知识" class="headerlink" title="iOS基础知识"></a>iOS基础知识</h2><p>NSLock,NSOperationQueue,SCNetworkReachability</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhuwo.github.op/2023/09/04/AFNetworking-Reading-Notes/" data-id="clm4i0e0w00005ygyfvgt4w48" data-title="AFNetworking-Reading-Notes" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-YYCache-Reading-Notes" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/09/03/YYCache-Reading-Notes/" class="article-date">
@@ -248,6 +313,10 @@
 <p>AssociationsManager拥有AssociationsHashMap&#x3D;&gt;value为ObjectAssociationMap&#x3D;&gt;valuew为ObjcAssociation（set_assoicated设置的_policy、value）。</p>
 <p><img src="/image.png" alt="Alt text"></p>
 <p>通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。</p>
+<h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2d57c72016c6">https://www.jianshu.com/p/2d57c72016c6</a></p>
+<h3 id="主队列上执行同步任务卡死的原因"><a href="#主队列上执行同步任务卡死的原因" class="headerlink" title="主队列上执行同步任务卡死的原因"></a>主队列上执行同步任务卡死的原因</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"> dispatch_async(queue, ^&#123;    // 异步执行 + 串行队列</span><br><span class="line">        NSLog(@&quot;add task&quot;);</span><br><span class="line">        NSLog(@&quot;1---%@&quot;,[NSThread currentThread]);      // 打印当前线程</span><br><span class="line">        dispatch_sync(queue, ^&#123;  // 同步执行 + 当前串行队列</span><br><span class="line">            // 追加任务 1</span><br><span class="line">            [NSThread sleepForTimeInterval:2];              // 模拟耗时操作</span><br><span class="line">            NSLog(@&quot;1---%@&quot;,[NSThread currentThread]);      // 打印当前线程</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>dispatch_sync添加的任务执行完以后才会返回，因为是串行队列，所有只有dispatch_sync任务执行完，才会执行下一个任务【追加任务 1】，所有一直追加任务等待dispatch_sync执行完成<br>主队列是串行队列，跟这个情况一样。</p>
+<h2 id="block为什么用copy修饰"><a href="#block为什么用copy修饰" class="headerlink" title="block为什么用copy修饰 ?"></a>block为什么用copy修饰 ?</h2><p>默认情况下，block 是存放在栈中即 NSStackBlock ，因此 block 在函数调用结束时，对象会变成 nil，但是对象的指针变成野指针，因此对象继续调用会产生异常。使用 copy 修饰之后，会将 block 对象保存到堆中 NSMallocBlock，它的生命周期会随着对象的销毁而结束的。所以函数调用结束之后指针也会被设置为 nil，再次调用该对象也不会产生异常。</p>
 <h2 id="待定"><a href="#待定" class="headerlink" title="待定"></a>待定</h2>
       
     </div>
@@ -389,6 +458,10 @@
       <ul>
         
           <li>
+            <a href="/2023/09/04/AFNetworking-Reading-Notes/">AFNetworking-Reading-Notes</a>
+          </li>
+        
+          <li>
             <a href="/2023/09/03/YYCache-Reading-Notes/">YYCache-Reading-Notes</a>
           </li>
         
@@ -402,10 +475,6 @@
         
           <li>
             <a href="/2023/07/12/algorithms/">algorithms</a>
-          </li>
-        
-          <li>
-            <a href="/2023/07/11/hello-world/">Hello World</a>
           </li>
         
       </ul>

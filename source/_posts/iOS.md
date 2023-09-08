@@ -70,5 +70,31 @@ AssociationsManager拥有AssociationsHashMap=>value为ObjectAssociationMap=>valu
 
 通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。
 
+## GCD
+
+https://www.jianshu.com/p/2d57c72016c6
+
+### 主队列上执行同步任务卡死的原因
+
+```Objective-C
+
+dispatch_queue_t queue = dispatch_queue_create("test.queue", DISPATCH_QUEUE_SERIAL);
+ dispatch_async(queue, ^{    // 异步执行 + 串行队列
+        NSLog(@"add task");
+        NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+        dispatch_sync(queue, ^{  // 同步执行 + 当前串行队列
+            // 追加任务 1
+            [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
+            NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
+        });
+    });
+```
+dispatch_sync添加的任务执行完以后才会返回，因为是串行队列，所有只有dispatch_sync任务执行完，才会执行下一个任务【追加任务 1】，所有一直追加任务等待dispatch_sync执行完成
+主队列是串行队列，跟这个情况一样。
+
+## block为什么用copy修饰 ?
+
+默认情况下，block 是存放在栈中即 NSStackBlock ，因此 block 在函数调用结束时，对象会变成 nil，但是对象的指针变成野指针，因此对象继续调用会产生异常。使用 copy 修饰之后，会将 block 对象保存到堆中 NSMallocBlock，它的生命周期会随着对象的销毁而结束的。所以函数调用结束之后指针也会被设置为 nil，再次调用该对象也不会产生异常。
+
 
 ## 待定
