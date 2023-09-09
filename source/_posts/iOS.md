@@ -66,7 +66,10 @@ https://juejin.cn/post/6844903605347057672
 AssociationsManager拥有AssociationsHashMap=>value为ObjectAssociationMap=>valuew为ObjcAssociation（set_assoicated设置的_policy、value）。
 
 
-![Alt text](image.png)
+![关联对象类图](/images/Associate_Object.png)
+
+
+
 
 通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。
 
@@ -92,7 +95,7 @@ dispatch_queue_t queue = dispatch_queue_create("test.queue", DISPATCH_QUEUE_SERI
 dispatch_sync添加的任务执行完以后才会返回，因为是串行队列，所有只有dispatch_sync任务执行完，才会执行下一个任务【追加任务 1】，所有一直追加任务等待dispatch_sync执行完成
 主队列是串行队列，跟这个情况一样。
 
-## block为什么用copy修饰 ?
+## block为什么用copy修饰?
 
 默认情况下，block 是存放在栈中即 NSStackBlock ，因此 block 在函数调用结束时，对象会变成 nil，但是对象的指针变成野指针，因此对象继续调用会产生异常。使用 copy 修饰之后，会将 block 对象保存到堆中 NSMallocBlock，它的生命周期会随着对象的销毁而结束的。所以函数调用结束之后指针也会被设置为 nil，再次调用该对象也不会产生异常。
 
