@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>YYCache-Reading-Notes | zhuwo&#39;s Den</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="优秀的Cache库，使用LRU实现，拥有较好的性能。 结构  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。 MemoryCachemutex保证线程安全，所有操作都加互斥锁 关于剪枝：trimToCost：不断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YYCache-Reading-Notes">
+<meta property="og:url" content="https://zhuwo.github.io/blog/2023/09/03/YYCache-Reading-Notes/index.html">
+<meta property="og:site_name" content="zhuwo&#39;s Den">
+<meta property="og:description" content="优秀的Cache库，使用LRU实现，拥有较好的性能。 结构  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。 MemoryCachemutex保证线程安全，所有操作都加互斥锁 关于剪枝：trimToCost：不断">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-03T04:47:34.000Z">
+<meta property="article:modified_time" content="2023-09-03T08:37:28.934Z">
+<meta property="article:author" content="zhuwo">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/blog/atom.xml" title="zhuwo's Den" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blog/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blog/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blog/" id="logo">zhuwo&#39;s Den</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/blog/">Home</a>
+        
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/blog/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://zhuwo.github.io/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-YYCache-Reading-Notes" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blog/2023/09/03/YYCache-Reading-Notes/" class="article-date">
+  <time class="dt-published" datetime="2023-09-03T04:47:34.000Z" itemprop="datePublished">2023-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      YYCache-Reading-Notes
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
+<h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
+<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
+<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
+<h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>globalCache存储所有storage的最大NSMapTable<br>使用YYKVStorage存储到文件或数据库<br>YYLinkedMapNode：双向链表，存储节点，<br>YYLinkedMap， _head， _tail</p>
+<p>dispatch_semaphore_t保证线程安全</p>
+<p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
+<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
+<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
+<h3 id="iOS支持要点"><a href="#iOS支持要点" class="headerlink" title="iOS支持要点"></a>iOS支持要点</h3><p>NSMapTable, 对key,value弱引用<br>NSKeyedArchiver</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://zhuwo.github.io/blog/2023/09/03/YYCache-Reading-Notes/" data-id="clm2z2oia0000tzgyd3ik2ucr" data-title="YYCache-Reading-Notes" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2023/09/04/AFNetworking-Reading-Notes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AFNetworking-Reading-Notes
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2023/08/30/TZ-Reading-Notes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">TZ_Reading_Notes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/09/">September 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/08/">August 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2023/07/">July 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2023/09/09/producer-consumer/">producer_consumer</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2023/09/04/AFNetworking-Reading-Notes/">AFNetworking-Reading-Notes</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2023/09/03/YYCache-Reading-Notes/">YYCache-Reading-Notes</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2023/08/30/TZ-Reading-Notes/">TZ_Reading_Notes</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2023/08/29/iOS/">iOS</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 zhuwo<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blog/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/blog/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blog/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
