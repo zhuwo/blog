@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.0">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  
-  <link rel="canonical" href="https://zhuwo.github.io/blog/2023/07/12/algorithms/"/>
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://zhuwo.github.io/blog/tags/lru/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,21 +33,16 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>algorithms - zhuwo's Den</title>
-  <meta name="keywords" content="algorithms,null">
+  <title>标签：LRU - zhuwo's Den</title>
+  <meta name="keywords" content="null">
   <meta desc name="description" content="zhuwo's Den - zhuwo - zhuwo's Den">
-  
-<meta property="og:type" content="article">
-<meta property="og:title" content="algorithms">
-<meta property="og:url" content="https://zhuwo.github.io/blog/2023/07/12/algorithms/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="zhuwo&#39;s Den">
+<meta property="og:url" content="https://zhuwo.github.io/blog/tags/LRU/index.html">
 <meta property="og:site_name" content="zhuwo&#39;s Den">
-<meta property="og:description" content="算法和数据结构回溯 DFS+遍历探索每一层的每一种可能 画出所有树状链路就能写出代码 效率比较低">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-<meta property="article:published_time" content="2023-07-12T01:41:30.000Z">
-<meta property="article:modified_time" content="2023-09-10T07:25:22.298Z">
 <meta property="article:author" content="zhuwo">
-<meta property="article:tag" content="algorithms">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
   <style>
@@ -2617,7 +2612,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper post dock' style="display: none;">
+      <div id="none" class='cover-wrapper  dock' style="display: none;">
         
   <div id="parallax-window"></div>
 
@@ -2672,9 +2667,25 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
+
 <div id="l_main" class=''>
-  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/07/12/algorithms/">
+  
+    
+      
+  <section class="post-list">
+    
+      
+        
+          
+        
+      
+    
+    
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
   </span>
@@ -2683,225 +2694,84 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="">
   </span>
   
-
-
+  
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  <div class="article-meta" id="top">
+  
     
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/"  itemprop="url">
+        YYCache-Reading-Notes
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
     
-    
-      <h1 class="title" itemprop="name headline">
-        algorithms
-      </h1>
-      <div class='new-meta-box'>
-        
-          
-            
-<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <a itemprop="url" class='author' target="_blank" href="https://github.com/zhuwo/" rel="nofollow noopener">
-    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-    <p itemprop="name">zhuwo</p>
-  </a>
-</div>
+      
+        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
+<div class="story post-story"><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
+</div><div class="story post-story"><h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
+<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
+<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
+</div><div class="story post-story"><h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>globalCache存储所有storage的最大NSMapTable<br>使用YYKVStorage存储到文件或数据库<br>YYLinkedMapNode：双向链表，存储节点，<br>YYLinkedMap， _head， _tail</p>
+<p>dispatch_semaphore_t保证线程安全</p>
+<p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
+<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
+<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
+<h3 id="iOS支持要点"><a href="#iOS支持要点" class="headerlink" title="iOS支持要点"></a>iOS支持要点</h3><p>NSMapTable, 对key,value弱引用<br>NSKeyedArchiver</p>
 
-          
-        
-          
-            
-  <div class='new-meta-item category'>
-    <i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i>
-    <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/">算法</a>
-    
-      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-      </span>
-    
-      <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-        <a href="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/" itemprop="url"><span itemprop="name">算法</span></a>
-      </span>
+</div>
+      
     
   </div>
-
-
-          
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
         
           
-            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-07-12T01:41:30+00:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：2023年7月12日</p>
-  </a>
-</div>
-
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-09-03T04:47:34+00:00">2023-09-03</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
           
         
-        <!-- Custom Files topMeta begin-->
-        
-        <!-- Custom Files topMeta end-->
       </div>
-    
-  </div>
-
-
-  <div id="layoutHelper-page-plugins"></div>
-  <div id="post-body" itemprop="articleBody">
-    <div class="story post-story"><h2 id="算法和数据结构"><a href="#算法和数据结构" class="headerlink" title="算法和数据结构"></a>算法和数据结构</h2><h3 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h3><ol>
-<li>DFS+遍历探索每一层的每一种可能</li>
-<li>画出所有树状链路就能写出代码</li>
-<li>效率比较低</li>
-</ol>
-
-</div>
-  </div>
-  
-  
-    
-    <div class='footer'>
-       <!-- 参考资料、相关资料等 -->
-      
-       <!-- 相关文章 -->
-      
-      <!-- 版权声明组件 -->
-      
-      <!-- 打赏组件 -->
       
     </div>
   
-  
-    
 
-
-  <div class='article-meta' id="bottom">
-    <div class='new-meta-box'>
-      
-        
-          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-09-10T07:25:22+00:00">
-  <a class='notlink'>
-    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
-    <p>本页文档最后更新于：2023年9月10日</p>
-  </a>
 </div>
 
+          </div>
         
       
-        
-          
+    
+  </section>
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/blog/tags/algorithms/" rel="nofollow"><i class="fa-solid fa-hashtag fa-fw" aria-hidden="true"></i><p>algorithms</p></a></div>
-  <span hidden itemprop="keywords">algorithms</span>
-
-
-        
-      
-        
-          
-  <div class="new-meta-item share -mob-share-list">
-  <div class="-mob-share-list share-body">
     
-      
-        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuwo.github.io/blog/2023/07/12/algorithms/&title=algorithms - zhuwo's Den&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://zhuwo.github.io/blog/2023/07/12/algorithms/&title=algorithms - zhuwo's Den&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
-          
-          target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuwo.github.io/blog/2023/07/12/algorithms/&title=algorithms - zhuwo's Den&summary="
-          
-          >
-          
-            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-          
-        </a>
-      
-    
-      
-    
-      
-    
-  </div>
-</div>
-
-
-
-        
-      
-    </div>
-    <!-- Custom Files bottomMeta begin -->
-    
-    <!-- Custom Files bottomMeta end -->
-  </div>
-
-
-  
-  
-
-  
-    <div class="prev-next">
-      
-        <a class='prev' href='/blog/2023/08/29/iOS/'>
-          <p class='title'><i class="fa-solid fa-chevron-left" aria-hidden="true"></i>iOS</p>
-          <p class='content'>weak实现原理参考链接：https://www.jianshu.com/p/f331bd5ce8f8
-
-weak由runtime持有的weak_table实现，每个对象有对应的weak_ent...</p>
-        </a>
-      
-      
-        <a class='next' href='/blog/2023/07/11/hello-world/'>
-          <p class='title'>Hello World<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
-          <p class='content'>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...</p>
-        </a>
-      
-    </div>
-  
-  <!-- Custom Files postEnd begin-->
-  
-  <!-- Custom Files postEnd end-->
-</article>
-
-
   
 
 
-  <article class="post white-box shadow floatable blur" id="comments">
-    <span hidden>
-      <meta itemprop="discussionUrl" content="/blog/2023/07/12/algorithms/index.html#comments">
-    </span>
-    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-
-    <div id="layoutHelper-comments"></div>
-
-  </article>
-
-
-
-
-
-
+  
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2910,52 +2780,198 @@ weak由runtime持有的weak_table实现，每个对象有对应的weak_ent...</p
     
     
       
+<section class="widget blogger desktop pjax">
+  <div class='content'>
+    
+      
+        <a class='avatar flat-box rectangle' href='/blog/about/'>
+          <img no-lazy src='/images/Associate_Object.png'/>
+        </a>
+      
+    
+    
+      <div class='text'>
+        
+          <h2>HI</h2>
+        
+        
+          <p>HIHI</p>
+
+        
+        
+          <p><span id="jinrishici-sentence">zhuwo's Den</span></p>
+          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        
+      </div>
+    
+    
+  </div>
+</section>
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget category desktop pjax">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/blog/categories/%E6%8A%80%E6%9C%AF/" href="/blog/categories/%E6%8A%80%E6%9C%AF/"
+            active-action="action-blogcategoriesE68A80E69CAF"
+            ><div class='name'>技术</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/"
+            active-action="action-blogcategoriesE68A80E69CAFiOS"
+            ><div class='name'>iOS</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/"
+            active-action="action-blogcategoriesE68A80E69CAFE7AE97E6B395"
+            ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+  
+  <section class="widget tagcloud desktop mobile pjax">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 14px; color: #999">多线程</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
+    </div>
+  </section>
+
+
+    
+  
+
+  
+    
+    
+      
+<section class="widget grid desktop mobile pjax">
+  
+  <header>
+    
+      <i class="fa-solid fa-map-signs fa-fw" aria-hidden="true"></i><span class='name'>分类导航</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="grid navigation fixed">
+      
+        <a class="flat-box" href="/blog/faqs/"
+          
+          
+          active-action="action-blogfaqs">
+          
+            <i class="fa-solid fa-question-circle fa-fw" aria-hidden="true"></i>
+          
+          常见问题
+        </a>
+      
+        <a class="flat-box" href="/blog/examples/"
+          
+          
+          active-action="action-blogexamples">
+          
+            <i class="fa-solid fa-play-circle fa-fw" aria-hidden="true"></i>
+          
+          示例博客
+        </a>
+      
+        <a class="flat-box" href="/blog/contributors/"
+          
+          
+          active-action="action-blogcontributors">
+          
+            <i class="fa-solid fa-handshake fa-fw" aria-hidden="true"></i>
+          
+          特别感谢
+        </a>
+      
+        <a class="flat-box" href="/blog/archives/"
+          
+          
+          active-action="action-blogarchives">
+          
+            <i class="fa-solid fa-file-alt fa-fw" aria-hidden="true"></i>
+          
+          博文
+        </a>
+      
+        <a class="flat-box" href="https://github.com/volantis-x/hexo-theme-volantis/"
+          
+            rel="external nofollow noopener noreferrer"
+          
+          
+            target="_blank"
+          
+          active-action="action-https:githubcomvolantis-xhexo-theme-volantis">
+          
+            <i class="fa-solid fa-file-code fa-fw" aria-hidden="true"></i>
+          
+          主题源码
+        </a>
+      
+        <a class="flat-box" href="https://github.com/volantis-x/hexo-theme-volantis/releases/"
+          
+            rel="external nofollow noopener noreferrer"
+          
+          
+            target="_blank"
+          
+          active-action="action-https:githubcomvolantis-xhexo-theme-volantisreleases">
+          
+            <i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>
+          
+          更新日志
+        </a>
+      
+    </div>
+  </div>
+</section>
+
     
   
 
 
 <div class="widget-sticky pjax">
 
-  
-  
-
-
-  <section class="widget toc-wrapper desktop mobile " id="toc-div" >
-    
-  <header>
-    
-      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
-    
-  </header>
-
-
-    <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E5%92%8C%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">算法和数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BA%AF"><span class="toc-text">回溯</span></a></li></ol></li></ol>
-    </div>
-  </section>
-
-  
-
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
-
-  <div class="pjax">
-    <!-- pjax占位 -->
-  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -3023,14 +3039,13 @@ weak由runtime持有的weak_table实现，每个对象有对应的weak_ent...</p
 </aside>
 
 
-
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=true;
+  pdata.ispage=false;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -4384,7 +4399,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/categories/技术/","name":"技术"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/categories/技术/算法/","name":"算法"}},{"@type":"ListItem","position":3,"item":{"@id":"https://zhuwo.github.io/blog/blog/2023/07/12/algorithms/","name":"algorithms"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"algorithms","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://zhuwo.github.io/blog/2023/07/12/algorithms/"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://zhuwo.github.io/blog/2023/07/12/algorithms/","wordCount":0,"datePublished":"2023-07-12T01:41:30.000Z","dateModified":"2023-09-10T07:25:22.298Z","articleSection":"技术","keywords":"algorithms","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/tags/LRU/","name":"LRU"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
