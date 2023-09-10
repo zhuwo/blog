@@ -136,14 +136,15 @@ sidebar:
   for_page: [blogger, category, tagcloud, guide]
   for_post: [toc]
   widget_library:
-    blogger:
-      class: blogger
-      display: [desktop] # [desktop, mobile]
-      avatar: https://github.com/zhuwo/Images/blob/main/Me2.jpg #/images/avatar1.svg
-      shape: rectangle # circle, rectangle
-      title: "iOS开发，大前端"
-      subtitle: ""
-      jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
+    ## 头像问题暂时无法解决，注释代码
+    # blogger:
+    #   class: blogger
+    #   display: [desktop] # [desktop, mobile]
+    #   avatar: https://github.com/zhuwo/Images/blob/main/Me2.jpg #/images/avatar1.svg
+    #   shape: rectangle # circle, rectangle
+    #   title: "iOS开发，大前端"
+    #   subtitle: ""
+    #   jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
       social: true
 
     toc:
