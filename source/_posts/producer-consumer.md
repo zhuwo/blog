@@ -1,6 +1,9 @@
 ---
 title: producer_consumer
 date: 2023-09-09 10:42:40
+categories:
+- 技术
+- 操作系统
 tags: 
 - 多线程
 ---
