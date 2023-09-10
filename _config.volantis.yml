@@ -145,7 +145,7 @@ sidebar:
     #   title: "iOS开发，大前端"
     #   subtitle: ""
     #   jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
-      social: true
+    # social: true
 
     toc:
       class: toc
