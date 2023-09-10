@@ -140,9 +140,9 @@ sidebar:
       class: blogger
       display: [desktop] # [desktop, mobile]
       avatar: /images/Associate_Object.png
-      title: "HI"
-      subtitle: "HIHI"
-      jinrishici: true # Poetry Today. You can set a string, and it will be displayed when loading fails.
+      title: "iOS 开发，大前端"
+      subtitle: ""
+      jinrishici: false # Poetry Today. You can set a string, and it will be displayed when loading fails.
       social: true
 
     toc:
