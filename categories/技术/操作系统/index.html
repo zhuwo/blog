@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://zhuwo.github.io/blog/tags/lru/"/>
+  <link rel="canonical" href="https://zhuwo.github.io/blog/categories/技术/操作系统/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,12 +33,12 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：LRU - zhuwo's Den</title>
+  <title>分类：操作系统 - zhuwo's Den</title>
   <meta name="keywords" content="null">
   <meta desc name="description" content="zhuwo's Den - zhuwo - zhuwo's Den">
   <meta property="og:type" content="website">
 <meta property="og:title" content="zhuwo&#39;s Den">
-<meta property="og:url" content="https://zhuwo.github.io/blog/tags/LRU/index.html">
+<meta property="og:url" content="https://zhuwo.github.io/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="zhuwo&#39;s Den">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2685,7 +2685,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/">
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/09/producer-consumer/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
   </span>
@@ -2703,25 +2703,26 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/"  itemprop="url">
-        YYCache-Reading-Notes
+      <a href="/blog/2023/09/09/producer-consumer/"  itemprop="url">
+        producer_consumer
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
-<div class="story post-story"><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
-</div><div class="story post-story"><h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
-<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
-<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
-</div><div class="story post-story"><h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>globalCache存储所有storage的最大NSMapTable<br>使用YYKVStorage存储到文件或数据库<br>YYLinkedMapNode：双向链表，存储节点，<br>YYLinkedMap， _head， _tail</p>
-<p>dispatch_semaphore_t保证线程安全</p>
-<p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
-<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
-<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
-<h3 id="iOS支持要点"><a href="#iOS支持要点" class="headerlink" title="iOS支持要点"></a>iOS支持要点</h3><p>NSMapTable, 对key,value弱引用<br>NSKeyedArchiver</p>
+        <p>iOS 实现解决生产者消费者问题</p>
+<ol>
+<li>先是生产者要解决生产者过剩的问题， 消费者没有可消费的产品要等待</li>
+<li>考虑CPU，++操作可能不是原子操作，需要对齐进行加锁，解决线程不安全问题</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">@proppery(nonatomic, strong) dispatch_semaphore_t pro_semaphore;</span><br><span class="line">@proppery(nonatomic, strong) dispatch_semaphore_t cus_semaphore;</span><br><span class="line"></span><br><span class="line">@proppery(nonatomic, strong) NSInterger producer_count;</span><br><span class="line">@proppery(nonatomic, strong) NSLock lock;</span><br><span class="line"></span><br><span class="line">#define BUFFER_SIZE 5;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)init &#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        self.pro_semaphore = dispatch_semaphore_create(BUFFER_SIZE);</span><br><span class="line">        self.cus_semaphore = dispatch_semaphore_create(0);</span><br><span class="line">        self.producer_count = 0;</span><br><span class="line">        self.lock = [[NSLock alloc] init];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)producer &#123;</span><br><span class="line">    dispath_async(dispath_global_queue(0, 0), ^&#123;</span><br><span class="line">        dispatch_semaphore_wait(_pro_semaphore);</span><br><span class="line">        [self.lock lock];</span><br><span class="line">        producer_count++;</span><br><span class="line">        [self.lock unlock];</span><br><span class="line">        dispatch_semaphore_signal(_cus_semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)consumer &#123;</span><br><span class="line">     dispath_async(dispath_global_queue(0, 0), ^&#123;</span><br><span class="line">        dispatch_semaphore_wait(_cus_semaphore);</span><br><span class="line">        [self.lock lock];</span><br><span class="line">        producer_count--;</span><br><span class="line">        [self.lock unlock];</span><br><span class="line">        dispatch_semaphore_signal(_pro_semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<div class="story post-story"><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://crmo.github.io/2019/06/16/GCD%20%E8%A7%A3%E5%86%B3%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">GCD 解决生产者消费者问题</a></li>
+</ul>
 
 </div>
       
@@ -2739,17 +2740,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-09-03T04:47:34+00:00">2023-09-03</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-09T02:42:40+00:00">2023-09-09</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
               <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
             </span>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url"><span itemprop="name">操作系统</span></a>
             </span>
           
         
@@ -4439,7 +4440,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/tags/LRU/","name":"LRU"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/categories/操作系统/","name":"操作系统"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
