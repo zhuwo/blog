@@ -2,6 +2,11 @@
 title: iOS
 date: 2023-08-29 13:48:17
 tags:
+- iOS
+- 面试
+categories:
+- 技术
+- iOS
 ---
 
 ## weak实现原理

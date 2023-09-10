@@ -1,7 +1,8 @@
 ---
 title: producer_consumer
 date: 2023-09-09 10:42:40
-tags:
+tags: 
+- 多线程
 ---
 
 

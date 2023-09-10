@@ -1,7 +1,11 @@
 ---
 title: algorithms
 date: 2023-07-12 09:41:30
-tags:
+categories:
+- 技术
+- 算法
+tags: 
+- algorithms
 ---
 
 ## 算法和数据结构

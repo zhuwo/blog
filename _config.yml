@@ -8,7 +8,11 @@ subtitle: ''
 description: ''
 keywords:
 author: zhuwo
-language: en
+language: 
+  - zh-CN
+  - en
+  - zh-HK
+  - zh-TW
 timezone: ''
 
 # URL
@@ -97,9 +101,32 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: volantis
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# hexo-generator-json-content
+jsonContent:
+  meta:             false
+  keywords:         false   # 暂时没用上，后面会用起来
+  dateFormat:       'YYYY-MM-DD'
+  pages:            false   # 因为我仅对文章进行搜索，不搜页面，所以 pages 为 false
+  posts:
+    title:          true    # 文章的标题
+    slug:           false
+    date:           true    # 文章的日期
+    updated:        false
+    comments:       false
+    path:           true    # 文章的相对路径
+    link:           false
+    permalink:      false
+    excerpt:        false
+    keywords:       false
+    text:           true    # 文章的内容（仅文字部分，非 markdown 源码）
+    raw:            false
+    content:        false
+    categories:     false   # 因为我的博客已经有分类页面了，所以没必要再搜分类，设置 false
+    tags:           false   # 同上
