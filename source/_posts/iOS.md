@@ -116,3 +116,20 @@ https://juejin.cn/post/6965770220921159694
 非nonpointer: SideTable（静态变量）,散列表，SideTables
 
 如果isa中无法存储指针，那么就存储在SideTable中的RefcountMap中
+
+## iOS启动流程
+
+参考文档：https://juejin.cn/post/6951591401528229895
+
+```
+1. 解析Info.plist
+2. Mach-O（可执行文件）加载
+    * dylib loading time（动态库加载耗时）
+    * rebase/binding time（偏移修正/符号绑定耗时
+    * 加载类扩展（Category）中的方法
+    * C++静态对象加载、调用ObjC的 +load 函数
+    * 执行声明为__attribute__((constructor))的C函数
+3. 程序执行
+    * 调用main()
+    * 调用UIApplicationMain()
+    * 调用applicationWillFinishLaunching
