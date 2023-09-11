@@ -9,6 +9,8 @@ categories:
 - iOS
 ---
 
+知识大乱炖，用于快速回忆知识点，需要时背诵。
+
 ## weak实现原理
 
 参考链接：https://www.jianshu.com/p/f331bd5ce8f8
