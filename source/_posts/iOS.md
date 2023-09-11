@@ -102,4 +102,10 @@ https://juejin.cn/post/6965770220921159694
 * NSCondition
 * NSConditionLock
 * @synchronized
-## NSDic
+
+## Collection
+
+    NSSet和NSDictionary都是用hash，查找比较高效。
+
+    NSSet对应NSHashTable, NSDictionary对应NSMapTable。
+    区别都是后者是可变的，且可以对成员进行弱引用，当对象被销毁时，锁存储的实体可以会被移除。
