@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1694421292155),
+    lastupdate: new Date(1694422053053),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -3159,7 +3159,7 @@ pinningModeCertificate模式下，会建立ssl，认证domain的有效性
   <div class='md article-desc' itemprop="articleBody">
     
       
-        <p>知识大乱炖，用于快速回忆知识点，需要时背诵。</p>
+        <p>知识大乱炖，用于快速回忆知识点，。</p>
 <div class="story post-story"><h2 id="weak实现原理"><a href="#weak实现原理" class="headerlink" title="weak实现原理"></a>weak实现原理</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f331bd5ce8f8">https://www.jianshu.com/p/f331bd5ce8f8</a></p>
 <ul>
 <li>weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t</li>
@@ -3240,18 +3240,20 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
 </div><div class="story post-story"><h2 id="引用计数表保存在哪里"><a href="#引用计数表保存在哪里" class="headerlink" title="引用计数表保存在哪里"></a>引用计数表保存在哪里</h2><p>参考链接： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/43571ab79821">https://www.jianshu.com/p/43571ab79821</a><br> nonpointer:extra_rc +sidetable_rc;<br>非nonpointer: SideTable（静态变量）,散列表，SideTables</p>
 <p>如果isa中无法存储指针，那么就存储在SideTable中的RefcountMap中</p>
 </div><div class="story post-story"><h2 id="iOS启动流程"><a href="#iOS启动流程" class="headerlink" title="iOS启动流程"></a>iOS启动流程</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6951591401528229895">https://juejin.cn/post/6951591401528229895</a></p>
-<pre><code>1. 解析Info.plist
-2. Mach-O（可执行文件）加载
-    * dylib loading time（动态库加载耗时）
-    * rebase/binding time（偏移修正/符号绑定耗时
-    * 加载类扩展（Category）中的方法
-    * C++静态对象加载、调用ObjC的 +load 函数
-    * 执行声明为__attribute__((constructor))的C函数
-3. 程序执行
-    * 调用main()
-    * 调用UIApplicationMain()
-    * 调用applicationWillFinishLaunching
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 解析Info.plist</span><br><span class="line">2. Mach-O（可执行文件）加载</span><br><span class="line">    * dylib loading time（动态库加载耗时）</span><br><span class="line">    * rebase/binding time（偏移修正/符号绑定耗时</span><br><span class="line">    * 加载类扩展（Category）中的方法</span><br><span class="line">    * C++静态对象加载、调用ObjC的 +load 函数</span><br><span class="line">    * 执行声明为__attribute__((constructor))的C函数</span><br><span class="line">3. 程序执行</span><br><span class="line">    * 调用main()</span><br><span class="line">    * 调用UIApplicationMain()</span><br><span class="line">    * 调用applicationWillFinishLaunching</span><br></pre></td></tr></table></figure>
+</div><div class="story post-story"><h2 id="dynamic-systhesis-propery"><a href="#dynamic-systhesis-propery" class="headerlink" title="@dynamic, @systhesis, @propery"></a>@dynamic, @systhesis, @propery</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c883687c6405">https://www.jianshu.com/p/c883687c6405</a></p>
+<p>@dynamic 表示用户自己实现get,set方法；（实例变量也需要自己添加）@systheis如果用户没有实现get,set，系统会自己生产get&#x2F;set</p>
+</div><div class="story post-story"><h2 id="bounds和frame的关系"><a href="#bounds和frame的关系" class="headerlink" title="bounds和frame的关系"></a>bounds和frame的关系</h2><p><code>frame：描述当前视图在其父视图中的位置和大小。 bounds：描述当前视图在其自身坐标系统中的位置和大小。 center：描述当前视图的中心点在其父视图中的位置。</code><br>所以改变bounds，frame不会动，但相当于自身坐标系往(-bounds.origin.x, -bounds.origin.y）方向移动，影响的是子视图的frame位置（起点变成了(-bounds.origin.x, -bounds.origin.y））</p>
+</div><div class="story post-story"><h2 id="postion、anchorPoint和frame之间的关系"><a href="#postion、anchorPoint和frame之间的关系" class="headerlink" title="postion、anchorPoint和frame之间的关系"></a>postion、anchorPoint和frame之间的关系</h2><p>首先，view的position等属性就是layer的属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">position.x = frame.origin.x + anchorPoint.x * bounds.size.width</span><br><span class="line">position.y = frame.origin.y + anchorPoint.y * bounds.size.height</span><br></pre></td></tr></table></figure>
+<p>position和anchorPoint互不影响，都只会影响frame</p>
+</div><div class="story post-story"><h2 id="iOS实现动画有几种方式"><a href="#iOS实现动画有几种方式" class="headerlink" title="iOS实现动画有几种方式"></a>iOS实现动画有几种方式</h2><p>UIView animatiedWith</p>
+<p>UIView animateKeyframesWithDuration</p>
+<p>CAbasicAnimation (针对layer的某一属性)</p>
+<p>CATransition(过渡动画)<br>fade&#x2F;moveIn&#x2F;Push&#x2F;Reval(类似于PPT)</p>
+<p>KeyAnimation</p>
+</div><div class="story post-story"><h2 id="NSTimer问题总结"><a href="#NSTimer问题总结" class="headerlink" title="NSTimer问题总结"></a>NSTimer问题总结</h2><p>runloop耗时任务多的时候，会丢失</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7016633863241728014">https://juejin.cn/post/7016633863241728014</a></p>
 
 </div>
       
@@ -4725,7 +4727,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp"];
   let index = 0;
   let IntervalParallax = null;
 
