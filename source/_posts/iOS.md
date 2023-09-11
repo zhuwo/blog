@@ -1,5 +1,5 @@
 ---
-title: iOS
+title: iOS知识点
 date: 2023-08-29 13:48:17
 tags:
 - iOS
@@ -118,8 +118,5 @@ https://juejin.cn/post/6965770220921159694
 * NSCondition
 * NSConditionLock
 * @synchronized
-
-
-
 
 ## 待定

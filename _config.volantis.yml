@@ -61,9 +61,9 @@ cover:
     - name: 博客
       img: volantis-static/media/twemoji/assets/svg/1f4f0.svg
       url: /
-    - name: iOS第三方库
+    - name: iOS知识点
       img: volantis-static/media/twemoji/assets/svg/1f516.svg
-      url: /iOS_Third_Library
+      url: /2023/08/29/iOS/
     #   target: _self
     # - name: 示例
     #   img: volantis-static/media/twemoji/assets/svg/1f4af.svg
