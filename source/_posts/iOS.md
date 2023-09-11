@@ -118,5 +118,6 @@ https://juejin.cn/post/6965770220921159694
 * NSCondition
 * NSConditionLock
 * @synchronized
+## NSDic
 
 ## 待定
