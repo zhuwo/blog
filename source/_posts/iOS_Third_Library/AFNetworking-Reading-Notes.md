@@ -13,15 +13,14 @@ tags:
 
   ## 作用
 
-  1. session的任务的回调收拢，和任务绑定进度回调，https的安全处理也包括了
-
+  1. session的任务的回调收拢，和任务绑定进度回调
+  2. 可扩展性增强，AFURLSessionManager封装底层的upload/download/dataTask，AFHTTPSessionManager,专门负责http协议的处理；也可以扩展出FTP的类进行FTP处理
+  3. 单独处理https安全问题
 ## 类AFHTTPSessionManager
 
 AFHTTPSessionManager继承自AFURLSessionManager，使用AFJSONResponseSerializer，AFSecurityPolicy（https）,AFNetworkReachabilityManager（网络状态）NSURLSessionConfiguration（URLSession配置，关于http协议的很多实现，例如http2.0支持keep-alive，保留tcp连接）
 
 NSURLSession设置的delegateQueue，是回调的时候的处理队列，当设置maxConcurrentOperationCount为1, 可以达到并发的请求串行的进行回调的效果。
-
-
 
 ## 核心类AFURLSessionManager
 
@@ -35,8 +34,6 @@ hook resume/suspend方法，发送对应通知
     2. 将NSURLSession的所有代理，包装成了block，跟任务绑定进度
 
 接收挑战时（didReceiveChallenge），用securityPolicy进行证书认证等SSL流程。
-
-
 ### _AFURLSessionTaskSwizzling
 
 傀儡类，给localDataTask(sessionTask)添加af_resume方法，af_suspend方法，并hook系统的resume/suspend方法，获取resume和suspend的通知，发送对应通知给AFURLSessionManager。
@@ -51,8 +48,8 @@ hook resume/suspend方法，发送对应通知
 ### AFSecurityPolicy
 
     猜测大概是https的应用，模式有pinningModeCertificate/publicKey/None，none就是什么也不验证，Certificate验证证书所有字段，包括有效期之内，publicKey只验证证书中的公钥。
-    pinningModeCertificate模式下，会建立ssl，认证domain的有效性
 
+    pinningModeCertificate模式下，会建立ssl，认证domain的有效性
 ### AFNetworkReachabilityManager
 
     网络状态检测单例，AFNetworkReachabilityStatus网络状态，wifi/4g/无？，初始化就会用linux系统方法获取reachability，然后startMonitoring方法会注册监听网络状态的变化，并发送通知（如果网络状态变化，SCNetworkReachability系列系统方法）。
@@ -70,19 +67,15 @@ AFJSONResponseSerializer继承自AFHTTPResponseSerializer，拥有acceptableStat
 ### AFURLRequestSerialization
 
 请求的封装（封装复杂的http请求构建）
-
 ### AFURLResponseSerialization
 
 对response的反序列化。
-
-
 ## UIKit
 
 ### AFNetworkActivityIndicatorManager
 
     如何处理网络请求过快？用timer
     如何处理网络请求过多? 用计数器表示
-
 ## iOS基础知识
 
-NSLock,NSOperationQueue,SCNetworkReachability
+NSLock, NSOperationQueue, SCNetworkReachability
