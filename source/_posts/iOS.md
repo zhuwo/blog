@@ -16,31 +16,25 @@ categories:
    * weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t
    * 获取oldobj(弱引用所指向的之前对象) unregister，替换为newobj的hashtable, register，
     weak表是hash表，对象的weak指针数组，销毁对象的时候所有weakrefernce置为nil
-
 ## KVO 实现原理
 
 参考：https://juejin.cn/post/6844903593925935117
 
 iOS系统会修改这个对象的isa指针，改为指向一个全新的通过Runtime动态创建的子类(KVONOtification)，子类拥有自己的set方法实现，set方法实现内部会顺序调用willChangeValueForKey方法、原来的setter方法实现、didChangeValueForKey方法，而didChangeValueForKey方法内部又会调用监听器的observeValueForKeyPath:ofObject:change:context:监听方法。
-
-
 ## 如何扩大点击区域
 
     事件响应链会调用pointInSide，重写pointInSide，edgeInsets扩大范围检测
-
 ## OC实现链式调用
 
 https://juejin.cn/post/7010958824933130253
 
 提供返回block的方法， block内部返回self，返回self是实现链式的核心。
-
 ## 自动释放池内对象释放时机
 
 https://juejin.cn/post/7010726670181253127
 
 自动释放池对象AutoreleasePool被销毁时，有可能是当前runloop结束进入休眠，会对池内的所有对象发送release指令。
 本质是有个双向链表存储所有池内对象，一页放满就新建一页，放入新的页面中。
-
 ## Struct和Class的区别
 
 |  Comparision |    \|Class  |  Structure  |
@@ -50,7 +44,6 @@ https://juejin.cn/post/7010726670181253127
 | Storage	 | Class instances are stored on the heap.	 | Structure properties are stored on the stack. |
 | Initializer	 | We have to define the initializer manually.	 | Struct gets a default initializer automatically. |
 | Thread−safe	 | Classes are not fully thread−safe.	 | The structure is thread−safe or singleton at all times. |
-
 ## Category实现原理
 
 https://juejin.cn/post/6844903602524274696
@@ -61,8 +54,6 @@ https://juejin.cn/post/6844903602524274696
 category的方法会在运行时加到原来类的方法列表之前，所有category的方法协议会覆盖原来类的方法和协议等。
 
 category中有load方法，先执行原来的load方法，load方法在类加载时候调用,initalize在类第一次使用的时候调用。
-
-
 ## 关联对象（添加新的成员变量）
 
 https://juejin.cn/post/6844903605347057672
@@ -73,15 +64,10 @@ AssociationsManager拥有AssociationsHashMap=>value为ObjectAssociationMap=>valu
 
 ![关联对象类图](/images/Associate_Object.png)
 
-
-
-
 通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。
-
 ## GCD
 
 https://www.jianshu.com/p/2d57c72016c6
-
 ### 主队列上执行同步任务卡死的原因
 
 ```Objective-C
@@ -99,11 +85,9 @@ dispatch_queue_t queue = dispatch_queue_create("test.queue", DISPATCH_QUEUE_SERI
 ```
 dispatch_sync添加的任务执行完以后才会返回，因为是串行队列，所有只有dispatch_sync任务执行完，才会执行下一个任务【追加任务 1】，所有一直追加任务等待dispatch_sync执行完成
 主队列是串行队列，跟这个情况一样。
-
 ## block为什么用copy修饰?
 
 默认情况下，block 是存放在栈中即 NSStackBlock ，因此 block 在函数调用结束时，对象会变成 nil，但是对象的指针变成野指针，因此对象继续调用会产生异常。使用 copy 修饰之后，会将 block 对象保存到堆中 NSMallocBlock，它的生命周期会随着对象的销毁而结束的。所以函数调用结束之后指针也会被设置为 nil，再次调用该对象也不会产生异常。
-
 ## iOS保证线程安全的几种方式
 
 https://juejin.cn/post/6965770220921159694
@@ -119,5 +103,3 @@ https://juejin.cn/post/6965770220921159694
 * NSConditionLock
 * @synchronized
 ## NSDic
-
-## 待定
