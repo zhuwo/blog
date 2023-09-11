@@ -109,3 +109,10 @@ https://juejin.cn/post/6965770220921159694
 
     NSSet对应NSHashTable, NSDictionary对应NSMapTable。
     区别都是后者是可变的，且可以对成员进行弱引用，当对象被销毁时，锁存储的实体可以会被移除。
+## 引用计数表保存在哪里 
+
+参考链接： https://www.jianshu.com/p/43571ab79821 
+ nonpointer:extra_rc +sidetable_rc;
+非nonpointer: SideTable（静态变量）,散列表，SideTables
+
+如果isa中无法存储指针，那么就存储在SideTable中的RefcountMap中
