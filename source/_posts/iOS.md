@@ -9,7 +9,7 @@ categories:
 - iOS
 ---
 
-知识大乱炖，用于快速回忆知识点，需要时背诵。
+知识大乱炖，用于快速回忆知识点，。
 
 ## weak实现原理
 
@@ -135,3 +135,47 @@ https://juejin.cn/post/6965770220921159694
     * 调用main()
     * 调用UIApplicationMain()
     * 调用applicationWillFinishLaunching
+```
+## @dynamic, @systhesis, @propery
+
+https://www.jianshu.com/p/c883687c6405
+
+@dynamic 表示用户自己实现get,set方法；（实例变量也需要自己添加）@systheis如果用户没有实现get,set，系统会自己生产get/set
+
+## bounds和frame的关系
+
+`
+frame：描述当前视图在其父视图中的位置和大小。
+bounds：描述当前视图在其自身坐标系统中的位置和大小。
+center：描述当前视图的中心点在其父视图中的位置。
+`
+所以改变bounds，frame不会动，但相当于自身坐标系往(-bounds.origin.x, -bounds.origin.y）方向移动，影响的是子视图的frame位置（起点变成了(-bounds.origin.x, -bounds.origin.y））
+
+## postion、anchorPoint和frame之间的关系
+
+首先，view的position等属性就是layer的属性。
+```Objective-C
+position.x = frame.origin.x + anchorPoint.x * bounds.size.width
+position.y = frame.origin.y + anchorPoint.y * bounds.size.height
+```
+position和anchorPoint互不影响，都只会影响frame
+
+## iOS实现动画有几种方式
+
+UIView animatiedWith
+
+UIView animateKeyframesWithDuration
+
+CAbasicAnimation (针对layer的某一属性)
+
+CATransition(过渡动画)
+fade/moveIn/Push/Reval(类似于PPT)
+
+
+KeyAnimation
+
+## NSTimer问题总结
+
+runloop耗时任务多的时候，会丢失
+
+https://juejin.cn/post/7016633863241728014
