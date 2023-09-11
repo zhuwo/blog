@@ -50,9 +50,9 @@ removeItemsLargerThan（Size/Time）:数据库字段已经存入，根据条件�
 
 
 
-### iOS支持要点
+### iOS知识要点
 
-NSMapTable, 对key,value弱引用
+NSMapTable, 对key，value弱引用
 NSKeyedArchiver
 
   
