@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1694418760378),
+    lastupdate: new Date(1694419261198),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -2899,7 +2899,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       
         <p>  知名的网络第三方开源库。</p>
 <div class="story post-story"><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
-<li>session的任务的回调收拢，和任务绑定进度回调，https的安全处理也包括了</li>
+<li>session的任务的回调收拢，和任务绑定进度回调</li>
+<li>可扩展性增强，AFURLSessionManager封装底层的upload&#x2F;download&#x2F;dataTask，AFHTTPSessionManager,专门负责http协议的处理；也可以扩展出FTP的类进行FTP处理</li>
+<li>单独处理https安全问题</li>
 </ol>
 </div><div class="story post-story"><h2 id="类AFHTTPSessionManager"><a href="#类AFHTTPSessionManager" class="headerlink" title="类AFHTTPSessionManager"></a>类AFHTTPSessionManager</h2><p>AFHTTPSessionManager继承自AFURLSessionManager，使用AFJSONResponseSerializer，AFSecurityPolicy（https）,AFNetworkReachabilityManager（网络状态）NSURLSessionConfiguration（URLSession配置，关于http协议的很多实现，例如http2.0支持keep-alive，保留tcp连接）</p>
 <p>NSURLSession设置的delegateQueue，是回调的时候的处理队列，当设置maxConcurrentOperationCount为1, 可以达到并发的请求串行的进行回调的效果。</p>
@@ -2911,6 +2913,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 <h3 id="AFURLSessionManagerTaskDelegate"><a href="#AFURLSessionManagerTaskDelegate" class="headerlink" title="AFURLSessionManagerTaskDelegate"></a>AFURLSessionManagerTaskDelegate</h3><p>主要是记录进度，并持有进度回调block以便任务能添加进度回调，以及完成任务的回调，同时收拢不同任务（比方说都跟下载进度相关有数据任务、下载任务等都统一收拢到downloadProgress）。</p>
 <p>通过KVO，用来接收进度变化，并回调进度和完成的任务，包含NSURLSessionTaskDelegate、NSURLSessionDataDelegate（下载、上传）、NSURLSessionDownloadDelegate（下载）。</p>
 <h3 id="AFSecurityPolicy"><a href="#AFSecurityPolicy" class="headerlink" title="AFSecurityPolicy"></a>AFSecurityPolicy</h3><pre><code>猜测大概是https的应用，模式有pinningModeCertificate/publicKey/None，none就是什么也不验证，Certificate验证证书所有字段，包括有效期之内，publicKey只验证证书中的公钥。
+
 pinningModeCertificate模式下，会建立ssl，认证domain的有效性
 </code></pre>
 <h3 id="AFNetworkReachabilityManager"><a href="#AFNetworkReachabilityManager" class="headerlink" title="AFNetworkReachabilityManager"></a>AFNetworkReachabilityManager</h3><pre><code>网络状态检测单例，AFNetworkReachabilityStatus网络状态，wifi/4g/无？，初始化就会用linux系统方法获取reachability，然后startMonitoring方法会注册监听网络状态的变化，并发送通知（如果网络状态变化，SCNetworkReachability系列系统方法）。
@@ -2923,7 +2926,7 @@ pinningModeCertificate模式下，会建立ssl，认证domain的有效性
 </div><div class="story post-story"><h2 id="UIKit"><a href="#UIKit" class="headerlink" title="UIKit"></a>UIKit</h2><h3 id="AFNetworkActivityIndicatorManager"><a href="#AFNetworkActivityIndicatorManager" class="headerlink" title="AFNetworkActivityIndicatorManager"></a>AFNetworkActivityIndicatorManager</h3><pre><code>如何处理网络请求过快？用timer
 如何处理网络请求过多? 用计数器表示
 </code></pre>
-</div><div class="story post-story"><h2 id="iOS基础知识"><a href="#iOS基础知识" class="headerlink" title="iOS基础知识"></a>iOS基础知识</h2><p>NSLock,NSOperationQueue,SCNetworkReachability</p>
+</div><div class="story post-story"><h2 id="iOS基础知识"><a href="#iOS基础知识" class="headerlink" title="iOS基础知识"></a>iOS基础知识</h2><p>NSLock, NSOperationQueue, SCNetworkReachability</p>
 
 </div>
       
@@ -4708,7 +4711,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp"];
   let index = 0;
   let IntervalParallax = null;
 
