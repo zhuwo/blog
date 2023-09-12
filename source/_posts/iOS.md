@@ -179,3 +179,13 @@ KeyAnimation
 runloop耗时任务多的时候，会丢失
 
 https://juejin.cn/post/7016633863241728014
+
+## runtime的一些应用
+
+参考文档：
+* https://juejin.cn/post/7086379028323516452
+* https://blog.csdn.net/weixin_38735568/article/details/95939608
+
+1. 动态添加属性
+2. 方法交互（hook系统方法）Method Swizzling
+3. 字典转模型
