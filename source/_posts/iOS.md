@@ -199,3 +199,14 @@ https://juejin.cn/post/7016633863241728014
 3. NSKeyedArchiver(归档)
 4. FMDB(基于SQLite3 封装的一套OC的API库)
 5. CoreData
+
+##  NSString property使用strong还是copy，区别和联系是啥？
+
+It is still recommended to copy because you want to avoid something passing a mutable string and then changing it without you knowing. A copy guarantees that the string you have will not change.
+
+我们知道NSMutableString是NSString的子类，一个NSString指针可以指向NSMutableString对象，strongString指针指向一个可变字符串是正常的。
+如上例子可以看出:
+
+1. 当原字符串是NSString时，字符串是不可变的，不管是Strong还是Copy属性的对象，都是指向原对象，Copy操作只是做了次浅拷贝。
+2. 当原字符串是NSMutableString时，Strong属性只是增加了原字符串的引用计数，而Copy属性则是对原字符串做了次深拷贝，产生一个新的对象，且Copy属性对象指向这个新的对象,且这个Copy属性对象的类型始终是NSString，而不是NSMutableString，因此其是不可变的。
+3. 这里还有一个性能问题，即在原字符串是NSMutableString，Strong是单纯的增加对象的引用计数，而Copy操作是执行了一次深拷贝，所以性能上会有所差异(虽然不大)。如果原字符串是NSString时，则没有这个问题。
