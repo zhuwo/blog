@@ -202,6 +202,8 @@ https://juejin.cn/post/7016633863241728014
 
 ##  NSString property使用strong还是copy，区别和联系是啥？
 
+NSMutableString strong修饰时，会修改原来的内容，造成一些不可预期的效果。
+
 It is still recommended to copy because you want to avoid something passing a mutable string and then changing it without you knowing. A copy guarantees that the string you have will not change.
 
 我们知道NSMutableString是NSString的子类，一个NSString指针可以指向NSMutableString对象，strongString指针指向一个可变字符串是正常的。
