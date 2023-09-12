@@ -189,3 +189,13 @@ https://juejin.cn/post/7016633863241728014
 1. 动态添加属性
 2. 方法交互（hook系统方法）Method Swizzling
 3. 字典转模型
+
+## iOS数据持久化存储方式
+
+参考：https://juejin.cn/post/6844903440586375181
+
+1. plist(属性列表)文件
+2. Preference(偏好设置)
+3. NSKeyedArchiver(归档)
+4. FMDB(基于SQLite3 封装的一套OC的API库)
+5. CoreData
