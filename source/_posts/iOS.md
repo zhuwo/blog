@@ -90,6 +90,9 @@ dispatch_sync添加的任务执行完以后才会返回，因为是串行队列�
 ## block为什么用copy修饰?
 
 默认情况下，block 是存放在栈中即 NSStackBlock ，因此 block 在函数调用结束时，对象会变成 nil，但是对象的指针变成野指针，因此对象继续调用会产生异常。使用 copy 修饰之后，会将 block 对象保存到堆中 NSMallocBlock，它的生命周期会随着对象的销毁而结束的。所以函数调用结束之后指针也会被设置为 nil，再次调用该对象也不会产生异常。
+
+**Attention**：MRC情况下，ARC无事，自动copy，为了统一可以加copy
+
 ## iOS保证线程安全的几种方式
 
 https://juejin.cn/post/6965770220921159694
