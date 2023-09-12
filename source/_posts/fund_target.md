@@ -1,7 +1,7 @@
 ---
 title: 基金指标
 date: 2023-09-12 09:17:20
-categroies:
+categories:
 - 投资
 tags:
 - 基金
