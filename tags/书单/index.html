@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://zhuwo.github.io/blog/tags/lru/"/>
+  <link rel="canonical" href="https://zhuwo.github.io/blog/tags/书单/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,12 +33,12 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：LRU - zhuwo's Den</title>
+  <title>标签：书单 - zhuwo's Den</title>
   <meta name="keywords" content="null">
   <meta desc name="description" content="zhuwo's Den - zhuwo - zhuwo's Den">
   <meta property="og:type" content="website">
 <meta property="og:title" content="zhuwo&#39;s Den">
-<meta property="og:url" content="https://zhuwo.github.io/blog/tags/LRU/index.html">
+<meta property="og:url" content="https://zhuwo.github.io/blog/tags/%E4%B9%A6%E5%8D%95/index.html">
 <meta property="og:site_name" content="zhuwo&#39;s Den">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2685,7 +2685,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/">
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/12/booklist_finance/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
   </span>
@@ -2703,25 +2703,55 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/"  itemprop="url">
-        YYCache-Reading-Notes
+      <a href="/blog/2023/09/12/booklist_finance/"  itemprop="url">
+        金融经济类书单
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
-<div class="story post-story"><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
-</div><div class="story post-story"><h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
-<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
-<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
-</div><div class="story post-story"><h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>globalCache存储所有storage的最大NSMapTable<br>使用YYKVStorage存储到文件或数据库<br>YYLinkedMapNode：双向链表，存储节点，<br>YYLinkedMap， _head， _tail</p>
-<p>dispatch_semaphore_t保证线程安全</p>
-<p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
-<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
-<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
-<h3 id="iOS知识要点"><a href="#iOS知识要点" class="headerlink" title="iOS知识要点"></a>iOS知识要点</h3><p>NSMapTable, 对key，value弱引用<br>NSKeyedArchiver</p>
+        <p>简要梳理了金融，经济学方面比较靠谱的书籍。</p>
+<div class="story post-story"><h2 id="经济学"><a href="#经济学" class="headerlink" title="经济学"></a>经济学</h2><ol>
+<li>《经济学原理》</li>
+<li>《货币银行学》</li>
+<li>《资本论》</li>
+<li>《国富论》</li>
+</ol>
+</div><div class="story post-story"><h2 id="理财观念"><a href="#理财观念" class="headerlink" title="理财观念"></a>理财观念</h2><ol>
+<li>《富爸爸穷爸爸》</li>
+<li>《财富自由之路》</li>
+</ol>
+</div><div class="story post-story"><h2 id="投资哲学"><a href="#投资哲学" class="headerlink" title="投资哲学"></a>投资哲学</h2><ol>
+<li>《穷查理宝典》</li>
+<li>《巴芒演义：可复制的价值投资》</li>
+</ol>
+</div><div class="story post-story"><h2 id="公司分析"><a href="#公司分析" class="headerlink" title="公司分析"></a>公司分析</h2><ol>
+<li>《一本书读懂财务报表》</li>
+</ol>
+</div><div class="story post-story"><h2 id="股票"><a href="#股票" class="headerlink" title="股票"></a>股票</h2><ol>
+<li>《股市真规则》</li>
+<li>《伟大的博弈》</li>
+<li>《战胜华尔街》</li>
+<li>《巴菲特致股东的信》</li>
+<li>《彼得·林奇的成功投资》</li>
+<li>《聪明的投资者》</li>
+<li>《漫步华尔街》</li>
+<li>《华尔街之狼》</li>
+</ol>
+</div><div class="story post-story"><h2 id="基金"><a href="#基金" class="headerlink" title="基金"></a>基金</h2><ol>
+<li>《解读基金：我的投资观与实践》</li>
+<li>《指数基金投资指南》</li>
+<li>《共同基金常识》</li>
+<li>《基金理财系列丛书之一：开放式基金投资指南》</li>
+<li>《共同基金常识》</li>
+<li>《小乌龟投资智慧》</li>
+</ol>
+</div><div class="story post-story"><h2 id="金融大类"><a href="#金融大类" class="headerlink" title="金融大类"></a>金融大类</h2><ol>
+<li>《证券分析》</li>
+<li>《聪明的投资者》</li>
+<li>《Winning the Loser’s Game》</li>
+</ol>
 
 </div>
       
@@ -2739,17 +2769,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-09-03T04:47:34+00:00">2023-09-03</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-12T01:06:07+00:00">2023-09-12</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          <a class="category-link" href="/blog/categories/%E6%8A%95%E8%B5%84/">投资</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+              <a href="/blog/categories/%E6%8A%95%E8%B5%84/" itemprop="url"><span itemprop="name">投资</span></a>
             </span>
           
         
@@ -4444,7 +4470,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/tags/LRU/","name":"LRU"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/tags/书单/","name":"书单"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
