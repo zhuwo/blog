@@ -212,3 +212,13 @@ It is still recommended to copy because you want to avoid something passing a mu
 1. 当原字符串是NSString时，字符串是不可变的，不管是Strong还是Copy属性的对象，都是指向原对象，Copy操作只是做了次浅拷贝。
 2. 当原字符串是NSMutableString时，Strong属性只是增加了原字符串的引用计数，而Copy属性则是对原字符串做了次深拷贝，产生一个新的对象，且Copy属性对象指向这个新的对象,且这个Copy属性对象的类型始终是NSString，而不是NSMutableString，因此其是不可变的。
 3. 这里还有一个性能问题，即在原字符串是NSMutableString，Strong是单纯的增加对象的引用计数，而Copy操作是执行了一次深拷贝，所以性能上会有所差异(虽然不大)。如果原字符串是NSString时，则没有这个问题。
+
+## 苹果登录流程
+
+1. 客户端用appleID/邮箱密码请求,返回个人信息和token
+2. 将token和userID给后端
+3. 后端向苹果后端请求解密token的公钥
+4. 后端用公钥,基于JSW算法验证token
+5. 返回客户端告知结果
+
+![Apple Login Procedure](/images/AppleIDLoginProcedure.png)
