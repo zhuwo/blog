@@ -187,7 +187,7 @@ https://juejin.cn/post/7016633863241728014
 * https://blog.csdn.net/weixin_38735568/article/details/95939608
 
 1. 动态添加属性
-2. 方法交互（hook系统方法）Method Swizzling
+2. 方法交换（hook系统方法）Method Swizzling
 3. 字典转模型
 
 ## iOS数据持久化存储方式
