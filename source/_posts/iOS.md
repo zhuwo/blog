@@ -225,3 +225,23 @@ It is still recommended to copy because you want to avoid something passing a mu
 5. 返回客户端告知结果
 
 ![Apple Login Procedure](/images/AppleIDLoginProcedure.png)
+
+## iOS消息转发
+
+### 经典崩溃（启发点）
+
+`unrecognized selector sent to instance 0x100524a90`
+先来看个很经典的崩溃打印。一般这个日志前部分还会给出所调用的方法，我们可以借此很快找到原因所在，可以说是相当贴心了。然而，
+苹果在方便我们的同时，你是否想过这个日志具体是在什么时候打印的，系统是靠什么来捕获这类型即将崩溃的信息，开发者是否也可以捕获呢。这些都要从消息转发流程说起，看完分析或许你心里就有答案了。
+
+这段描述很好，为此引为参考，来源https://juejin.cn/post/6857013884298133517
+
+### 流程速记
+• 【快速查找流程】首先，在类的缓存cache中查找指定方法的实现
+• 【慢速查找流程】如果缓存中没有找到，则在类的方法列表中查找，如果还是没找到，则去父类链的缓存和方法列表中查找
+• 【动态方法决议】如果慢速查找还是没有找到时，第一次补救机会就是尝试一次动态方法决议，即重写`resolveInstanceMethod/resolveClassMethod`方法
+• 【消息转发】如果动态方法决议还是没有找到，则进行消息转发，消息转发中有两次补救机会：快速转发+慢速转发
+• 如果转发之后也没有，则程序直接报错崩溃`unrecognized selector sent to instance``
+
+![Message Forawrd Procedure](/images/Message_Forawrd_Procedure.png)
+
