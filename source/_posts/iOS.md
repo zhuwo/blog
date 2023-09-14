@@ -253,4 +253,8 @@ It is still recommended to copy because you want to avoid something passing a mu
 
 * https://juejin.cn/post/6844903600968171533
 
+## KeyChain
+
+账号密码，token用KeyChain保存，删除App，KeyChain中的数据仍然存在，因为数据是iOS系统保存的
+
 
