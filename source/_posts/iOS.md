@@ -191,7 +191,7 @@ https://juejin.cn/post/7016633863241728014
 
 1. 动态添加属性
 2. 方法交换（hook系统方法）Method Swizzling
-3. 字典转模型
+3. 字典转模型(Model to Dictionay)
 
 ## iOS数据持久化存储方式
 
