@@ -239,11 +239,15 @@ It is still recommended to copy because you want to avoid something passing a mu
 ### 流程速记
 • 【快速查找流程】首先，在类的缓存cache中查找指定方法的实现
 • 【慢速查找流程】如果缓存中没有找到，则在类的方法列表中查找，如果还是没找到，则去父类链的缓存和方法列表中查找
-• 【动态方法决议】如果慢速查找还是没有找到时，第一次补救机会就是尝试一次动态方法决议，即重写`resolveInstanceMethod/resolveClassMethod`方法
+• 【动态方法决议】如果慢速查找还是没有找到时，第一次补救机会就是尝试一次动态方法决议，即重写`resolveInstanceMethod/resolveClassMethod`方法,`class_addMethod`添加方法
 • 【消息转发】如果动态方法决议还是没有找到，则进行消息转发，消息转发中有两次补救机会：快速转发+慢速转发
 • 如果转发之后也没有，则程序直接报错崩溃`unrecognized selector sent to instance``
 
 ![Message Forawrd Procedure](/images/Message_Forawrd_Procedure.png)
+
+### 应用
+
+    一些容易造成奔溃的方法添加保话，如NSArray访问数组越界的情况，可以用消息转发添加保护。
 
 #### 参考文档
 
