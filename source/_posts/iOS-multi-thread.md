@@ -23,6 +23,7 @@ tags:
 @inteface Person: NSObject
 @property(nonatomic, strong) NSString* name;
 @property(nonatomic, assign) NSInteger age;
+@property(nonatomic, strong) NSObject* object;
 @end;
 
 
