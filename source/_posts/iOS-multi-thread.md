@@ -1,7 +1,12 @@
 ---
 title: iOS 多线程问题汇总
 date: 2023-09-15 13:54:32
+categories:
+- 技术
+- iOS
 tags:
+- iOS
+- 多线程
 ---
 
 
