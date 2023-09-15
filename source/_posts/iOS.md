@@ -247,7 +247,7 @@ It is still recommended to copy because you want to avoid something passing a mu
 
 ### 应用
 
-    一些容易造成奔溃的方法添加保话，如NSArray访问数组越界的情况，可以用消息转发添加保护。
+    一些容易造成奔溃的方法添加保护，如NSArray访问数组越界的情况，可以用消息转发添加保护。
 
 #### 参考文档
 
@@ -257,4 +257,13 @@ It is still recommended to copy because you want to avoid something passing a mu
 
 账号密码，token用KeyChain保存，删除App，KeyChain中的数据仍然存在，因为数据是iOS系统保存的
 
+## iOS 通知的线程是在哪个线程
 
+https://www.jianshu.com/p/e368a18ca7c2
+
+## runloop和线程的关系
+
+1. 一条线程对应一个RunLoop对象，每条线程都有唯一一个与之对应的RunLoop对象。
+2. 我们只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的RunLoop。
+3. RunLoop对象在第一次获取RunLoop时创建，销毁则是在线程结束的时候。
+4. 主线程的RunLoop对象系统自动帮助我们创建好了(原理如下)，而子线程的RunLoop对象需要我们主动创建。
