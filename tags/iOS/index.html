@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1694762431156),
+    lastupdate: new Date(1694763283373),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -2764,7 +2764,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-09-15T13:54:32+00:00">2023-09-15</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-15T05:54:32+00:00">2023-09-15</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
@@ -3147,12 +3147,19 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
 <p>这段描述很好，为此引为参考，来源<a target="_blank" rel="noopener" href="https://juejin.cn/post/6857013884298133517">https://juejin.cn/post/6857013884298133517</a></p>
 <h3 id="流程速记"><a href="#流程速记" class="headerlink" title="流程速记"></a>流程速记</h3><p>• 【快速查找流程】首先，在类的缓存cache中查找指定方法的实现<br>• 【慢速查找流程】如果缓存中没有找到，则在类的方法列表中查找，如果还是没找到，则去父类链的缓存和方法列表中查找<br>• 【动态方法决议】如果慢速查找还是没有找到时，第一次补救机会就是尝试一次动态方法决议，即重写<code>resolveInstanceMethod/resolveClassMethod</code>方法,<code>class_addMethod</code>添加方法<br>• 【消息转发】如果动态方法决议还是没有找到，则进行消息转发，消息转发中有两次补救机会：快速转发+慢速转发<br>• 如果转发之后也没有，则程序直接报错崩溃&#96;unrecognized selector sent to instance&#96;&#96;</p>
 <p><img src="/blog/images/Message_Forawrd_Procedure.png" class="lazyload" data-srcset="/blog/images/Message_Forawrd_Procedure.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Message Forawrd Procedure"></p>
-<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><pre><code>一些容易造成奔溃的方法添加保话，如NSArray访问数组越界的情况，可以用消息转发添加保护。
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><pre><code>一些容易造成奔溃的方法添加保护，如NSArray访问数组越界的情况，可以用消息转发添加保护。
 </code></pre>
 <h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4><ul>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903600968171533">https://juejin.cn/post/6844903600968171533</a></li>
 </ul>
 </div><div class="story post-story"><h2 id="KeyChain"><a href="#KeyChain" class="headerlink" title="KeyChain"></a>KeyChain</h2><p>账号密码，token用KeyChain保存，删除App，KeyChain中的数据仍然存在，因为数据是iOS系统保存的</p>
+</div><div class="story post-story"><h2 id="iOS-通知的线程是在哪个线程"><a href="#iOS-通知的线程是在哪个线程" class="headerlink" title="iOS 通知的线程是在哪个线程"></a>iOS 通知的线程是在哪个线程</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e368a18ca7c2">https://www.jianshu.com/p/e368a18ca7c2</a></p>
+</div><div class="story post-story"><h2 id="runloop和线程的关系"><a href="#runloop和线程的关系" class="headerlink" title="runloop和线程的关系"></a>runloop和线程的关系</h2><ol>
+<li>一条线程对应一个RunLoop对象，每条线程都有唯一一个与之对应的RunLoop对象。</li>
+<li>我们只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的RunLoop。</li>
+<li>RunLoop对象在第一次获取RunLoop时创建，销毁则是在线程结束的时候。</li>
+<li>主线程的RunLoop对象系统自动帮助我们创建好了(原理如下)，而子线程的RunLoop对象需要我们主动创建。</li>
+</ol>
 
 </div>
       
@@ -4556,7 +4563,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp"];
   let index = 0;
   let IntervalParallax = null;
 
