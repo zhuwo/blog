@@ -94,7 +94,7 @@ typedef ^(MyBlock)();
     [self.block addblock:^{
         __strong typeof(weakSelf) strongSelf = self;
         strongSelf->preson.name = @"";
-        strongSelf->preson.name = @"";
+        strongSelf->preson.object = [NSObject new];
     }];
 ```
 
