@@ -267,3 +267,16 @@ https://www.jianshu.com/p/e368a18ca7c2
 2. 我们只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的RunLoop。
 3. RunLoop对象在第一次获取RunLoop时创建，销毁则是在线程结束的时候。
 4. 主线程的RunLoop对象系统自动帮助我们创建好了(原理如下)，而子线程的RunLoop对象需要我们主动创建。
+
+## NSOperation
+
+参考： https://juejin.cn/post/6844904053906866189
+
+为什么要使用 NSOperation、NSOperationQueue？
+
+可添加完成的代码块，在操作完成后执行。
+添加操作之间的依赖关系，方便的控制执行顺序。
+设定操作执行的优先级。
+可以很方便的取消一个操作的执行。
+使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled。
+
