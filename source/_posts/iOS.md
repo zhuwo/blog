@@ -274,11 +274,12 @@ https://www.jianshu.com/p/e368a18ca7c2
 
 为什么要使用 NSOperation、NSOperationQueue？
 
-可添加完成的代码块，在操作完成后执行。
-添加操作之间的依赖关系，方便的控制执行顺序。
-设定操作执行的优先级。
-可以很方便的取消一个操作的执行。
-使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled。
+1. 可以方便的调用cancel方法来取消某个操作，而 GCD 中的任务是无法被取消的。
+2. 可以方指定操作间的依赖关系, 方便的控制执行顺序。
+3. 可以通过KVO提供对操作对象的精细控制(如监听当前操作是否被取消或是否已经完成等)。
+4. 可以方便的指定操作优先级。
+5. 可以自定义NSOperation的子类可以实现操作重用.
+
 ## dealloc
 
 ```Objective-C
