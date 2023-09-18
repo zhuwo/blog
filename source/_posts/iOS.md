@@ -279,4 +279,21 @@ https://www.jianshu.com/p/e368a18ca7c2
 设定操作执行的优先级。
 可以很方便的取消一个操作的执行。
 使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled。
+## dealloc
 
+```Objective-C
+    - (void)dealloc {
+        _objc_rootDealloc(self);
+    }
+```
+直接调用_objc_rootDealloc方法来做处理，我们省略一些细节处理，通常情况下，dealloc方法最终会调用objc_dispose方法，内部又调用objc_destructInstance方法来进行析构操作，析构完成后将内存释放掉。
+
+1. dealloc的调用是在最后一次release执行后，但此时实例变量(ivars)并未释放。
+2. [super dealloc]会自动调用： 父类的dealloc方法会在子类dealloc方法返回后自动执行。
+3. ARC子类的实例变量在根类[NSObject dealloc]中释放。
+
+## load
+
+父类load调用在子类之前，分类的load在主类load调用完后执行
+
+## OOM监控
