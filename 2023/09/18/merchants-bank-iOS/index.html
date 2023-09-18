@@ -5,8 +5,8 @@
   <meta name="Volantis" content="5.8.0">
   <meta charset="utf-8">
   <!-- SEO相关 -->
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://zhuwo.github.io/blog/tags/cache/"/>
+  
+  <link rel="canonical" href="https://zhuwo.github.io/blog/2023/09/18/merchants-bank-ios/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,15 +33,19 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：Cache - zhuwo's Den</title>
+  <title>招商银行iOS笔试题 - zhuwo's Den</title>
   <meta name="keywords" content="null">
   <meta desc name="description" content="zhuwo's Den - zhuwo - zhuwo's Den">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="zhuwo&#39;s Den">
-<meta property="og:url" content="https://zhuwo.github.io/blog/tags/Cache/index.html">
+  
+<meta property="og:type" content="article">
+<meta property="og:title" content="招商银行iOS笔试题">
+<meta property="og:url" content="https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/index.html">
 <meta property="og:site_name" content="zhuwo&#39;s Den">
+<meta property="og:description" content="实现属性@propperty(nonatomic, strong) NSString* name和@propperty(nonatomic, copy) NSString* name的set方法  下列哪些操作可以在iOS后台运行a. VOIPb. 音乐播放c. 地理位置获取d. http请求  UIView和UIControl的关系  [super dealloc]需要在dealloc中调用吗">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+<meta property="article:published_time" content="2023-09-18T02:17:00.000Z">
+<meta property="article:modified_time" content="2023-09-18T02:43:17.359Z">
 <meta property="article:author" content="zhuwo">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2612,7 +2616,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
-      <div id="none" class='cover-wrapper  dock' style="display: none;">
+      <div id="none" class='cover-wrapper post dock' style="display: none;">
         
   <div id="parallax-window"></div>
 
@@ -2667,25 +2671,9 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <div id="safearea">
         <div class="body-wrapper">
           
-
 <div id="l_main" class=''>
-  
-    
-      
-  <section class="post-list">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/">
+  <article itemscope itemtype="http://schema.org/Article" class="article post white-box reveal md shadow floatable blur article-type-post" id="post" itemscope itemprop="blogPost">
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
   </span>
@@ -2694,84 +2682,230 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     <meta itemprop="description" content="">
   </span>
   
-  
+
+
   
     <span hidden>
       <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
     </span>
   
-  
+  <div class="article-meta" id="top">
     
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/"  itemprop="url">
-        YYCache-Reading-Notes
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
     
-      
-        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
-<div class="story post-story"><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
-</div><div class="story post-story"><h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
-<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
-<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
-</div><div class="story post-story"><h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>globalCache存储所有storage的最大NSMapTable<br>使用YYKVStorage存储到文件或数据库<br>YYLinkedMapNode：双向链表，存储节点，<br>YYLinkedMap， _head， _tail</p>
-<p>dispatch_semaphore_t保证线程安全</p>
-<p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
-<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
-<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
-<h3 id="iOS知识要点"><a href="#iOS知识要点" class="headerlink" title="iOS知识要点"></a>iOS知识要点</h3><p>NSMapTable, 对key，value弱引用<br>NSKeyedArchiver</p>
-
+    
+      <h1 class="title" itemprop="name headline">
+        招商银行iOS笔试题
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author' itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <a itemprop="url" class='author' target="_blank" href="https://github.com/zhuwo/" rel="nofollow noopener">
+    <img itemprop="image" src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <p itemprop="name">zhuwo</p>
+  </a>
 </div>
-      
+
+          
+        
+          
+            
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateCreated datePublished" datetime="2023-09-18T02:17:00+00:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2023年9月18日</p>
+  </a>
+</div>
+
+          
+        
+        <!-- Custom Files topMeta begin-->
+        
+        <!-- Custom Files topMeta end-->
+      </div>
     
   </div>
+
+
+  <div id="layoutHelper-page-plugins"></div>
+  <div id="post-body" itemprop="articleBody">
+    <ol>
+<li><p>实现属性<code>@propperty(nonatomic, strong) NSString* name</code>和<code>@propperty(nonatomic, copy) NSString* name</code>的set方法</p>
+</li>
+<li><p>下列哪些操作可以在iOS后台运行<br>a. VOIP<br>b. 音乐播放<br>c. 地理位置获取<br>d. http请求</p>
+</li>
+<li><p>UIView和UIControl的关系</p>
+</li>
+<li><p>[super dealloc]需要在dealloc中调用吗，调用顺序是怎么样的</p>
+<p> a. [super dealloc]在第一行<br> b. [super dealloc]在最后一行<br> c. 没有关系</p>
+</li>
+<li><p>@propery和@systhesis的作用</p>
+</li>
+<li><p>UIResponder，_____， 以及UIView能响应事件</p>
+</li>
+<li><p>哪个是单例<br> a. NSNotification<br> b. UIApplication (sharedApplication)<br> c. NSuserDefault (standardUserDefaults)<br> d. </p>
+</li>
+<li><p>什么情况下使用delegate，什么情况下使用notification</p>
+<p> Delegate:</p>
+<p> 消息的发送者(sender)告知接收者(receiver)某个事件将要发生，delegate同意然然后发送者响应事件，delegate机制使得接收者可以改变发送者的行为。通常发送者和接收者的关系是直接的一对多的关系。</p>
+<p> Notification:</p>
+<p> 消息的发送者告知接收者事件已经发生或者将要发送，仅此而已，接收者并不能反过来影响发送者的行为。通常发送者和接收者的关系是间接的多对多关系。</p>
+<p> 区别:</p>
+<p> a. 效率肯定是delegate比nsnotification高。</p>
+<p> b. delegate方法比notification更加直接，最典型的特征是，delegate方法往往需要关注返回值，也就是delegate方法的结果。比如-windowShouldClose:，需要关心返回的是yes还是no。所以delegate方法往往包含should这个很传神的词。也就是好比你做我的delegate，我会问你我想关闭窗口你愿意吗？你需要给我一个答案，我根据你的答案来决定如何做下一步。相反的，notification最大的特色就是不关心接受者的态度，我只管把通告放出来，你接受不接受就是你的事情，同时我也不关心结果。所以notification往往用did这个词汇，比如NSWindowDidResizeNotification，那么nswindow对象放出这个notification后就什么都不管了也不会等待接受者的反应。</p>
+<p> 1）两个模块之间联系不是很紧密，就用notification传值，例如多线程之间传值用notificaiton。</p>
+<p> 2）delegate只是一种较为简单的回调，且主要用在一个模块中，例如底层功能完成了，需要把一些值传到上层去，就事先把上层的函数通过delegate传到底层，然后在底层call这个delegate，它们都在一个模块中，完成一个功能，例如说 NavgationController 从 B 界面到A 点返回按钮 (调用popViewController方法) 可以用delegate比较好。</p>
+</li>
+<li><p>什么情况下使用copy属性<br> a.对于不可变属性，推荐使用copy，能防止不可变对象变成可变对象，从而防止值发生不可控变化。<br> b.对于可变属性，推荐使用strong，因为用copy修饰后，会变成不可变对象，再调用可变对象的函数时会crash</p>
+</li>
+</ol>
+
+
+  </div>
   
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="zhuwo">
-            <meta itemprop="url" content="https://github.com/zhuwo/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-09-03T04:47:34+00:00">2023-09-03</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
-            </span>
-          
-        
-      </div>
+  
+    
+    <div class='footer'>
+       <!-- 参考资料、相关资料等 -->
+      
+       <!-- 相关文章 -->
+      
+      <!-- 版权声明组件 -->
+      
+      <!-- 打赏组件 -->
       
     </div>
   
+  
+    
 
+
+  <div class='article-meta' id="bottom">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateModified" datetime="2023-09-18T02:43:17+00:00">
+  <a class='notlink'>
+    <i class="fa-solid fa-edit fa-fw" aria-hidden="true"></i>
+    <p>本页文档最后更新于：2023年9月18日</p>
+  </a>
 </div>
 
-          </div>
         
       
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
-  </section>
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/&title=招商银行iOS笔试题 - zhuwo's Den&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qq.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/&title=招商银行iOS笔试题 - zhuwo's Den&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/qzone.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer noopener"
+          
+          target="_blank" href="http://service.weibo.com/share/share.php?url=https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/&title=招商银行iOS笔试题 - zhuwo's Den&summary="
+          
+          >
+          
+            <img src="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" class="lazyload" data-srcset="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/logo/128/weibo.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          
+        </a>
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+    <!-- Custom Files bottomMeta begin -->
+    
+    <!-- Custom Files bottomMeta end -->
+  </div>
+
+
   
-    
+  
+
+  
+    <div class="prev-next">
+      
+      
+        <a class='next' href='/blog/2023/09/15/iOS-multi-thread/'>
+          <p class='title'>iOS 多线程问题汇总<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>iOS实现多线程有哪些方法
+NSThread
+GCD
+NSOperation
+
+下面代码有问题吗123456789101112131415161718192021@inteface Person...</p>
+        </a>
+      
+    </div>
+  
+  <!-- Custom Files postEnd begin-->
+  
+  <!-- Custom Files postEnd end-->
+</article>
+
+
   
 
 
+  <article class="post white-box shadow floatable blur" id="comments">
+    <span hidden>
+      <meta itemprop="discussionUrl" content="/blog/2023/09/18/merchants-bank-iOS/index.html#comments">
+    </span>
+    <p ct><i class='fa-solid fa-comments'></i> 评论</p>
     
-  
+
+    <div id="layoutHelper-comments"></div>
+
+  </article>
+
+
+
+
+
+
 </div>
 <aside id='l_side' itemscope itemtype="http://schema.org/WPSideBar">
   
@@ -2780,243 +2914,42 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
     
       
-<section class="widget blogger desktop mobile pjax">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box rectangle' href='/blog/about/'>
-          <img no-lazy src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/Logo-NavBar@3x.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">zhuwo's Den</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-            <a href="/blog/atom.xml"
-              class="social fa-solid fa-rss flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="mailto:me@xxx.com"
-              class="social fa-solid fa-envelope flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="https://github.com/volantis-x/"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-          
-            <a href="/blog/"
-              class="social fa-solid fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-              
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget category desktop pjax">
-    
-  <header>
-    
-      <a href='/blog/categories/'><i class="fa-solid fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/blog/categories/%E6%8A%80%E6%9C%AF/" href="/blog/categories/%E6%8A%80%E6%9C%AF/"
-            active-action="action-blogcategoriesE68A80E69CAF"
-            ><div class='name'>技术</div><div class='badge'>(8)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/"
-            active-action="action-blogcategoriesE68A80E69CAFiOS"
-            ><div class='name'>iOS</div><div class='badge'>(6)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"
-            active-action="action-blogcategoriesE68A80E69CAFE6938DE4BD9CE7B3BBE7BB9F"
-            ><div class='name'>操作系统</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box child"
-            title="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/"
-            active-action="action-blogcategoriesE68A80E69CAFE7AE97E6B395"
-            ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/blog/categories/%E6%8A%95%E8%B5%84/" href="/blog/categories/%E6%8A%95%E8%B5%84/"
-            active-action="action-blogcategoriesE68A95E8B584"
-            ><div class='name'>投资</div><div class='badge'>(2)</div></a></li>
-        
-      </ul>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-  
-  <section class="widget tagcloud desktop mobile pjax">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 19px; color: #777">多线程</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
-    </div>
-  </section>
-
-
-    
-  
-
-  
-    
-    
-      
-<section class="widget grid desktop mobile pjax">
-  
-  <header>
-    
-      <i class="fa-solid fa-map-signs fa-fw" aria-hidden="true"></i><span class='name'>分类导航</span>
-    
-  </header>
-
-
-  <div class='content'>
-    <div class="grid navigation fixed">
-      
-        <a class="flat-box" href="/blog/faqs/"
-          
-          
-          active-action="action-blogfaqs">
-          
-            <i class="fa-solid fa-question-circle fa-fw" aria-hidden="true"></i>
-          
-          常见问题
-        </a>
-      
-        <a class="flat-box" href="/blog/examples/"
-          
-          
-          active-action="action-blogexamples">
-          
-            <i class="fa-solid fa-play-circle fa-fw" aria-hidden="true"></i>
-          
-          示例博客
-        </a>
-      
-        <a class="flat-box" href="/blog/contributors/"
-          
-          
-          active-action="action-blogcontributors">
-          
-            <i class="fa-solid fa-handshake fa-fw" aria-hidden="true"></i>
-          
-          特别感谢
-        </a>
-      
-        <a class="flat-box" href="/blog/archives/"
-          
-          
-          active-action="action-blogarchives">
-          
-            <i class="fa-solid fa-file-alt fa-fw" aria-hidden="true"></i>
-          
-          博文
-        </a>
-      
-        <a class="flat-box" href="https://github.com/volantis-x/hexo-theme-volantis/"
-          
-            rel="external nofollow noopener noreferrer"
-          
-          
-            target="_blank"
-          
-          active-action="action-https:githubcomvolantis-xhexo-theme-volantis">
-          
-            <i class="fa-solid fa-file-code fa-fw" aria-hidden="true"></i>
-          
-          主题源码
-        </a>
-      
-        <a class="flat-box" href="https://github.com/volantis-x/hexo-theme-volantis/releases/"
-          
-            rel="external nofollow noopener noreferrer"
-          
-          
-            target="_blank"
-          
-          active-action="action-https:githubcomvolantis-xhexo-theme-volantisreleases">
-          
-            <i class="fa-solid fa-tags fa-fw" aria-hidden="true"></i>
-          
-          更新日志
-        </a>
-      
-    </div>
-  </div>
-</section>
-
     
   
 
 
 <div class="widget-sticky pjax">
 
+  
+  
+
+
+  <div class="">
+    <!-- pjax占位 -->
+  </div>
+
+  
+
 </div>
 
 
 <!-- 没有 pjax 占位会报错 万恶的 pjax -->
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
+
+  <div class="pjax">
+    <!-- pjax占位 -->
+  </div>
 
   <div class="pjax">
     <!-- pjax占位 -->
@@ -3084,13 +3017,14 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </aside>
 
 
+
           <!--此文件用来存放一些不方便取值的变量-->
 <!--思路大概是将值藏到重加载的区域内-->
 
 <pjax>
 <script>
   window.pdata={}
-  pdata.ispage=false;
+  pdata.ispage=true;
   pdata.commentPath="";
   pdata.commentPlaceholder="";
   pdata.commentConfig={};
@@ -4444,7 +4378,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/tags/Cache/","name":"Cache"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":3,"item":{"@id":"https://zhuwo.github.io/blog/blog/2023/09/18/merchants-bank-iOS/","name":"招商银行iOS笔试题"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","headline":"招商银行iOS笔试题","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"url":"https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/","wordCount":0,"datePublished":"2023-09-18T02:17:00.000Z","dateModified":"2023-09-18T02:43:17.359Z","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
