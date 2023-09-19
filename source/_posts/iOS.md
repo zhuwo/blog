@@ -296,5 +296,17 @@ https://www.jianshu.com/p/e368a18ca7c2
 ## load
 
 父类load调用在子类之前，分类的load在主类load调用完后执行
+## iOS websocket使用
 
+参考： https://www.jianshu.com/p/80d1440b7012
+知名库： https://github.com/facebookincubator/SocketRocket
+
+ 主要api:
+* open
+* close
+* sendData/sendString
+* didReceviceMessage
+* didFailWithError
+* didCloseWithCode
+    
 ## OOM监控
