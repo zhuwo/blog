@@ -308,8 +308,6 @@ https://www.jianshu.com/p/e368a18ca7c2
 * didReceviceMessage
 * didFailWithError
 * didCloseWithCode
-    
-## OOM监控
 
 ## iOS 沙盒
 
@@ -326,3 +324,5 @@ https://www.jianshu.com/p/e368a18ca7c2
 * Library/Preferences: 存放应用偏好设置文件，该目录会被iTunes和iCloud同步。
 
 * tmp: 存放各种临时文件，保存应用再次启动时不需要的文件。当应用不再需要这些文件时应该主动将其删除。该目录的文件会被系统清理，比如系统磁盘空间不足的时候。该目录不会被iTunes和iCloud同步。
+
+## OOM监控
