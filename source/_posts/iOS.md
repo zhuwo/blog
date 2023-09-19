@@ -325,4 +325,25 @@ https://www.jianshu.com/p/e368a18ca7c2
 
 * tmp: 存放各种临时文件，保存应用再次启动时不需要的文件。当应用不再需要这些文件时应该主动将其删除。该目录的文件会被系统清理，比如系统磁盘空间不足的时候。该目录不会被iTunes和iCloud同步。
 
+## 使用Runloop进行卡顿检测
+
+### RunLoop过程
+
+![RunLoop](/images/runloop.png)
+
+### Runloop 状态
+```Objective-C
+typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
+    kCFRunLoopEntry , // 进入 loop
+    kCFRunLoopBeforeTimers , // 触发 Timer 回调
+    kCFRunLoopBeforeSources , // 触发 Source0 回调
+    kCFRunLoopBeforeWaiting , // 等待 mach_port 消息
+    kCFRunLoopAfterWaiting ), // 接收 mach_port 消息
+    kCFRunLoopExit , // 退出 loop
+    kCFRunLoopAllActivities  // loop 所有状态改变
+}
+```
+
+所以只要检测进入休眠前，一定时间内(3s)是否一直处于kCFRunLoopBeforeSources或者休眠唤醒以后一直处于kCFRunLoopAfterWaiting状态，就能认为是否卡顿。
+
 ## OOM监控
