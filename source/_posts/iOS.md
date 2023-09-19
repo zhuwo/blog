@@ -310,3 +310,19 @@ https://www.jianshu.com/p/e368a18ca7c2
 * didCloseWithCode
     
 ## OOM监控
+
+## iOS 沙盒
+
+参考：https://www.yuukizoom.top/2021/03/15/iOS%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%B2%99%E7%9B%92%E6%9C%BA%E5%88%B6/
+
+* MyApp.app ： 该目录存放应用本身的数据，包括资源文件和可执行文件。该目录是只读的，如果改变这个目录，将会改变应用程序的签名，应用将会无法启动。不会被iTunes和iCloud同步。
+
+* Documents: 该目录主要存放用户产生的文件，该目录会被iTunes和iCloud同步。
+
+* Library: 苹果建议用来存放默认设置或其他状态信息，该目录除Caches子目录以外会被iTunes和iCloud同步。
+
+* Library/Caches: 主要存放缓存文件，比如音乐缓存，图片缓存等，用户使用过程中的缓存都可以保存在这个目录中，可用于保存可再生文件，应用程序也需要负责删除这些文件，该目录不会被iTunes和iCloud同步。
+
+* Library/Preferences: 存放应用偏好设置文件，该目录会被iTunes和iCloud同步。
+
+* tmp: 存放各种临时文件，保存应用再次启动时不需要的文件。当应用不再需要这些文件时应该主动将其删除。该目录的文件会被系统清理，比如系统磁盘空间不足的时候。该目录不会被iTunes和iCloud同步。
