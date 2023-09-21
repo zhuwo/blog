@@ -1,9 +1,10 @@
 ---
-title: 招商银行iOS笔试题
+title: 招商银行iOS面试笔试
 date: 2023-09-18 10:17:00
 tags:
 ---
 
+## 笔试题
 
 1. 实现属性`@propperty(nonatomic, strong) NSString* name`和`@propperty(nonatomic, copy) NSString* name`的set方法
 
@@ -53,3 +54,10 @@ tags:
 9. 什么情况下使用copy属性
     a.对于不可变属性，推荐使用copy，能防止不可变对象变成可变对象，从而防止值发生不可控变化。 
     b.对于可变属性，推荐使用strong，因为用copy修饰后，会变成不可变对象，再调用可变对象的函数时会crash
+
+## 面试题
+
+1. CocoaPods原理，单独的库是如何打包的？
+2. 大文件下载多线程如何实现，读取和下载完成，如何合并各个文件下载的进度
+3. load系统是怎么调用的，initalize可以运行时调用吗？
+4. 

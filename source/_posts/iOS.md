@@ -97,6 +97,8 @@ dispatch_sync添加的任务执行完以后才会返回，因为是串行队列�
 
 https://juejin.cn/post/6965770220921159694
 
+![OSSpinLock](/images/OSSpinLock.png)
+
 * OSSpinLock
 * os_unfair_lock
 * pthread_mutex
