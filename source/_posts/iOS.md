@@ -348,4 +348,41 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 
 所以只要检测进入休眠前，一定时间内(3s)是否一直处于kCFRunLoopBeforeSources或者休眠唤醒以后一直处于kCFRunLoopAfterWaiting状态，就能认为是否卡顿。
 
+## 离屏渲染
+
+https://juejin.cn/post/7043676783735996424
+
+### 触发离屏渲染的几种情况
+
+1. 使用了mask的layer（layer.mask）
+2. 需要进行裁剪的layer（layer.masksToBounds / view.clipsToBounds）
+3. 设置了组透明度YES,并且透明度不为1的layer （layer.allowsGroupOpacity/layer.opacity）
+4. 添加了投影的layer（layer.shadow）
+5. 采用了光栅化的layer（layer.shouldRasterize）
+6. 绘制了文字的layer （UILabel，CATextLayer，CoreText等）
+
+### 离屏渲染优化
+
+1. 大量应用AsyncDisplayKit(Texture)作为主要渲染框架，对于文字和图片的异步渲染操作交由框架来处理。关于这方面可以看之前的一些介绍
+2. 对于图片的圆角，统一采用“precomposite”的策略，也就是不经由容器来做剪切，而是预先使用CoreGraphics为图片裁剪圆角
+3. 对于视频的圆角，由于实时剪切非常消耗性能，我们会创建四个白色弧形的layer盖住四个角，从视觉上制造圆角的效果
+4. 对于view的圆形边框，如果没有backgroundColor，可以放心使用cornerRadius来做
+5. 对于所有的阴影，使用shadowPath来规避离屏渲染
+6. 对于特殊形状的view，使用layer mask并打开shouldRasterize来对渲染结果进行缓存
+7. 对于模糊效果，不采用系统提供的UIVisualEffect，而是另外实现模糊效果（CIGaussianBlur），并手动管理渲染结果
+
+## 手势冲突如何解决
+
+https://www.jianshu.com/p/ce5f54559820
+
+### 常见的冲突出现的场景：
+1. 同一个 UIView 添加了多个相同的手势，却要实现不同的功能；
+2. 在UIView和其子UIView上有相同的手势，要实现父子手势的无缝切换等。
+
+### 常见解决方法
+1. 设置手势识别器的delegate，通过代理方法来控制手势的识别；
+2. 使用手势识别器的require(toFail:)方法来指定一个手势识别器在另一个手势识别器失效之后才能生效；
+3. 使用手势识别器的delaysTouchesBegan属性来延迟手势的起始时间；
+4. 使用shouldRecognizeSimultaneouslyWith方法来允许多个手势同时识别。
+
 ## OOM监控
