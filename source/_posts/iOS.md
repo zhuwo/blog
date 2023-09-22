@@ -348,9 +348,52 @@ typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) {
 
 所以只要检测进入休眠前，一定时间内(3s)是否一直处于kCFRunLoopBeforeSources或者休眠唤醒以后一直处于kCFRunLoopAfterWaiting状态，就能认为是否卡顿。
 
+## 卡顿
+
+### 卡顿产生的一些原因
+
+* IO
+* 大图加载
+* 高度计算
+
+### 解决卡顿
+
+#### CPU 
+
+1. 使用轻量级的对象：比如不用点击的地方，使用CALayer代替UIView;
+
+2. 不要频繁的修改属性：frame，bounds，transfrom等，这些都需要CPU的计算;
+
+3. 尽量提前计算好布局：计算好frame，bounds等，一次性修改，不要多次修改;
+
+4. 使用AutoLayout比直接设置frame消耗更多的资源;
+
+5. 图片的size最好和UIImageView的size保持一致，这样就不用耗费CPU资源去进行缩放操作;
+
+6. 控制线程的最大并发数量：比如说3，不要无限制的开辟新的线程;
+
+7. 尽量耗时操作放到子线程。
+
+#### GPU
+
+1. 尽量减少视图的数量和层级：多层次的视图绘制更占用GPU资源;
+
+2. 尽量避免短时间大量图片的显示：可以合成为一张图片展示;
+
+3. GPU能处理的图片的最大尺寸是4096x4096,尽量不要超过这个尺寸;
+
+4. 减少透明视图的使用 alpha < 1,重叠部分：有透明度：需要混合计算;不透明：计算一次(最上层的颜色);
+
+5. 避免离屏渲染。
+
+
 ## 离屏渲染
 
 https://juejin.cn/post/7043676783735996424
+
+FrameBuffer
+
+OffScreenBuffer:单独开辟内存，内容切换
 
 ### 触发离屏渲染的几种情况
 
