@@ -439,9 +439,38 @@ C++编译期，确定某个对象能调用哪些方法；
 3. 动态类型
   指对象指针类型的动态性，具体是指使用id类型将对象的类型推迟到运行时才确定，由赋值给它的对象类型决定对象指针的类型。
 
+
+## 通知
+
+### 实现原理
+
+通知中心维护了一个 table，table 里面包含了 named表、nameless表、wildcard链表这三个数据结构；当我们调用 addObserver:selector:name:object:方法时，其内部大概是这样实现的：
+
+1. 构造一个 Observation对象，该对象里面保存着 object 和 selector，可以看做是一个链表的节点。
+2. 判断传入的 name 是否为空。如果 name 不为空，以 name为 key 从 named 的字典中取出一个 n 字典，然后从 n 字典里面以 object 为 key 取出 observation，再然后把 observation 对象存入链表。
+3. 判断传入的 object 是否为空。如果 object 不为空，以 object 为 key 从 namedless 字典中取出 observation 链表，将 observation 对象存入；
+4. 如果name 和 object 都为空，则将Observertion 对象存入 wildcard 链表中。
+发送通知的过程是先判断object，再判断 name。name 的优先级高于 object。
+### 通知的发送是同步的还是异步的？
+同步的，会调用performSelector:withObject。但是有种情况可以不实时发送通知，而是在合适的时机发送，并没有开启线程，这种说法是指使用 NSOperationQueue，指定发送时机，可以依赖 Runloop 等到下一次循环开始时发送。
+###  NSNotificationCenter 接收消息和发送消息是在同一个线程吗，如何异步发送通知？
+是的，发送消息在哪个线程，接收消息就在哪个线程。
+###  NSNotificaionQueue 是异步还是同步？在哪个线程响应？
+没有异步发送一说，只是利用了 Runloop 可以选择触发时机。
+###  NSNotificationQueue 和 Runloop 的关系？
+前者依赖后者。比如指定 postStyle 的时候 NSPostWhenIdle 表示在 Runloop 空闲的时候发送。
+此外还有 NSPostASAP，尽可能快 发送，NSPostNow多个相同的通知合并后马上发送。
+###  如何保证通知接收的线程在主线程？
+使用 block 方式注册通知，在主队列响应。或者是在主线程注册 machPort，这是负责线程通信的，当异步线程收到通知后，给 machport 发送消息。
+还可以在通知的回调方法里面，使用 GCD 主队列调度方法。
+###  页面销毁时，不移除通知会崩溃吗？
+
+iOS9 之后不会了，通知中心对 Observer是弱引用的。
+### 多次添加同一个通知和多次移除同一个通知会是什么结果？
+多次添加会多次响应。移除没事儿
+
+## 如何检测在非主线程进行UI操作？
+
+
 ## OOM监控
 
-
-### wenti 
-
-如何检测在非主线程进行UI操作
