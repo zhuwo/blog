@@ -471,6 +471,12 @@ iOS9 之后不会了，通知中心对 Observer是弱引用的。
 
 ## 如何检测在非主线程进行UI操作？
 
+参考：https://moshuqi.github.io/2016/05/02/iOS%E9%80%9A%E8%BF%87runtime%E6%9C%BA%E5%88%B6%E6%A3%80%E6%B5%8B%E5%AD%90%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9CUI/
+
+简要概述，就是用runtime将UIView的所有方法和属性进行Method Swizzling，进行消息转发，然后在自定义的消息中进行判断是否是主线程。isMainThread。
+
+## 导致iOS程序崩溃的原因有哪些？
+
 
 ## OOM监控
 
