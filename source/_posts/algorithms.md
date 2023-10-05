@@ -36,4 +36,34 @@ tags:
 
 => KMP是有限自动机的一种有效实现：
 
+用\pi添加额外的存储空间，表示P[q]的后缀中最长真前缀，也就是用模式内部的匹配形式，来表达有限自动机。算法执行流程，就是当前字符不匹配的时候，逐步回退到\pi的地方，再去判断，如何符合就继续，直到回退到开头的形式，这样就利用了模式字符串之前就有的模式子串。
+
+```
+KMP-Matcher(T, P)
+    n = T.length
+    m = P.length
+    \pi  = Compute_Prefix_Function(P)
+    for i from 1 to n
+        while q > 0 and P[q+1] != T[i]
+            q = \pi[q]
+        if P[q+1] == T[i]
+            q == q + 1
+        if q == m
+            Print "Positon at " m - i
+            q = \pi[q] // Find next Mathcher
+
+Compute_Prefix_Function(P)
+    n = P.length
+    k = 0
+    let \pi be an new array from 1 to n
+    \pi[1] = 0
+    for q from 2 to n
+        while k > 0 and P[k+1] != P[q]
+            k = \pi[k]
+        if P[k+1] == P[q]
+            k = k + 1
+        \pi[q] = k
+
+```
+
 
