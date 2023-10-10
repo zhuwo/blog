@@ -270,6 +270,14 @@ https://www.jianshu.com/p/e368a18ca7c2
 3. RunLoop对象在第一次获取RunLoop时创建，销毁则是在线程结束的时候。
 4. 主线程的RunLoop对象系统自动帮助我们创建好了(原理如下)，而子线程的RunLoop对象需要我们主动创建。
 
+## 如何实现常驻线程
+
+参考：[iOS 常驻线程](https://juejin.cn/post/6971021826180792334)
+
+1. 实现思路：给runloop添加port虚拟接口监听
+2. 如何让常驻线程退出：添加标识位，使用`[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];`，这样接收到端口处理信号,标志位结束，退出循环，执行完最后一次后线程结束
+3. 线程创建使用block，防止对self出现循环引用。
+
 ## NSOperation
 
 参考： https://juejin.cn/post/6844904053906866189
