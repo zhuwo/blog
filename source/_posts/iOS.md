@@ -477,6 +477,16 @@ iOS9 之后不会了，通知中心对 Observer是弱引用的。
 
 ## 导致iOS程序崩溃的原因有哪些？
 
+1. 数组越界
+2. unrecognized selector sent to instance
+3. 野指针
+
+### 解决奔溃问题
+
+1. Method Swizzling 加防护，返回nil
+2. 使用前加判断
+3. 
+
 
 ## OOM监控
 
