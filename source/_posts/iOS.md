@@ -181,7 +181,16 @@ KeyAnimation
 
 ## NSTimer问题总结
 
-runloop耗时任务多的时候，会丢失
+1. runloop耗时任务多的时候，会丢失
+2. Timer造成循环引用：NSProxy, 中间件（target为另一个对象）
+
+runloop没有释放，一直存在引用
+![引用关系](/images/timer_reference.png)
+
+打破的地方就是timer对self的强引用
+![最终需要的引用情况](/images/timer_final_reference.png)
+
+
 
 https://juejin.cn/post/7016633863241728014
 
