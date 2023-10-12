@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1696923476652),
+    lastupdate: new Date(1697076715163),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -2694,6 +2694,8 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           
         
+          
+        
       
     
     
@@ -2757,6 +2759,112 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
               <a href="/blog/categories/%E6%8A%80%E6%9C%AF/C/" itemprop="url"><span itemprop="name">C++</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/18/merchants-bank-iOS/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2023/09/18/merchants-bank-iOS/"  itemprop="url">
+        招商银行iOS面试笔试
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <div class="story post-story"><h2 id="笔试题"><a href="#笔试题" class="headerlink" title="笔试题"></a>笔试题</h2><ol>
+<li><p>实现属性<code>@propperty(nonatomic, strong) NSString* name</code>和<code>@propperty(nonatomic, copy) NSString* name</code>的set方法</p>
+</li>
+<li><p>下列哪些操作可以在iOS后台运行<br>a. VOIP<br>b. 音乐播放<br>c. 地理位置获取<br>d. http请求</p>
+</li>
+<li><p>UIView和UIControl的关系</p>
+</li>
+<li><p>[super dealloc]需要在dealloc中调用吗，调用顺序是怎么样的</p>
+<p> a. [super dealloc]在第一行<br> b. [super dealloc]在最后一行<br> c. 没有关系</p>
+</li>
+<li><p>@propery和@systhesis的作用</p>
+</li>
+<li><p>UIResponder，_____， 以及UIView能响应事件</p>
+</li>
+<li><p>哪个是单例<br> a. NSNotification<br> b. UIApplication (sharedApplication)<br> c. NSuserDefault (standardUserDefaults)<br> d. </p>
+</li>
+<li><p>什么情况下使用delegate，什么情况下使用notification</p>
+<p> Delegate:</p>
+<p> 消息的发送者(sender)告知接收者(receiver)某个事件将要发生，delegate同意然然后发送者响应事件，delegate机制使得接收者可以改变发送者的行为。通常发送者和接收者的关系是直接的一对多的关系。</p>
+<p> Notification:</p>
+<p> 消息的发送者告知接收者事件已经发生或者将要发送，仅此而已，接收者并不能反过来影响发送者的行为。通常发送者和接收者的关系是间接的多对多关系。</p>
+<p> 区别:</p>
+<p> a. 效率肯定是delegate比nsnotification高。</p>
+<p> b. delegate方法比notification更加直接，最典型的特征是，delegate方法往往需要关注返回值，也就是delegate方法的结果。比如-windowShouldClose:，需要关心返回的是yes还是no。所以delegate方法往往包含should这个很传神的词。也就是好比你做我的delegate，我会问你我想关闭窗口你愿意吗？你需要给我一个答案，我根据你的答案来决定如何做下一步。相反的，notification最大的特色就是不关心接受者的态度，我只管把通告放出来，你接受不接受就是你的事情，同时我也不关心结果。所以notification往往用did这个词汇，比如NSWindowDidResizeNotification，那么nswindow对象放出这个notification后就什么都不管了也不会等待接受者的反应。</p>
+<p> 1）两个模块之间联系不是很紧密，就用notification传值，例如多线程之间传值用notificaiton。</p>
+<p> 2）delegate只是一种较为简单的回调，且主要用在一个模块中，例如底层功能完成了，需要把一些值传到上层去，就事先把上层的函数通过delegate传到底层，然后在底层call这个delegate，它们都在一个模块中，完成一个功能，例如说 NavgationController 从 B 界面到A 点返回按钮 (调用popViewController方法) 可以用delegate比较好。</p>
+</li>
+<li><p>什么情况下使用copy属性<br> a.对于不可变属性，推荐使用copy，能防止不可变对象变成可变对象，从而防止值发生不可控变化。<br> b.对于可变属性，推荐使用strong，因为用copy修饰后，会变成不可变对象，再调用可变对象的函数时会crash</p>
+</li>
+</ol>
+</div><div class="story post-story"><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><ol>
+<li>CocoaPods原理，单独的库是如何打包的？</li>
+<li>大文件下载多线程如何实现，读取和下载完成，如何合并各个文件下载的进度</li>
+<li>load系统是怎么调用的，initalize可以运行时调用吗？</li>
+<li></li>
+</ol>
+
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-09-18T10:17:00+00:00">2023-09-18</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E9%9D%A2%E8%AF%95/">面试</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/%E9%9D%A2%E8%AF%95/" itemprop="url"><span itemprop="name">面试</span></a>
             </span>
           
         
@@ -3874,7 +3982,7 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
           <li><a class="flat-box"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/" href="/blog/categories/%E6%8A%80%E6%9C%AF/"
             active-action="action-blogcategoriesE68A80E69CAF"
-            ><div class='name'>技术</div><div class='badge'>(9)</div></a></li>
+            ><div class='name'>技术</div><div class='badge'>(10)</div></a></li>
         
           <li><a class="flat-box child"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/C/" href="/blog/categories/%E6%8A%80%E6%9C%AF/C/"
@@ -3895,6 +4003,11 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
             title="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95/"
             active-action="action-blogcategoriesE68A80E69CAFE7AE97E6B395"
             ><div class='name'>算法</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/blog/categories/%E6%8A%80%E6%9C%AF/%E9%9D%A2%E8%AF%95/" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E9%9D%A2%E8%AF%95/"
+            active-action="action-blogcategoriesE68A80E69CAFE99DA2E8AF95"
+            ><div class='name'>面试</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box"
             title="/blog/categories/%E6%8A%95%E8%B5%84/" href="/blog/categories/%E6%8A%95%E8%B5%84/"
@@ -3924,7 +4037,7 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
 
 
     <div class='content'>
-      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/blog/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 19px; color: #777">多线程</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 14px; color: #999">面试</a>
+      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/blog/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 19px; color: #777">多线程</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 19px; color: #777">面试</a>
     </div>
   </section>
 
@@ -5138,7 +5251,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp"];
   let index = 0;
   let IntervalParallax = null;
 
