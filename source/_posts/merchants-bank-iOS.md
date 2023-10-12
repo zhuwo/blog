@@ -2,6 +2,11 @@
 title: 招商银行iOS面试笔试
 date: 2023-09-18 10:17:00
 tags:
+- iOS
+- 面试
+categories:
+- 技术
+- 面试
 ---
 
 ## 笔试题
