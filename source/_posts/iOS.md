@@ -171,17 +171,19 @@ position和anchorPoint互不影响，都只会影响frame
 
 ## iOS实现动画有几种方式
 
-UIView animatiedWith
+参考：https://hit-alibaba.github.io/interview/iOS/Cocoa-Touch/Animation.html
 
-UIView animateKeyframesWithDuration
+UIView:
+    1. UIView animatiedWith
+    2. 关键帧动画 UIView animateKeyframesWithDuration
+CAlayer:
+    1. CAbasicAnimation (针对layer的某一属性)
+    2. 组动画（CAAnimationGroup)：组动画可以将一组动画组合在一起，所有动画对象可以同时运行，
+    3. CAKeyframeAnimation
 
-CAbasicAnimation (针对layer的某一属性)
+* CADisplayLink
+* CATransition(过渡动画): fade/moveIn/Push/Reval(类似于PPT)
 
-CATransition(过渡动画)
-fade/moveIn/Push/Reval(类似于PPT)
-
-
-KeyAnimation
 
 ## NSTimer问题总结
 
