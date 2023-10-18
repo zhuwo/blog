@@ -217,6 +217,67 @@ function tokenizer(input) {
 ```
 
  ## 语法分析 *Syntactic Analysis* 
+
+输入：token数组
+输出；ast
+
+walk递归函数：
+  1. 遇到Number\String，直接返回对应JSON结构
+  2. 遇到`(`,构建表达式，循环一直push，walk返回的结果，直到遇到`)`，返回表达式node
+
+总结：
+  后缀表达式的解析，相对简单
+
+```javascript
+  let current = 0;
+  function walk() {
+    let token = tokens[current];
+    if (token.type === 'number') {
+      current++;
+      return {
+        type: 'NumberLiteral',
+        value: token.value
+      }
+    }
+    if (token.type === 'string') {
+      current++;
+      return {
+        type: 'StringLiteral',
+        value: token.value
+      }
+    }
+    if (token.type == 'paren' && token.value == '(') {
+      token = tokens[++current];
+      let node = {
+        type: 'CallExpression',
+        name: token.name,
+        params:[]
+      }
+      token = tokens[++current];
+      while (token.type !== 'paren' ||
+            token.type === 'paren' && token.value !== ')') {
+          node.params.push(walk());
+          token = tokens[current];
+      }
+      ++current;
+      return node;
+    }
+    throw TypeError(token.type)
+  }
+  let ast = {
+    type: 'Program',
+    body:[]
+  }
+
+  while(current < token.length()) {
+    ast.body.push(walk());
+  }
+
+  return ast;
+
+```
+
+
  
 ```javascript
 {
