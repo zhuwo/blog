@@ -268,10 +268,6 @@ It is still recommended to copy because you want to avoid something passing a mu
 
 账号密码，token用KeyChain保存，删除App，KeyChain中的数据仍然存在，因为数据是iOS系统保存的
 
-## iOS 通知的线程是在哪个线程
-
-https://www.jianshu.com/p/e368a18ca7c2
-
 ## runloop和线程的关系
 
 1. 一条线程对应一个RunLoop对象，每条线程都有唯一一个与之对应的RunLoop对象。
@@ -459,6 +455,10 @@ C++编译期，确定某个对象能调用哪些方法；
 
 ## 通知
 
+### 通知的线程是在哪个线程
+
+https://www.jianshu.com/p/e368a18ca7c2
+
 ### 实现原理
 
 通知中心维护了一个 table，table 里面包含了 named表、nameless表、wildcard链表这三个数据结构；当我们调用 addObserver:selector:name:object:方法时，其内部大概是这样实现的：
@@ -468,21 +468,28 @@ C++编译期，确定某个对象能调用哪些方法；
 3. 判断传入的 object 是否为空。如果 object 不为空，以 object 为 key 从 namedless 字典中取出 observation 链表，将 observation 对象存入；
 4. 如果name 和 object 都为空，则将Observertion 对象存入 wildcard 链表中。
 发送通知的过程是先判断object，再判断 name。name 的优先级高于 object。
+
 ### 通知的发送是同步的还是异步的？
 同步的，会调用performSelector:withObject。但是有种情况可以不实时发送通知，而是在合适的时机发送，并没有开启线程，这种说法是指使用 NSOperationQueue，指定发送时机，可以依赖 Runloop 等到下一次循环开始时发送。
+
 ###  NSNotificationCenter 接收消息和发送消息是在同一个线程吗，如何异步发送通知？
 是的，发送消息在哪个线程，接收消息就在哪个线程。
+
 ###  NSNotificaionQueue 是异步还是同步？在哪个线程响应？
 没有异步发送一说，只是利用了 Runloop 可以选择触发时机。
+
 ###  NSNotificationQueue 和 Runloop 的关系？
 前者依赖后者。比如指定 postStyle 的时候 NSPostWhenIdle 表示在 Runloop 空闲的时候发送。
 此外还有 NSPostASAP，尽可能快 发送，NSPostNow多个相同的通知合并后马上发送。
+
 ###  如何保证通知接收的线程在主线程？
 使用 block 方式注册通知，在主队列响应。或者是在主线程注册 machPort，这是负责线程通信的，当异步线程收到通知后，给 machport 发送消息。
 还可以在通知的回调方法里面，使用 GCD 主队列调度方法。
+
 ###  页面销毁时，不移除通知会崩溃吗？
 
 iOS9 之后不会了，通知中心对 Observer是弱引用的。
+
 ### 多次添加同一个通知和多次移除同一个通知会是什么结果？
 多次添加会多次响应。移除没事儿
 
@@ -491,6 +498,11 @@ iOS9 之后不会了，通知中心对 Observer是弱引用的。
 参考：[通过Runtime机制检测子线程操作UI](https://moshuqi.github.io/2016/05/02/iOS%E9%80%9A%E8%BF%87runtime%E6%9C%BA%E5%88%B6%E6%A3%80%E6%B5%8B%E5%AD%90%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9CUI/)
 
 简要概述，就是用runtime将UIView的所有方法和属性进行Method Swizzling，进行消息转发，然后在自定义的消息中进行判断是否是主线程。isMainThread。
+具体：
+1. 将retain\release\dealloc\cxx_destruct以及UIView的属性标记为ignoreMethods
+2. 将所有UIView的其他方法替换为_objc_msgForward， 进行消息转发
+3. forwardInvocation替换为myForwardInvocation，并将原始方法的实现，挂到新的Selector--OriginSelector
+4. 在myForwardInvocation内部进行线程判断，然后调用新的OriginSelector
 
 ## 导致iOS程序崩溃的原因有哪些？
 
