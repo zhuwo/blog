@@ -235,6 +235,8 @@ It is still recommended to copy because you want to avoid something passing a mu
 
 ## 苹果登录流程
 
+JWT （JSON Web Token） 是目前最流行的跨域认证解决方案，是一种基于 Token 的认证授权机制。从 JWT 的全称可以看出，JWT 本身也是 Token，一种规范化之后的 JSON 结构的 Token。
+
 1. 客户端用appleID/邮箱密码请求,返回个人信息和token
 2. 将token和userID给后端
 3. 后端向苹果后端请求解密token的公钥
