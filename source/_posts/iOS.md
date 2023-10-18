@@ -254,7 +254,7 @@ It is still recommended to copy because you want to avoid something passing a mu
 • 【消息转发】如果动态方法决议还是没有找到，则进行消息转发，消息转发中有两次补救机会：快速转发+慢速转发
 • 如果转发之后也没有，则程序直接报错崩溃`unrecognized selector sent to instance``
 
-![Message Forawrd Procedure](/images/Message_Forawrd_Procedure.png)
+![Message Forawrd Procedure](/images/Message_Forawrd_Procedure1.png)
 
 ### 应用
 
