@@ -302,10 +302,13 @@ walk递归函数：
      }]
    }
 ```
+## 遍历器 Traverser  访问器 Vistor
+
+遍历器使用访问器对每种类型的节点进行处理
 
 ## 变换 Transformation
 
-任何想对原始AST进行的处理，包括增加、删除、替换节点
+任何想对原始AST进行的处理，包括增加、删除、替换节点，是一种特定的Traverser，这里是将AST转换为newAST，vistor的操作就是对每个节点进行转换。
 
 ## 遍历 Traversal
 
