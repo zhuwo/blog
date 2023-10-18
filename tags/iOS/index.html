@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1697598200008),
+    lastupdate: new Date(1697612452168),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -3268,7 +3268,6 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903600968171533">https://juejin.cn/post/6844903600968171533</a></li>
 </ul>
 </div><div class="story post-story"><h2 id="KeyChain"><a href="#KeyChain" class="headerlink" title="KeyChain"></a>KeyChain</h2><p>账号密码，token用KeyChain保存，删除App，KeyChain中的数据仍然存在，因为数据是iOS系统保存的</p>
-</div><div class="story post-story"><h2 id="iOS-通知的线程是在哪个线程"><a href="#iOS-通知的线程是在哪个线程" class="headerlink" title="iOS 通知的线程是在哪个线程"></a>iOS 通知的线程是在哪个线程</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e368a18ca7c2">https://www.jianshu.com/p/e368a18ca7c2</a></p>
 </div><div class="story post-story"><h2 id="runloop和线程的关系"><a href="#runloop和线程的关系" class="headerlink" title="runloop和线程的关系"></a>runloop和线程的关系</h2><ol>
 <li>一条线程对应一个RunLoop对象，每条线程都有唯一一个与之对应的RunLoop对象。</li>
 <li>我们只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的RunLoop。</li>
@@ -3397,7 +3396,8 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
 <li>动态绑定<br>  即运行时确定要调用的方法。动态绑定将要调用的方法的确定也推迟到运行时。编译时方法的调用并不和代码绑定一起，只有在消息发送出来之后，才确定被调用的代码。直观点的意思就是在运行时才判断需要调用什么方法。当向一个动态类型确定的对象发送消息时，运行时环境系统会通过接收者的isa指针定对象的类，并以此为起点确定被调用的方法，方法和消息时动态绑定的。</li>
 <li>动态类型<br>  指对象指针类型的动态性，具体是指使用id类型将对象的类型推迟到运行时才确定，由赋值给它的对象类型决定对象指针的类型。</li>
 </ol>
-</div><div class="story post-story"><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>通知中心维护了一个 table，table 里面包含了 named表、nameless表、wildcard链表这三个数据结构；当我们调用 addObserver:selector:name:object:方法时，其内部大概是这样实现的：</p>
+</div><div class="story post-story"><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><h3 id="通知的线程是在哪个线程"><a href="#通知的线程是在哪个线程" class="headerlink" title="通知的线程是在哪个线程"></a>通知的线程是在哪个线程</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e368a18ca7c2">https://www.jianshu.com/p/e368a18ca7c2</a></p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>通知中心维护了一个 table，table 里面包含了 named表、nameless表、wildcard链表这三个数据结构；当我们调用 addObserver:selector:name:object:方法时，其内部大概是这样实现的：</p>
 <ol>
 <li>构造一个 Observation对象，该对象里面保存着 object 和 selector，可以看做是一个链表的节点。</li>
 <li>判断传入的 name 是否为空。如果 name 不为空，以 name为 key 从 named 的字典中取出一个 n 字典，然后从 n 字典里面以 object 为 key 取出 observation，再然后把 observation 对象存入链表。</li>
@@ -3412,7 +3412,13 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
 <h3 id="页面销毁时，不移除通知会崩溃吗？"><a href="#页面销毁时，不移除通知会崩溃吗？" class="headerlink" title="页面销毁时，不移除通知会崩溃吗？"></a>页面销毁时，不移除通知会崩溃吗？</h3><p>iOS9 之后不会了，通知中心对 Observer是弱引用的。</p>
 <h3 id="多次添加同一个通知和多次移除同一个通知会是什么结果？"><a href="#多次添加同一个通知和多次移除同一个通知会是什么结果？" class="headerlink" title="多次添加同一个通知和多次移除同一个通知会是什么结果？"></a>多次添加同一个通知和多次移除同一个通知会是什么结果？</h3><p>多次添加会多次响应。移除没事儿</p>
 </div><div class="story post-story"><h2 id="如何检测在非主线程进行UI操作？"><a href="#如何检测在非主线程进行UI操作？" class="headerlink" title="如何检测在非主线程进行UI操作？"></a>如何检测在非主线程进行UI操作？</h2><p>参考：<a target="_blank" rel="noopener" href="https://moshuqi.github.io/2016/05/02/iOS%E9%80%9A%E8%BF%87runtime%E6%9C%BA%E5%88%B6%E6%A3%80%E6%B5%8B%E5%AD%90%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9CUI/">通过Runtime机制检测子线程操作UI</a></p>
-<p>简要概述，就是用runtime将UIView的所有方法和属性进行Method Swizzling，进行消息转发，然后在自定义的消息中进行判断是否是主线程。isMainThread。</p>
+<p>简要概述，就是用runtime将UIView的所有方法和属性进行Method Swizzling，进行消息转发，然后在自定义的消息中进行判断是否是主线程。isMainThread。<br>具体：</p>
+<ol>
+<li>将retain\release\dealloc\cxx_destruct以及UIView的属性标记为ignoreMethods</li>
+<li>将所有UIView的其他方法替换为_objc_msgForward， 进行消息转发</li>
+<li>forwardInvocation替换为myForwardInvocation，并将原始方法的实现，挂到新的Selector–OriginSelector</li>
+<li>在myForwardInvocation内部进行线程判断，然后调用新的OriginSelector</li>
+</ol>
 </div><div class="story post-story"><h2 id="导致iOS程序崩溃的原因有哪些？"><a href="#导致iOS程序崩溃的原因有哪些？" class="headerlink" title="导致iOS程序崩溃的原因有哪些？"></a>导致iOS程序崩溃的原因有哪些？</h2><ol>
 <li>数组越界</li>
 <li>unrecognized selector sent to instance</li>
@@ -3440,7 +3446,7 @@ NSSet对应NSHashTable, NSDictionary对应NSMapTable。
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-08-29T05:48:17+00:00">2023-08-29</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-08-29T13:48:17+00:00">2023-08-29</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
@@ -4841,7 +4847,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp"];
   let index = 0;
   let IntervalParallax = null;
 
