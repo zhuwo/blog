@@ -306,6 +306,9 @@ walk递归函数：
 
 遍历器使用访问器对每种类型的节点进行处理
 
+  1. vistor，包含进入(enter)节点处理/离开(leave)节点处理
+  2. Traverse逻辑，先是节点的“进入”（enter）进行处理掉用，然后针对不同类型，宽范处理（CallExpression/Pgrogam数组遍历逻辑）,最后“离开”(leave)处理
+
 ## 变换 Transformation
 
 任何想对原始AST进行的处理，包括增加、删除、替换节点，是一种特定的Traverser，这里是将AST转换为newAST，vistor的操作就是对每个节点进行转换。
@@ -316,7 +319,7 @@ Traverser像模版代码，Transform是用实际的vistor实现填充实现。
 
 1. Program body由表达式数组组成，所以由`\n`换行符分割的语句组成
 2. Expression 表达式，表示由`;`结尾的表达式语句
-3. CallExpression 改为 `node.callee + ( + [codeGenerator foreach] + )`
+3. CallExpression 改为 `[操作符] + ( + [codeGenerator foreach] + )`
 4. Number直接return，String 返回`"{value}"`
 
 
