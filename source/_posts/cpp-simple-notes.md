@@ -17,3 +17,9 @@ std::queue<int> empty;
 std::swap( q, empty );
 ```
 
+## 交换vector两个位置的值
+
+```c++
+std::swap(nums[a], nums[b]);
+```
+
