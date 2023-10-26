@@ -23,3 +23,8 @@ std::swap( q, empty );
 std::swap(nums[a], nums[b]);
 ```
 
+## 二维vector初始化
+
+```c++
+vector(numCourses, vector<int>());
+```
