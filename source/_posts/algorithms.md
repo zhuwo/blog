@@ -34,6 +34,31 @@ tags:
 3. 构建有限自动机：对于模式P，和字符集，扫描模式，当前字符a,对于Pi，找寻Pi a的最长前缀Pk，则加字符a，转移到k的状态
 4. 算法的复杂度为扫描O(n) + 构建有限自动机的复杂度
 
+有限自动机的输入：当前状态q, 以及新的输入T[i], 输出就是新的状态
+
+```
+m = P.length
+FINITE-AUTOMATON-MATCHER(T, delta, m)
+    n = T.length
+    q = 0
+    for i = 1 to n
+        q = delta(q, T[i])
+        if (q == m) 
+            print "Pattern occurs with shift " i - m
+```
+```
+COMPUTE-TRANSITION-FUNCTION(P, 字符集)
+m = P.length
+for q = 0 to m
+    for each character a 属于 字符集
+        k = min (m + 1, q + 2)
+        repeat
+            k = k - 1
+        until Pk 是 Pq.a的后缀
+        delta(q, a) = k
+return delta
+```
+
 => KMP是有限自动机的一种有效实现：
 
 用\pi添加额外的存储空间，表示P[q]的后缀中最长真前缀，也就是用模式内部的匹配形式，来表达有限自动机。算法执行流程，就是当前字符不匹配的时候，逐步回退到\pi的地方，再去判断，如何符合就继续，直到回退到开头的形式，这样就利用了模式字符串之前就有的模式子串。
