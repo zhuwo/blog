@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <!-- SEO相关 -->
   <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="https://zhuwo.github.io/blog/tags/cpp/"/>
+  <link rel="canonical" href="https://zhuwo.github.io/blog/categories/技术/javascript/"/>
   <!-- 渲染优化 -->
     <meta http-equiv='x-dns-prefetch-control' content='on' />
       <link rel='dns-prefetch' href='https://unpkg.com'>
@@ -33,12 +33,12 @@
 
   <!-- feed -->
   <!-- 页面元数据 -->
-  <title>标签：CPP - zhuwo's Den</title>
+  <title>分类：javascript - zhuwo's Den</title>
   <meta name="keywords" content="null">
   <meta desc name="description" content="zhuwo's Den - zhuwo - zhuwo's Den">
   <meta property="og:type" content="website">
 <meta property="og:title" content="zhuwo&#39;s Den">
-<meta property="og:url" content="https://zhuwo.github.io/blog/tags/CPP/index.html">
+<meta property="og:url" content="https://zhuwo.github.io/blog/categories/%E6%8A%80%E6%9C%AF/javascript/index.html">
 <meta property="og:site_name" content="zhuwo&#39;s Den">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
@@ -2685,7 +2685,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/10/01/cpp-simple-notes/">
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/11/10/js-worker/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
   </span>
@@ -2703,19 +2703,34 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   
     
     <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/10/01/cpp-simple-notes/"  itemprop="url">
-        C++的一些简要操作笔记
+      <a href="/blog/2023/11/10/js-worker/"  itemprop="url">
+        js_worker
       </a>
     </h2>
   
   <div class='md article-desc' itemprop="articleBody">
     
       
-        <div class="story post-story"><h2 id="清空queue-c-clear-queue"><a href="#清空queue-c-clear-queue" class="headerlink" title="清空queue c++ clear queue"></a>清空queue c++ clear queue</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::queue&lt;<span class="type">int</span>&gt; empty;</span><br><span class="line">std::<span class="built_in">swap</span>( q, empty );</span><br></pre></td></tr></table></figure>
+        <div class="story post-story"><h2 id="Worker理解"><a href="#Worker理解" class="headerlink" title="Worker理解"></a>Worker理解</h2><pre><code>简而言之：JS上的多线程处理。
+JS的传统模型只在一个主线程运行代码，遇到复杂计算的过程容易引起页面卡顿，为此引入Worker，worker中的代码，单独在一个字线程进行跑，和原生开发一样，可以避免复杂计算影响主线程渲染页面。
+</code></pre>
+</div><div class="story post-story"><h2 id="Worker使用"><a href="#Worker使用" class="headerlink" title="Worker使用"></a>Worker使用</h2><ol>
+<li>创建worker</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> worker = <span class="keyword">new</span> <span class="title class_">Worker</span>(<span class="string">&quot;path to worker js file&quot;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>事件触发，给worker发消息</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">worker.<span class="title function_">postMessage</span>(message)</span><br></pre></td></tr></table></figure>
 
-</div><div class="story post-story"><h2 id="交换vector两个位置的值"><a href="#交换vector两个位置的值" class="headerlink" title="交换vector两个位置的值"></a>交换vector两个位置的值</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::<span class="built_in">swap</span>(nums[a], nums[b]);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>worker接收消息，并处理<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onmessage = <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="comment">// TO DO Complex Compute</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div><div class="story post-story"><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><ol>
+<li>Worker中的API是JS的一个子集，并不是所有API都能跑的： <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers">https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Functions_and_classes_available_to_workers</a></li>
+</ol>
+</div><div class="story post-story"><h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><p><a target="_blank" rel="noopener" href="https://mdn.github.io/dom-examples/web-workers/simple-web-worker/">https://mdn.github.io/dom-examples/web-workers/simple-web-worker/</a></p>
 
-</div><div class="story post-story"><h2 id="二维vector初始化"><a href="#二维vector初始化" class="headerlink" title="二维vector初始化"></a>二维vector初始化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>(numCourses, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;());</span><br></pre></td></tr></table></figure>
 </div>
       
     
@@ -2732,17 +2747,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-10-01T14:34:29+00:00">2023-10-01</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-11-10T15:40:06+00:00">2023-11-10</time>
         
           <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/C/">C++</a>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/javascript/">javascript</a>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
               <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
             </span>
           
             <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/C/" itemprop="url"><span itemprop="name">C++</span></a>
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/javascript/" itemprop="url"><span itemprop="name">javascript</span></a>
             </span>
           
         
@@ -4457,7 +4472,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 </script>
 
 
-  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/tags/CPP/","name":"CPP"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
+  <script type="application/ld+json">[{"@context":"http://schema.org","@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},{"@context":"http://schema.org","@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","sameAs":["https://github.com/volantis-x"],"description":""},{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://zhuwo.github.io/blog/blog/","name":"zhuwo's Den"}},{"@type":"ListItem","position":2,"item":{"@id":"https://zhuwo.github.io/blog/blog/categories/javascript/","name":"javascript"}}]},{"@context":"http://schema.org","@type":"WebSite","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","keywords":null,"description":"","author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/","description":""},"publisher":{"@type":"Organization","name":"zhuwo's Den","url":"https://zhuwo.github.io/blog/blog/","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"potentialAction":{"@type":"SearchAction","name":"Site Search","target":{"@type":"EntryPoint","urlTemplate":"https://zhuwo.github.io/blog?s={search_term_string}"},"query-input":"required name=search_term_string"}},{"@context":"http://schema.org","@type":"BlogPosting","description":"","inLanguage":["zh-CN","en","zh-HK","zh-TW","default"],"mainEntityOfPage":{"@type":"WebPage"},"author":{"@type":"Person","name":"zhuwo","image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png"},"url":"https://zhuwo.github.io/blog/blog/"},"publisher":{"@type":"Organization","name":"zhuwo's Den","logo":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}},"wordCount":0,"image":{"@type":"ImageObject","url":"https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png","width":192,"height":192}}]</script>
 
 
 
