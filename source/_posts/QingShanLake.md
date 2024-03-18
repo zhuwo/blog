@@ -30,6 +30,8 @@ categories:
 
 如果你是骑行，像我，骑累了，刚好有片草坪，美美地躺了一个中午，也不知是几时，也不知是何处；
 
+![青山湖草地](/images/QingshanLake5.jpg)
+
 最后，看下本次自己的行车里程，也就短短40KM，路不在长短，驻足风景时停留，其他则享受风和速度。正所谓“风无叶则无形，叶无风则无所依仗”。
 
-![青山湖草地](/images/QingshanLake5.jpg)
+![青山湖骑行](/images/QingshanLakeLast.jpg)
