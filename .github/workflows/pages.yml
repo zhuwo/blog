@@ -1,9 +1,9 @@
-name: Pages 
+name: Pages
 
-on: 
+on:
   push:
     branches:
-      - main # default branch
+      - main # 默认分支
 
 jobs:
   pages:
@@ -11,23 +11,29 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.20.1
-        uses: actions/setup-node@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3 # 使用最新版本的 checkout action
+
+      - name: Set up Node.js 16.20.1
+        uses: actions/setup-node@v3 # 使用最新版本的 setup-node action
         with:
           node-version: "16.20.1"
+
       - name: Cache NPM dependencies
-        uses: actions/cache
+        uses: actions/cache@v3 # 使用最新版本的 cache action
         with:
           path: node_modules
-          key: ${{ runner.OS }}-npm-cache
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.OS }}-npm-cache
+            ${{ runner.os }}-npm-cache-
+
       - name: Install Dependencies
-        run: npm install
+        run: npm ci # 使用 npm ci 代替 npm install，确保依赖安装更可靠
+
       - name: Build
         run: npm run build
-      - name: Deploy
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
