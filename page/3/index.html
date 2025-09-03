@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1743037647105),
+    lastupdate: new Date(1756889464685),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -2676,6 +2676,467 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/08/30/iOS_Third_Library/TZ-Reading-Notes/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2023/08/30/iOS_Third_Library/TZ-Reading-Notes/"  itemprop="url">
+        TZ_Reading_Notes
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <p>  比较知名的图片选择器源码阅读和理解。TZImagePciker是一款github star超过8k的图片选择库。地址：<a target="_blank" rel="noopener" href="https://github.com/banchichen/TZImagePickerController">https://github.com/banchichen/TZImagePickerController</a></p>
+<div class="story post-story"><h2 id="LxGridViewFlowLayout"><a href="#LxGridViewFlowLayout" class="headerlink" title="LxGridViewFlowLayout"></a>LxGridViewFlowLayout</h2><p>  使用了这个Layout，主要是实现CollectionView Cell可以拖拽的效果，添加了长按的手势识别，不断更新浮动的位置，一旦拖拽的位置到达新的位置，就用<code>performBatchUpdates</code>更新cell位置，已实现拖拽换位置的效果。</p>
+</div><div class="story post-story"><h2 id="Demo入口"><a href="#Demo入口" class="headerlink" title="Demo入口"></a>Demo入口</h2><p>  拍照和拍视频，使用系统提供的UIImagePickerController;相册使用TZImagePickerController。</p>
+</div><div class="story post-story"><h2 id="TZImagePickerController"><a href="#TZImagePickerController" class="headerlink" title="TZImagePickerController"></a>TZImagePickerController</h2><p>  是一个UINavigationController，根VC是TZAlbumPickerController。第一次进入，push到TZPhotoPickerController，主要照片选择器。</p>
+</div><div class="story post-story"><h2 id="TZPhotoPickerController"><a href="#TZPhotoPickerController" class="headerlink" title="TZPhotoPickerController"></a>TZPhotoPickerController</h2><p>  照片选择主体页面。来源，getCameraRollAlbumWithFetchAssets, 获取图片getPhotoWithAsset， 点击图片预览TZPhotoPreviewController。<br>  拍照cell，点击跳到系统拍照的ImagePickerController。<br>  Done按钮: 按operation获取选择的照片内容并返回，跳出pop presentedViewController。<br>  FullImage按钮：showPhotoBytes -&gt; getPhotosBytesWithArray,会获取当前所选的照片的原图大小</p>
+</div><div class="story post-story"><h2 id="TZAlbumPickerController"><a href="#TZAlbumPickerController" class="headerlink" title="TZAlbumPickerController"></a>TZAlbumPickerController</h2><p>  相册选择列表页面</p>
+</div><div class="story post-story"><h2 id="TZImageManager"><a href="#TZImageManager" class="headerlink" title="TZImageManager"></a>TZImageManager</h2><pre><code>1. 权限获取和权限状态管理
+2. 照片处理-- Get Album 获得相册/相册数组方法： getCameraRollAlbumWithFetchAssets
+3. 获取对应照片：getPhotoWithAsset
+</code></pre>
+</div><div class="story post-story"><h2 id="TZPhotoPreviewController"><a href="#TZPhotoPreviewController" class="headerlink" title="TZPhotoPreviewController"></a>TZPhotoPreviewController</h2><p>   大页面CollectionView, 每个Cell占满一个屏幕，滚动翻页系统自带collectionView.pagingEnabled。</p>
+
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-08-30T06:37:01+00:00">2023-08-30</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/08/29/iOS/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2023/08/29/iOS/"  itemprop="url">
+        iOS知识点
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <p>知识大乱炖，用于快速回忆知识点，。</p>
+<div class="story post-story"><h2 id="weak实现原理"><a href="#weak实现原理" class="headerlink" title="weak实现原理"></a>weak实现原理</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f331bd5ce8f8">https://www.jianshu.com/p/f331bd5ce8f8</a></p>
+<ul>
+<li>weak由runtime持有的weak_table实现，每个对象有对应的weak_entry_t</li>
+<li>获取oldobj(弱引用所指向的之前对象) unregister，替换为newobj的hashtable, register，<br>weak表是hash表，对象的weak指针数组，销毁对象的时候所有weakrefernce置为nil</li>
+</ul>
+</div><div class="story post-story"><h2 id="KVO-实现原理"><a href="#KVO-实现原理" class="headerlink" title="KVO 实现原理"></a>KVO 实现原理</h2><p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903593925935117">https://juejin.cn/post/6844903593925935117</a></p>
+<p>iOS系统会修改这个对象的isa指针，改为指向一个全新的通过Runtime动态创建的子类(KVONOtification)，子类拥有自己的set方法实现，set方法实现内部会顺序调用willChangeValueForKey方法、原来的setter方法实现、didChangeValueForKey方法，而didChangeValueForKey方法内部又会调用监听器的observeValueForKeyPath:ofObject:change:context:监听方法。</p>
+</div><div class="story post-story"><h2 id="如何扩大点击区域"><a href="#如何扩大点击区域" class="headerlink" title="如何扩大点击区域"></a>如何扩大点击区域</h2><pre><code>事件响应链会调用pointInSide，重写pointInSide，edgeInsets扩大范围检测
+</code></pre>
+</div><div class="story post-story"><h2 id="OC实现链式调用"><a href="#OC实现链式调用" class="headerlink" title="OC实现链式调用"></a>OC实现链式调用</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7010958824933130253">https://juejin.cn/post/7010958824933130253</a></p>
+<p>提供返回block的方法， block内部返回self，返回self是实现链式的核心。</p>
+</div><div class="story post-story"><h2 id="自动释放池内对象释放时机"><a href="#自动释放池内对象释放时机" class="headerlink" title="自动释放池内对象释放时机"></a>自动释放池内对象释放时机</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7010726670181253127">https://juejin.cn/post/7010726670181253127</a></p>
+<p>自动释放池对象AutoreleasePool被销毁时，有可能是当前runloop结束进入休眠，会对池内的所有对象发送release指令。<br>本质是有个双向链表存储所有池内对象，一页放满就新建一页，放入新的页面中。</p>
+</div><div class="story post-story"><h2 id="Struct和Class的区别"><a href="#Struct和Class的区别" class="headerlink" title="Struct和Class的区别"></a>Struct和Class的区别</h2><table>
+<thead>
+<tr>
+<th>Comparision</th>
+<th>|Class</th>
+<th>Structure</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Type</td>
+<td>Classes are reference types.</td>
+<td>Structures are value types.</td>
+</tr>
+<tr>
+<td>Inheritance</td>
+<td>Classes have an inheritance that allows one class to inherit the characteristics of another.</td>
+<td>Structures do not support inheritance.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Class instances are stored on the heap.</td>
+<td>Structure properties are stored on the stack.</td>
+</tr>
+<tr>
+<td>Initializer</td>
+<td>We have to define the initializer manually.</td>
+<td>Struct gets a default initializer automatically.</td>
+</tr>
+<tr>
+<td>Thread−safe</td>
+<td>Classes are not fully thread−safe.</td>
+<td>The structure is thread−safe or singleton at all times.</td>
+</tr>
+</tbody></table>
+</div><div class="story post-story"><h2 id="Category实现原理"><a href="#Category实现原理" class="headerlink" title="Category实现原理"></a>Category实现原理</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903602524274696">https://juejin.cn/post/6844903602524274696</a></p>
+<p>从源码基本可以看出我们平时使用categroy的方式，对象方法，类方法，协议，和属性都可以找到对应的存储方式。并且我们发现分类结构体中是不存在成员变量的，因此分类中是不允许添加成员变量的。分类中添加的属性并不会帮助我们自动生成成员变量，只会生成get set方法的声明，需要我们自己去实现。</p>
+<p>category的方法会在运行时加到原来类的方法列表之前，所有category的方法协议会覆盖原来类的方法和协议等。</p>
+<p>category中有load方法，先执行原来的load方法，load方法在类加载时候调用,initalize在类第一次使用的时候调用。</p>
+</div><div class="story post-story"><h2 id="关联对象（添加新的成员变量）"><a href="#关联对象（添加新的成员变量）" class="headerlink" title="关联对象（添加新的成员变量）"></a>关联对象（添加新的成员变量）</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903605347057672">https://juejin.cn/post/6844903605347057672</a></p>
+<p>AssociationsManager拥有AssociationsHashMap&#x3D;&gt;value为ObjectAssociationMap&#x3D;&gt;valuew为ObjcAssociation（set_assoicated设置的_policy、value）。</p>
+<p><img src="/blog/images/Associate_Object.png" class="lazyload" data-srcset="/blog/images/Associate_Object.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="关联对象类图"></p>
+<p>通过上图我们可以总结为：一个实例对象就对应一个ObjectAssociationMap，而ObjectAssociationMap中存储着多个此实例对象的关联对象的key以及ObjcAssociation，为ObjcAssociation中存储着关联对象的value和policy策略。</p>
+</div><div class="story post-story"><h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2d57c72016c6">https://www.jianshu.com/p/2d57c72016c6</a></p>
+<h3 id="主队列上执行同步任务卡死的原因"><a href="#主队列上执行同步任务卡死的原因" class="headerlink" title="主队列上执行同步任务卡死的原因"></a>主队列上执行同步任务卡死的原因</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;test.queue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"> dispatch_async(queue, ^&#123;    // 异步执行 + 串行队列</span><br><span class="line">        NSLog(@&quot;add task&quot;);</span><br><span class="line">        NSLog(@&quot;1---%@&quot;,[NSThread currentThread]);      // 打印当前线程</span><br><span class="line">        dispatch_sync(queue, ^&#123;  // 同步执行 + 当前串行队列</span><br><span class="line">            // 追加任务 1</span><br><span class="line">            [NSThread sleepForTimeInterval:2];              // 模拟耗时操作</span><br><span class="line">            NSLog(@&quot;1---%@&quot;,[NSThread currentThread]);      // 打印当前线程</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>dispatch_sync添加的任务执行完以后才会返回，因为是串行队列，所有只有dispatch_sync任务执行完，才会执行下一个任务【追加任务 1】，所有一直追加任务等待dispatch_sync执行完成<br>主队列是串行队列，跟这个情况一样。</p>
+</div><div class="story post-story"><h2 id="block为什么用copy修饰"><a href="#block为什么用copy修饰" class="headerlink" title="block为什么用copy修饰?"></a>block为什么用copy修饰?</h2><p>默认情况下，block 是存放在栈中即 NSStackBlock ，因此 block 在函数调用结束时，对象会变成 nil，但是对象的指针变成野指针，因此对象继续调用会产生异常。使用 copy 修饰之后，会将 block 对象保存到堆中 NSMallocBlock，它的生命周期会随着对象的销毁而结束的。所以函数调用结束之后指针也会被设置为 nil，再次调用该对象也不会产生异常。</p>
+<p><strong>Attention</strong>：MRC情况下，ARC无事，自动copy，为了统一可以加copy</p>
+</div><div class="story post-story"><h2 id="iOS保证线程安全的几种方式"><a href="#iOS保证线程安全的几种方式" class="headerlink" title="iOS保证线程安全的几种方式"></a>iOS保证线程安全的几种方式</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6965770220921159694">https://juejin.cn/post/6965770220921159694</a></p>
+<p><img src="/blog/images/OSSpinLock.png" class="lazyload" data-srcset="/blog/images/OSSpinLock.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="OSSpinLock"></p>
+<ul>
+<li>OSSpinLock</li>
+<li>os_unfair_lock</li>
+<li>pthread_mutex</li>
+<li>dispatch_semaphore</li>
+<li>dispatch_queue(DISPATCH_QUEUE_SERIAL)</li>
+<li>NSLock</li>
+<li>NSRecursiveLock</li>
+<li>NSCondition</li>
+<li>NSConditionLock</li>
+<li>@synchronized</li>
+</ul>
+</div><div class="story post-story"><h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><pre><code>NSSet和NSDictionary都是用hash，查找比较高效。
+
+NSSet对应NSHashTable, NSDictionary对应NSMapTable。
+区别都是后者是可变的，且可以对成员进行弱引用，当对象被销毁时，锁存储的实体可以会被移除。
+</code></pre>
+</div><div class="story post-story"><h2 id="引用计数表保存在哪里"><a href="#引用计数表保存在哪里" class="headerlink" title="引用计数表保存在哪里"></a>引用计数表保存在哪里</h2><p>参考链接： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/43571ab79821">https://www.jianshu.com/p/43571ab79821</a><br> nonpointer:extra_rc +sidetable_rc;<br>非nonpointer: SideTable（静态变量）,散列表，SideTables</p>
+<p>如果isa中无法存储指针，那么就存储在SideTable中的RefcountMap中</p>
+</div><div class="story post-story"><h2 id="iOS启动流程"><a href="#iOS启动流程" class="headerlink" title="iOS启动流程"></a>iOS启动流程</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6951591401528229895">https://juejin.cn/post/6951591401528229895</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 解析Info.plist</span><br><span class="line">2. Mach-O（可执行文件）加载</span><br><span class="line">    * dylib loading time（动态库加载耗时）</span><br><span class="line">    * rebase/binding time（偏移修正/符号绑定耗时</span><br><span class="line">    * 加载类扩展（Category）中的方法</span><br><span class="line">    * C++静态对象加载、调用ObjC的 +load 函数</span><br><span class="line">    * 执行声明为__attribute__((constructor))的C函数</span><br><span class="line">3. 程序执行</span><br><span class="line">    * 调用main()</span><br><span class="line">    * 调用UIApplicationMain()</span><br><span class="line">    * 调用applicationWillFinishLaunching</span><br></pre></td></tr></table></figure>
+</div><div class="story post-story"><h2 id="dynamic-systhesis-propery"><a href="#dynamic-systhesis-propery" class="headerlink" title="@dynamic, @systhesis, @propery"></a>@dynamic, @systhesis, @propery</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/c883687c6405">https://www.jianshu.com/p/c883687c6405</a></p>
+<p>@dynamic 表示用户自己实现get,set方法；（实例变量也需要自己添加）@systheis如果用户没有实现get,set，系统会自己生产get&#x2F;set</p>
+</div><div class="story post-story"><h2 id="assign和weak都可以修饰对象，有什么区别？"><a href="#assign和weak都可以修饰对象，有什么区别？" class="headerlink" title="assign和weak都可以修饰对象，有什么区别？"></a>assign和weak都可以修饰对象，有什么区别？</h2><p>如果用assign修饰一个对象后，当对象被释放后，存在于栈上的指针还是存在的，假如此时使用指针，它就是一个野指针了，就容易造成程序崩溃，如果是用weak修饰的对象，则不会产生上面的情况，因为对象销毁的时候，系统会将指针置nil，也就不会产生野指针了。</p>
+</div><div class="story post-story"><h2 id="bounds和frame的关系"><a href="#bounds和frame的关系" class="headerlink" title="bounds和frame的关系"></a>bounds和frame的关系</h2><p><code>frame：描述当前视图在其父视图中的位置和大小。 bounds：描述当前视图在其自身坐标系统中的位置和大小。 center：描述当前视图的中心点在其父视图中的位置。</code><br>所以改变bounds，frame不会动，但相当于自身坐标系往(-bounds.origin.x, -bounds.origin.y）方向移动，影响的是子视图的frame位置（起点变成了(-bounds.origin.x, -bounds.origin.y））</p>
+</div><div class="story post-story"><h2 id="postion、anchorPoint和frame之间的关系"><a href="#postion、anchorPoint和frame之间的关系" class="headerlink" title="postion、anchorPoint和frame之间的关系"></a>postion、anchorPoint和frame之间的关系</h2><p>首先，view的position等属性就是layer的属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">position.x = frame.origin.x + anchorPoint.x * bounds.size.width</span><br><span class="line">position.y = frame.origin.y + anchorPoint.y * bounds.size.height</span><br></pre></td></tr></table></figure>
+<p>position和anchorPoint互不影响，都只会影响frame</p>
+</div><div class="story post-story"><h2 id="iOS实现动画有几种方式"><a href="#iOS实现动画有几种方式" class="headerlink" title="iOS实现动画有几种方式"></a>iOS实现动画有几种方式</h2><p>参考：<a target="_blank" rel="noopener" href="https://hit-alibaba.github.io/interview/iOS/Cocoa-Touch/Animation.html">https://hit-alibaba.github.io/interview/iOS/Cocoa-Touch/Animation.html</a></p>
+<p>UIView:<br>    1. UIView animatiedWith<br>    2. 关键帧动画 UIView animateKeyframesWithDuration<br>CAlayer:<br>    1. CAbasicAnimation (针对layer的某一属性)<br>    2. 组动画（CAAnimationGroup)：组动画可以将一组动画组合在一起，所有动画对象可以同时运行，<br>    3. CAKeyframeAnimation</p>
+<ul>
+<li>CADisplayLink</li>
+<li>CATransition(过渡动画): fade&#x2F;moveIn&#x2F;Push&#x2F;Reval(类似于PPT)</li>
+</ul>
+</div><div class="story post-story"><h2 id="NSTimer问题总结"><a href="#NSTimer问题总结" class="headerlink" title="NSTimer问题总结"></a>NSTimer问题总结</h2><ol>
+<li>runloop耗时任务多的时候，会丢失</li>
+<li>Timer造成循环引用：NSProxy, 中间件（target为另一个对象）</li>
+</ol>
+<p>runloop没有释放，一直存在引用<br><img src="/blog/images/timer_reference.png" class="lazyload" data-srcset="/blog/images/timer_reference.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="引用关系"></p>
+<p>打破的地方就是timer对self的强引用<br><img src="/blog/images/timer_final_reference.png" class="lazyload" data-srcset="/blog/images/timer_final_reference.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="最终需要的引用情况"></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7016633863241728014">https://juejin.cn/post/7016633863241728014</a></p>
+</div><div class="story post-story"><h2 id="runtime的一些应用"><a href="#runtime的一些应用" class="headerlink" title="runtime的一些应用"></a>runtime的一些应用</h2><p>参考文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7086379028323516452">https://juejin.cn/post/7086379028323516452</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38735568/article/details/95939608">https://blog.csdn.net/weixin_38735568/article/details/95939608</a></li>
+</ul>
+<ol>
+<li>动态添加属性</li>
+<li>方法交换（hook系统方法）Method Swizzling</li>
+<li>字典转模型(Model to Dictionay)</li>
+</ol>
+</div><div class="story post-story"><h2 id="iOS数据持久化存储方式"><a href="#iOS数据持久化存储方式" class="headerlink" title="iOS数据持久化存储方式"></a>iOS数据持久化存储方式</h2><p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903440586375181">https://juejin.cn/post/6844903440586375181</a></p>
+<ol>
+<li>plist(属性列表)文件</li>
+<li>Preference(偏好设置)</li>
+<li>NSKeyedArchiver(归档)</li>
+<li>FMDB(基于SQLite3 封装的一套OC的API库)</li>
+<li>CoreData</li>
+</ol>
+</div><div class="story post-story"><h2 id="NSString-property使用strong还是copy，区别和联系是啥？"><a href="#NSString-property使用strong还是copy，区别和联系是啥？" class="headerlink" title="NSString property使用strong还是copy，区别和联系是啥？"></a>NSString property使用strong还是copy，区别和联系是啥？</h2><p>NSMutableString strong修饰时，会修改原来的内容，造成一些不可预期的效果。</p>
+<p>It is still recommended to copy because you want to avoid something passing a mutable string and then changing it without you knowing. A copy guarantees that the string you have will not change.</p>
+<p>我们知道NSMutableString是NSString的子类，一个NSString指针可以指向NSMutableString对象，strongString指针指向一个可变字符串是正常的。<br>如上例子可以看出:</p>
+<ol>
+<li>当原字符串是NSString时，字符串是不可变的，不管是Strong还是Copy属性的对象，都是指向原对象，Copy操作只是做了次浅拷贝。</li>
+<li>当原字符串是NSMutableString时，Strong属性只是增加了原字符串的引用计数，而Copy属性则是对原字符串做了次深拷贝，产生一个新的对象，且Copy属性对象指向这个新的对象,且这个Copy属性对象的类型始终是NSString，而不是NSMutableString，因此其是不可变的。</li>
+<li>这里还有一个性能问题，即在原字符串是NSMutableString，Strong是单纯的增加对象的引用计数，而Copy操作是执行了一次深拷贝，所以性能上会有所差异(虽然不大)。如果原字符串是NSString时，则没有这个问题。</li>
+</ol>
+</div><div class="story post-story"><h2 id="苹果登录流程"><a href="#苹果登录流程" class="headerlink" title="苹果登录流程"></a>苹果登录流程</h2><p>JWT （JSON Web Token） 是目前最流行的跨域认证解决方案，是一种基于 Token 的认证授权机制。从 JWT 的全称可以看出，JWT 本身也是 Token，一种规范化之后的 JSON 结构的 Token。</p>
+<ol>
+<li>客户端用appleID&#x2F;邮箱密码请求,返回个人信息和token</li>
+<li>将token和userID给后端</li>
+<li>后端向苹果后端请求解密token的公钥</li>
+<li>后端用公钥,基于JSW算法验证token</li>
+<li>返回客户端告知结果</li>
+</ol>
+<p><img src="/blog/images/AppleIDLoginProcedure.png" class="lazyload" data-srcset="/blog/images/AppleIDLoginProcedure.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Apple Login Procedure"></p>
+</div><div class="story post-story"><h2 id="iOS消息转发"><a href="#iOS消息转发" class="headerlink" title="iOS消息转发"></a>iOS消息转发</h2><h3 id="经典崩溃（启发点）"><a href="#经典崩溃（启发点）" class="headerlink" title="经典崩溃（启发点）"></a>经典崩溃（启发点）</h3><p><code>unrecognized selector sent to instance 0x100524a90</code><br>先来看个很经典的崩溃打印。一般这个日志前部分还会给出所调用的方法，我们可以借此很快找到原因所在，可以说是相当贴心了。然而，<br>苹果在方便我们的同时，你是否想过这个日志具体是在什么时候打印的，系统是靠什么来捕获这类型即将崩溃的信息，开发者是否也可以捕获呢。这些都要从消息转发流程说起，看完分析或许你心里就有答案了。</p>
+<p>这段描述很好，为此引为参考，来源<a target="_blank" rel="noopener" href="https://juejin.cn/post/6857013884298133517">https://juejin.cn/post/6857013884298133517</a></p>
+<h3 id="流程速记"><a href="#流程速记" class="headerlink" title="流程速记"></a>流程速记</h3><p>• 【快速查找流程】首先，在类的缓存cache中查找指定方法的实现<br>• 【慢速查找流程】如果缓存中没有找到，则在类的方法列表中查找，如果还是没找到，则去父类链的缓存和方法列表中查找<br>• 【动态方法决议】如果慢速查找还是没有找到时，第一次补救机会就是尝试一次动态方法决议，即重写<code>resolveInstanceMethod/resolveClassMethod</code>方法,<code>class_addMethod</code>添加方法<br>• 【消息转发】如果动态方法决议还是没有找到，则进行消息转发，消息转发中有两次补救机会：快速转发+慢速转发<br>• 如果转发之后也没有，则程序直接报错崩溃&#96;unrecognized selector sent to instance&#96;&#96;</p>
+<p><img src="/blog/images/Message_Forawrd_Procedure1.png" class="lazyload" data-srcset="/blog/images/Message_Forawrd_Procedure1.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Message Forawrd Procedure"></p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><pre><code>一些容易造成奔溃的方法添加保护，如NSArray访问数组越界的情况，可以用消息转发添加保护。
+</code></pre>
+<h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903600968171533">https://juejin.cn/post/6844903600968171533</a></li>
+</ul>
+</div><div class="story post-story"><h2 id="KeyChain"><a href="#KeyChain" class="headerlink" title="KeyChain"></a>KeyChain</h2><p>账号密码，token用KeyChain保存，删除App，KeyChain中的数据仍然存在，因为数据是iOS系统保存的</p>
+</div><div class="story post-story"><h2 id="runloop和线程的关系"><a href="#runloop和线程的关系" class="headerlink" title="runloop和线程的关系"></a>runloop和线程的关系</h2><ol>
+<li>一条线程对应一个RunLoop对象，每条线程都有唯一一个与之对应的RunLoop对象。</li>
+<li>我们只能在当前线程中操作当前线程的RunLoop，而不能去操作其他线程的RunLoop。</li>
+<li>RunLoop对象在第一次获取RunLoop时创建，销毁则是在线程结束的时候。</li>
+<li>主线程的RunLoop对象系统自动帮助我们创建好了(原理如下)，而子线程的RunLoop对象需要我们主动创建。</li>
+</ol>
+</div><div class="story post-story"><h2 id="如何实现常驻线程"><a href="#如何实现常驻线程" class="headerlink" title="如何实现常驻线程"></a>如何实现常驻线程</h2><p>参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6971021826180792334">iOS 常驻线程</a></p>
+<ol>
+<li>实现思路：给runloop添加port虚拟接口监听</li>
+<li>如何让常驻线程退出：添加标识位，使用<code>[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];</code>，这样接收到端口处理信号,标志位结束，退出循环，执行完最后一次后线程结束</li>
+<li>线程创建使用block，防止对self出现循环引用。</li>
+</ol>
+</div><div class="story post-story"><h2 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h2><p>参考： <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904053906866189">https://juejin.cn/post/6844904053906866189</a></p>
+<p>为什么要使用 NSOperation、NSOperationQueue？</p>
+<ol>
+<li>可以方便的调用cancel方法来取消某个操作，而 GCD 中的任务是无法被取消的。</li>
+<li>可以方指定操作间的依赖关系, 方便的控制执行顺序。</li>
+<li>可以通过KVO提供对操作对象的精细控制(如监听当前操作是否被取消或是否已经完成等)。</li>
+<li>可以方便的指定操作优先级。</li>
+<li>可以自定义NSOperation的子类可以实现操作重用.</li>
+</ol>
+</div><div class="story post-story"><h2 id="dealloc"><a href="#dealloc" class="headerlink" title="dealloc"></a>dealloc</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (void)dealloc &#123;</span><br><span class="line">    _objc_rootDealloc(self);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>直接调用_objc_rootDealloc方法来做处理，我们省略一些细节处理，通常情况下，dealloc方法最终会调用objc_dispose方法，内部又调用objc_destructInstance方法来进行析构操作，析构完成后将内存释放掉。</p>
+<ol>
+<li>dealloc的调用是在最后一次release执行后，但此时实例变量(ivars)并未释放。</li>
+<li>[super dealloc]会自动调用： 父类的dealloc方法会在子类dealloc方法返回后自动执行。</li>
+<li>ARC子类的实例变量在根类[NSObject dealloc]中释放。</li>
+</ol>
+</div><div class="story post-story"><h2 id="load"><a href="#load" class="headerlink" title="load"></a>load</h2><p>父类load调用在子类之前，分类的load在主类load调用完后执行</p>
+</div><div class="story post-story"><h2 id="iOS-websocket使用"><a href="#iOS-websocket使用" class="headerlink" title="iOS websocket使用"></a>iOS websocket使用</h2><p>参考： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/80d1440b7012">https://www.jianshu.com/p/80d1440b7012</a><br>知名库： <a target="_blank" rel="noopener" href="https://github.com/facebookincubator/SocketRocket">https://github.com/facebookincubator/SocketRocket</a></p>
+<p> 主要api:</p>
+<ul>
+<li>open</li>
+<li>close</li>
+<li>sendData&#x2F;sendString</li>
+<li>didReceviceMessage</li>
+<li>didFailWithError</li>
+<li>didCloseWithCode</li>
+</ul>
+</div><div class="story post-story"><h2 id="iOS-沙盒"><a href="#iOS-沙盒" class="headerlink" title="iOS 沙盒"></a>iOS 沙盒</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.yuukizoom.top/2021/03/15/iOS%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%B2%99%E7%9B%92%E6%9C%BA%E5%88%B6/">https://www.yuukizoom.top/2021/03/15/iOS%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%B2%99%E7%9B%92%E6%9C%BA%E5%88%B6/</a></p>
+<ul>
+<li><p>MyApp.app ： 该目录存放应用本身的数据，包括资源文件和可执行文件。该目录是只读的，如果改变这个目录，将会改变应用程序的签名，应用将会无法启动。不会被iTunes和iCloud同步。</p>
+</li>
+<li><p>Documents: 该目录主要存放用户产生的文件，该目录会被iTunes和iCloud同步。</p>
+</li>
+<li><p>Library: 苹果建议用来存放默认设置或其他状态信息，该目录除Caches子目录以外会被iTunes和iCloud同步。</p>
+</li>
+<li><p>Library&#x2F;Caches: 主要存放缓存文件，比如音乐缓存，图片缓存等，用户使用过程中的缓存都可以保存在这个目录中，可用于保存可再生文件，应用程序也需要负责删除这些文件，该目录不会被iTunes和iCloud同步。</p>
+</li>
+<li><p>Library&#x2F;Preferences: 存放应用偏好设置文件，该目录会被iTunes和iCloud同步。</p>
+</li>
+<li><p>tmp: 存放各种临时文件，保存应用再次启动时不需要的文件。当应用不再需要这些文件时应该主动将其删除。该目录的文件会被系统清理，比如系统磁盘空间不足的时候。该目录不会被iTunes和iCloud同步。</p>
+</li>
+</ul>
+</div><div class="story post-story"><h2 id="使用Runloop进行卡顿检测"><a href="#使用Runloop进行卡顿检测" class="headerlink" title="使用Runloop进行卡顿检测"></a>使用Runloop进行卡顿检测</h2><h3 id="RunLoop过程"><a href="#RunLoop过程" class="headerlink" title="RunLoop过程"></a>RunLoop过程</h3><p><img src="/blog/images/runloop.png" class="lazyload" data-srcset="/blog/images/runloop.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="RunLoop"></p>
+<h3 id="Runloop-状态"><a href="#Runloop-状态" class="headerlink" title="Runloop 状态"></a>Runloop 状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef CF_OPTIONS(CFOptionFlags, CFRunLoopActivity) &#123;</span><br><span class="line">    kCFRunLoopEntry , // 进入 loop</span><br><span class="line">    kCFRunLoopBeforeTimers , // 触发 Timer 回调</span><br><span class="line">    kCFRunLoopBeforeSources , // 触发 Source0 回调</span><br><span class="line">    kCFRunLoopBeforeWaiting , // 等待 mach_port 消息</span><br><span class="line">    kCFRunLoopAfterWaiting ), // 接收 mach_port 消息</span><br><span class="line">    kCFRunLoopExit , // 退出 loop</span><br><span class="line">    kCFRunLoopAllActivities  // loop 所有状态改变</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以只要检测进入休眠前，一定时间内(3s)是否一直处于kCFRunLoopBeforeSources或者休眠唤醒以后一直处于kCFRunLoopAfterWaiting状态，就能认为是否卡顿。</p>
+</div><div class="story post-story"><h2 id="卡顿"><a href="#卡顿" class="headerlink" title="卡顿"></a>卡顿</h2><h3 id="卡顿产生的一些原因"><a href="#卡顿产生的一些原因" class="headerlink" title="卡顿产生的一些原因"></a>卡顿产生的一些原因</h3><ul>
+<li>IO</li>
+<li>大图加载</li>
+<li>高度计算</li>
+</ul>
+<h3 id="解决卡顿"><a href="#解决卡顿" class="headerlink" title="解决卡顿"></a>解决卡顿</h3><h4 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h4><ol>
+<li><p>使用轻量级的对象：比如不用点击的地方，使用CALayer代替UIView;</p>
+</li>
+<li><p>不要频繁的修改属性：frame，bounds，transfrom等，这些都需要CPU的计算;</p>
+</li>
+<li><p>尽量提前计算好布局：计算好frame，bounds等，一次性修改，不要多次修改;</p>
+</li>
+<li><p>使用AutoLayout比直接设置frame消耗更多的资源;</p>
+</li>
+<li><p>图片的size最好和UIImageView的size保持一致，这样就不用耗费CPU资源去进行缩放操作;</p>
+</li>
+<li><p>控制线程的最大并发数量：比如说3，不要无限制的开辟新的线程;</p>
+</li>
+<li><p>尽量耗时操作放到子线程。</p>
+</li>
+</ol>
+<h4 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h4><ol>
+<li><p>尽量减少视图的数量和层级：多层次的视图绘制更占用GPU资源;</p>
+</li>
+<li><p>尽量避免短时间大量图片的显示：可以合成为一张图片展示;</p>
+</li>
+<li><p>GPU能处理的图片的最大尺寸是4096x4096,尽量不要超过这个尺寸;</p>
+</li>
+<li><p>减少透明视图的使用 alpha &lt; 1,重叠部分：有透明度：需要混合计算;不透明：计算一次(最上层的颜色);</p>
+</li>
+<li><p>避免离屏渲染。</p>
+</li>
+</ol>
+</div><div class="story post-story"><h2 id="离屏渲染"><a href="#离屏渲染" class="headerlink" title="离屏渲染"></a>离屏渲染</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7043676783735996424">https://juejin.cn/post/7043676783735996424</a></p>
+<p>FrameBuffer</p>
+<p>OffScreenBuffer:单独开辟内存，内容切换</p>
+<h3 id="触发离屏渲染的几种情况"><a href="#触发离屏渲染的几种情况" class="headerlink" title="触发离屏渲染的几种情况"></a>触发离屏渲染的几种情况</h3><ol>
+<li>使用了mask的layer（layer.mask）</li>
+<li>需要进行裁剪的layer（layer.masksToBounds &#x2F; view.clipsToBounds）</li>
+<li>设置了组透明度YES,并且透明度不为1的layer （layer.allowsGroupOpacity&#x2F;layer.opacity）</li>
+<li>添加了投影的layer（layer.shadow）</li>
+<li>采用了光栅化的layer（layer.shouldRasterize）</li>
+<li>绘制了文字的layer （UILabel，CATextLayer，CoreText等）</li>
+</ol>
+<h3 id="离屏渲染优化"><a href="#离屏渲染优化" class="headerlink" title="离屏渲染优化"></a>离屏渲染优化</h3><ol>
+<li>大量应用AsyncDisplayKit(Texture)作为主要渲染框架，对于文字和图片的异步渲染操作交由框架来处理。关于这方面可以看之前的一些介绍</li>
+<li>对于图片的圆角，统一采用“precomposite”的策略，也就是不经由容器来做剪切，而是预先使用CoreGraphics为图片裁剪圆角</li>
+<li>对于视频的圆角，由于实时剪切非常消耗性能，我们会创建四个白色弧形的layer盖住四个角，从视觉上制造圆角的效果</li>
+<li>对于view的圆形边框，如果没有backgroundColor，可以放心使用cornerRadius来做</li>
+<li>对于所有的阴影，使用shadowPath来规避离屏渲染</li>
+<li>对于特殊形状的view，使用layer mask并打开shouldRasterize来对渲染结果进行缓存</li>
+<li>对于模糊效果，不采用系统提供的UIVisualEffect，而是另外实现模糊效果（CIGaussianBlur），并手动管理渲染结果</li>
+</ol>
+</div><div class="story post-story"><h2 id="手势冲突如何解决"><a href="#手势冲突如何解决" class="headerlink" title="手势冲突如何解决"></a>手势冲突如何解决</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/ce5f54559820">https://www.jianshu.com/p/ce5f54559820</a></p>
+<h3 id="常见的冲突出现的场景："><a href="#常见的冲突出现的场景：" class="headerlink" title="常见的冲突出现的场景："></a>常见的冲突出现的场景：</h3><ol>
+<li>同一个 UIView 添加了多个相同的手势，却要实现不同的功能；</li>
+<li>在UIView和其子UIView上有相同的手势，要实现父子手势的无缝切换等。</li>
+</ol>
+<h3 id="常见解决方法"><a href="#常见解决方法" class="headerlink" title="常见解决方法"></a>常见解决方法</h3><ol>
+<li>设置手势识别器的delegate，通过代理方法来控制手势的识别；</li>
+<li>使用手势识别器的require(toFail:)方法来指定一个手势识别器在另一个手势识别器失效之后才能生qx效；</li>
+<li>使用手势识别器的delaysTouchesBegan属性来延迟手势的起始时间；</li>
+<li>使用shouldRecognizeSimultaneouslyWith方法来允许多个手势同时识别。</li>
+</ol>
+</div><div class="story post-story"><h2 id="OC为什么是动态语言"><a href="#OC为什么是动态语言" class="headerlink" title="OC为什么是动态语言"></a>OC为什么是动态语言</h2><p>C++编译期，确定某个对象能调用哪些方法；</p>
+<ol>
+<li>动态加载<br>  主要表现在资源的动态加载和代码模块的加载。这些资源在运行时根据需要有选择地加入到程序中。可以降低内存的开销，提高整个程序的性能，也提高了扩展性。</li>
+<li>动态绑定<br>  即运行时确定要调用的方法。动态绑定将要调用的方法的确定也推迟到运行时。编译时方法的调用并不和代码绑定一起，只有在消息发送出来之后，才确定被调用的代码。直观点的意思就是在运行时才判断需要调用什么方法。当向一个动态类型确定的对象发送消息时，运行时环境系统会通过接收者的isa指针定对象的类，并以此为起点确定被调用的方法，方法和消息时动态绑定的。</li>
+<li>动态类型<br>  指对象指针类型的动态性，具体是指使用id类型将对象的类型推迟到运行时才确定，由赋值给它的对象类型决定对象指针的类型。</li>
+</ol>
+</div><div class="story post-story"><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><h3 id="通知的线程是在哪个线程"><a href="#通知的线程是在哪个线程" class="headerlink" title="通知的线程是在哪个线程"></a>通知的线程是在哪个线程</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e368a18ca7c2">https://www.jianshu.com/p/e368a18ca7c2</a></p>
+<h3 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h3><p>通知中心维护了一个 table，table 里面包含了 named表、nameless表、wildcard链表这三个数据结构；当我们调用 addObserver:selector:name:object:方法时，其内部大概是这样实现的：</p>
+<ol>
+<li>构造一个 Observation对象，该对象里面保存着 object 和 selector，可以看做是一个链表的节点。</li>
+<li>判断传入的 name 是否为空。如果 name 不为空，以 name为 key 从 named 的字典中取出一个 n 字典，然后从 n 字典里面以 object 为 key 取出 observation，再然后把 observation 对象存入链表。</li>
+<li>判断传入的 object 是否为空。如果 object 不为空，以 object 为 key 从 namedless 字典中取出 observation 链表，将 observation 对象存入；</li>
+<li>如果name 和 object 都为空，则将Observertion 对象存入 wildcard 链表中。<br>发送通知的过程是先判断object，再判断 name。name 的优先级高于 object。</li>
+</ol>
+<h3 id="通知的发送是同步的还是异步的？"><a href="#通知的发送是同步的还是异步的？" class="headerlink" title="通知的发送是同步的还是异步的？"></a>通知的发送是同步的还是异步的？</h3><p>同步的，会调用performSelector:withObject。但是有种情况可以不实时发送通知，而是在合适的时机发送，并没有开启线程，这种说法是指使用 NSOperationQueue，指定发送时机，可以依赖 Runloop 等到下一次循环开始时发送。</p>
+<h3 id="NSNotificationCenter-接收消息和发送消息是在同一个线程吗，如何异步发送通知？"><a href="#NSNotificationCenter-接收消息和发送消息是在同一个线程吗，如何异步发送通知？" class="headerlink" title="NSNotificationCenter 接收消息和发送消息是在同一个线程吗，如何异步发送通知？"></a>NSNotificationCenter 接收消息和发送消息是在同一个线程吗，如何异步发送通知？</h3><p>是的，发送消息在哪个线程，接收消息就在哪个线程。</p>
+<h3 id="NSNotificaionQueue-是异步还是同步？在哪个线程响应？"><a href="#NSNotificaionQueue-是异步还是同步？在哪个线程响应？" class="headerlink" title="NSNotificaionQueue 是异步还是同步？在哪个线程响应？"></a>NSNotificaionQueue 是异步还是同步？在哪个线程响应？</h3><p>没有异步发送一说，只是利用了 Runloop 可以选择触发时机。</p>
+<h3 id="NSNotificationQueue-和-Runloop-的关系？"><a href="#NSNotificationQueue-和-Runloop-的关系？" class="headerlink" title="NSNotificationQueue 和 Runloop 的关系？"></a>NSNotificationQueue 和 Runloop 的关系？</h3><p>前者依赖后者。比如指定 postStyle 的时候 NSPostWhenIdle 表示在 Runloop 空闲的时候发送。<br>此外还有 NSPostASAP，尽可能快 发送，NSPostNow多个相同的通知合并后马上发送。</p>
+<h3 id="如何保证通知接收的线程在主线程？"><a href="#如何保证通知接收的线程在主线程？" class="headerlink" title="如何保证通知接收的线程在主线程？"></a>如何保证通知接收的线程在主线程？</h3><p>使用 block 方式注册通知，在主队列响应。或者是在主线程注册 machPort，这是负责线程通信的，当异步线程收到通知后，给 machport 发送消息。<br>还可以在通知的回调方法里面，使用 GCD 主队列调度方法。</p>
+<h3 id="页面销毁时，不移除通知会崩溃吗？"><a href="#页面销毁时，不移除通知会崩溃吗？" class="headerlink" title="页面销毁时，不移除通知会崩溃吗？"></a>页面销毁时，不移除通知会崩溃吗？</h3><p>iOS9 之后不会了，通知中心对 Observer是弱引用的。</p>
+<h3 id="多次添加同一个通知和多次移除同一个通知会是什么结果？"><a href="#多次添加同一个通知和多次移除同一个通知会是什么结果？" class="headerlink" title="多次添加同一个通知和多次移除同一个通知会是什么结果？"></a>多次添加同一个通知和多次移除同一个通知会是什么结果？</h3><p>多次添加会多次响应。移除没事儿</p>
+</div><div class="story post-story"><h2 id="如何检测在非主线程进行UI操作？"><a href="#如何检测在非主线程进行UI操作？" class="headerlink" title="如何检测在非主线程进行UI操作？"></a>如何检测在非主线程进行UI操作？</h2><p>参考：<a target="_blank" rel="noopener" href="https://moshuqi.github.io/2016/05/02/iOS%E9%80%9A%E8%BF%87runtime%E6%9C%BA%E5%88%B6%E6%A3%80%E6%B5%8B%E5%AD%90%E7%BA%BF%E7%A8%8B%E6%93%8D%E4%BD%9CUI/">通过Runtime机制检测子线程操作UI</a></p>
+<p>简要概述，就是用runtime将UIView的所有方法和属性进行Method Swizzling，进行消息转发，然后在自定义的消息中进行判断是否是主线程。isMainThread。<br>具体：</p>
+<ol>
+<li>将retain\release\dealloc\cxx_destruct以及UIView的属性标记为ignoreMethods</li>
+<li>将所有UIView的其他方法替换为_objc_msgForward， 进行消息转发</li>
+<li>forwardInvocation替换为myForwardInvocation，并将原始方法的实现，挂到新的Selector–OriginSelector</li>
+<li>在myForwardInvocation内部进行线程判断，然后调用新的OriginSelector</li>
+</ol>
+</div><div class="story post-story"><h2 id="导致iOS程序崩溃的原因有哪些？"><a href="#导致iOS程序崩溃的原因有哪些？" class="headerlink" title="导致iOS程序崩溃的原因有哪些？"></a>导致iOS程序崩溃的原因有哪些？</h2><ol>
+<li>数组越界</li>
+<li>unrecognized selector sent to instance</li>
+<li>野指针</li>
+</ol>
+<h3 id="解决奔溃问题"><a href="#解决奔溃问题" class="headerlink" title="解决奔溃问题"></a>解决奔溃问题</h3><ol>
+<li>Method Swizzling 加防护，返回nil</li>
+<li>使用前加判断</li>
+<li></li>
+</ol>
+</div><div class="story post-story"><h2 id="OOM监控"><a href="#OOM监控" class="headerlink" title="OOM监控"></a>OOM监控</h2>
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2023-08-29T05:48:17+00:00">2023-08-29</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
   <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/07/12/algorithms/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
@@ -2957,7 +3418,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/blog/categories/%E5%86%99%E4%BD%9C/" href="/blog/categories/%E5%86%99%E4%BD%9C/"
             active-action="action-blogcategoriesE58699E4BD9C"
-            ><div class='name'>写作</div><div class='badge'>(5)</div></a></li>
+            ><div class='name'>写作</div><div class='badge'>(6)</div></a></li>
         
           <li><a class="flat-box child"
             title="/blog/categories/%E5%86%99%E4%BD%9C/%E6%80%BB%E7%BB%93/" href="/blog/categories/%E5%86%99%E4%BD%9C/%E6%80%BB%E7%BB%93/"
@@ -2967,7 +3428,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box child"
             title="/blog/categories/%E5%86%99%E4%BD%9C/%E6%97%A5%E8%AE%B0/" href="/blog/categories/%E5%86%99%E4%BD%9C/%E6%97%A5%E8%AE%B0/"
             active-action="action-blogcategoriesE58699E4BD9CE697A5E8AEB0"
-            ><div class='name'>日记</div><div class='badge'>(2)</div></a></li>
+            ><div class='name'>日记</div><div class='badge'>(3)</div></a></li>
         
           <li><a class="flat-box child"
             title="/blog/categories/%E5%86%99%E4%BD%9C/%E6%B8%B8%E8%AE%B0/" href="/blog/categories/%E5%86%99%E4%BD%9C/%E6%B8%B8%E8%AE%B0/"
@@ -2977,7 +3438,17 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           <li><a class="flat-box"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/" href="/blog/categories/%E6%8A%80%E6%9C%AF/"
             active-action="action-blogcategoriesE68A80E69CAF"
-            ><div class='name'>技术</div><div class='badge'>(12)</div></a></li>
+            ><div class='name'>技术</div><div class='badge'>(13)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/blog/categories/%E6%8A%80%E6%9C%AF/AI/" href="/blog/categories/%E6%8A%80%E6%9C%AF/AI/"
+            active-action="action-blogcategoriesE68A80E69CAFAI"
+            ><div class='name'>AI</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/blog/categories/%E6%8A%80%E6%9C%AF/AI/%E6%B5%8F%E8%A7%88%E5%99%A8/" href="/blog/categories/%E6%8A%80%E6%9C%AF/AI/%E6%B5%8F%E8%A7%88%E5%99%A8/"
+            active-action="action-blogcategoriesE68A80E69CAFAIE6B58FE8A788E599A8"
+            ><div class='name'>浏览器</div><div class='badge'>(1)</div></a></li>
         
           <li><a class="flat-box child"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/C/" href="/blog/categories/%E6%8A%80%E6%9C%AF/C/"
@@ -3042,7 +3513,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
     <div class='content'>
-      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/blog/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/compiler/" style="font-size: 14px; color: #999">compiler</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/blog/tags/%E4%B8%B4%E5%AE%89/" style="font-size: 14px; color: #999">临安</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%9B%9E%E9%A1%BE/" style="font-size: 17.33px; color: #828282">回顾</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 20.67px; color: #6c6c6c">多线程</a> <a href="/blog/tags/%E6%80%BB%E7%BB%93/" style="font-size: 17.33px; color: #828282">总结</a> <a href="/blog/tags/%E6%84%9F%E6%83%B3/" style="font-size: 17.33px; color: #828282">感想</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E6%95%A3%E6%96%87/" style="font-size: 17.33px; color: #828282">散文</a> <a href="/blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 14px; color: #999">游玩</a> <a href="/blog/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 14px; color: #999">表达式</a> <a href="/blog/tags/%E9%9D%92%E5%B1%B1%E6%B9%96/" style="font-size: 14px; color: #999">青山湖</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 17.33px; color: #828282">面试</a>
+      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/blog/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/blog/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/compiler/" style="font-size: 14px; color: #999">compiler</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/blog/tags/%E4%B8%B4%E5%AE%89/" style="font-size: 14px; color: #999">临安</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%9B%9E%E9%A1%BE/" style="font-size: 17.33px; color: #828282">回顾</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 20.67px; color: #6c6c6c">多线程</a> <a href="/blog/tags/%E6%80%BB%E7%BB%93/" style="font-size: 17.33px; color: #828282">总结</a> <a href="/blog/tags/%E6%84%9F%E6%83%B3/" style="font-size: 20.67px; color: #6c6c6c">感想</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E6%95%A3%E6%96%87/" style="font-size: 20.67px; color: #6c6c6c">散文</a> <a href="/blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 14px; color: #999">游玩</a> <a href="/blog/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 14px; color: #999">表达式</a> <a href="/blog/tags/%E9%9D%92%E5%B1%B1%E6%B9%96/" style="font-size: 14px; color: #999">青山湖</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 17.33px; color: #828282">面试</a>
     </div>
   </section>
 
@@ -4257,7 +4728,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp"];
   let index = 0;
   let IntervalParallax = null;
 
