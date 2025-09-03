@@ -90,6 +90,8 @@ Fellou 是一款由95后团队打造的Agentic Browser--行动型浏览器，侧
 最后将搭建的网站的信息发布到了X.com 上。
 ![Twitter publish](/images/fellou_06_twitter_pub.png)
 
+生成的网站，真实可用，关于Fellou的信息展示，Logo，已经生成的Fellou 之歌： https://m4ebsv7qf7.fellou.io/fellou-beyond-browsing-action-WZRdq91b
+
 
 ## 使用体验
 
