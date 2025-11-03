@@ -76,6 +76,7 @@ https://www.jianshu.com/p/2d57c72016c6
 
 dispatch_queue_t queue = dispatch_queue_create("test.queue", DISPATCH_QUEUE_SERIAL);
  dispatch_async(queue, ^{    // 异步执行 + 串行队列
+        // 任务1
         NSLog(@"add task");
         NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
         dispatch_sync(queue, ^{  // 同步执行 + 当前串行队列
@@ -83,9 +84,10 @@ dispatch_queue_t queue = dispatch_queue_create("test.queue", DISPATCH_QUEUE_SERI
             [NSThread sleepForTimeInterval:2];              // 模拟耗时操作
             NSLog(@"1---%@",[NSThread currentThread]);      // 打印当前线程
         });
+        // 位置1
     });
 ```
-dispatch_sync添加的任务执行完以后才会返回，因为是串行队列，所有只有dispatch_sync任务执行完，才会执行下一个任务【追加任务 1】，所有一直追加任务等待dispatch_sync执行完成
+dispatch_sync会阻塞当前线程，它添加的任务执行完以后才会返回；然后因为是串行队列，【任务1】包含dispatch_sync的任务还没执行完，不会执行下个任务【追加任务 1】，那么追加的过程任务1无法到达位置 1，因为dispatch_sync的任务没有完成，阻塞住了。所以就死锁了:同步任务阻塞线程，阻塞住了，因为是串行队列，上个任务还没执行完，不会执行追加任务 1。
 主队列是串行队列，跟这个情况一样。
 ## block为什么用copy修饰?
 
