@@ -143,7 +143,7 @@ https://juejin.cn/post/6965770220921159694
     * 调用UIApplicationMain()
     * 调用applicationWillFinishLaunching
 ```
-## @dynamic, @systhesis, @propery
+## @dynamic, @systhesis, @property
 
 https://www.jianshu.com/p/c883687c6405
 

@@ -27,7 +27,7 @@ categories:
     b. [super dealloc]在最后一行
     c. 没有关系
 
-5. @propery和@systhesis的作用
+5. @property和@systhesis的作用
 
 6. UIResponder，_____， 以及UIView能响应事件
 

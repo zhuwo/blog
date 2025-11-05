@@ -73,7 +73,7 @@ tags:
 typedef void (^MyBlock)();
 
 @inteface Block
-@propery(nonatomic, strong) MyBlock block;
+@property(nonatomic, strong) MyBlock block;
 @end
 
 @implmentation
