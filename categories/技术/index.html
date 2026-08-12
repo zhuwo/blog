@@ -1972,7 +1972,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/blog/js/app.js","parallax":"/blog/js/plugins/parallax.js","rightMenu":"/blog/js/plugins/rightMenu.js","rightMenus":"/blog/js/plugins/rightMenus.js","sites":"/blog/js/plugins/tags/sites.js","friends":"/blog/js/plugins/tags/friends.js","contributors":"/blog/js/plugins/tags/contributors.js","search":"/blog/js/search/hexo.js"},"css":{"style":"/blog/css/style.css"}},
     default: {"avatar":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/avatar/round/3442075.svg","link":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/cover/76b86c0226ffd.svg","image":"https://unpkg.com/volantis-static@0.0.1654736714924/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1762948163416),
+    lastupdate: new Date(1786547086402),
     sidebar: {
       for_page: ["blogger","category","tagcloud","guide"],
       for_post: ["toc"],
@@ -2703,6 +2703,503 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
         
           <div class='post-wrapper'>
             <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2025/11/15/ios-startup-macho/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2025/11/15/ios-startup-macho/"  itemprop="url">
+        ios-startup-macho
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <div class="story post-story"><h2 id="Mach-O文件结构"><a href="#Mach-O文件结构" class="headerlink" title="Mach-O文件结构"></a>Mach-O文件结构</h2><h3 id="A-Mach-O-file’s-construction-generally-follows-this-structure"><a href="#A-Mach-O-file’s-construction-generally-follows-this-structure" class="headerlink" title="A Mach-O file’s construction generally follows this structure:"></a>A Mach-O file’s construction generally follows this structure:</h3><p><strong>Mach-O Header</strong>:</p>
+<ul>
+<li>This fixed-size structure resides at the beginning of every Mach-O file.</li>
+<li>It contains essential metadata about the file, including the CPU type (e.g., arm64 for modern iOS devices), the file type (e.g., executable, dynamic library, object file), and flags indicating various attributes.</li>
+</ul>
+<p><strong>Load Commands</strong> :</p>
+<ul>
+<li>Following the header, a series of variable-length load commands define the file’s memory layout and linking information.</li>
+<li>These commands instruct the dynamic linker (dyld) on how to load and prepare the binary for execution.</li>
+<li>Examples of load commands include:<ul>
+<li><strong>LC_SEGMENT</strong> or <strong>LC_SEGMENT_64</strong>: Defines memory segments like __TEXT (code and read-only data), __DATA (mutable data), and __LINKEDIT (linker information).</li>
+<li><strong>LC_LOAD_DYLIB</strong>: Specifies the dynamic libraries the executable depends on.</li>
+<li><strong>LC_MAIN:</strong> Points to the entry point of the executable (e.g., the main function).</li>
+<li><strong>LC_SYMTAB</strong>: Contains information about the symbol table, used for resolving symbols at runtime.</li>
+<li><strong>LC_ENCRYPTION_INFO</strong>: Used for App Store distributed binaries to indicate encryption.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Segments and Sections</strong>:</p>
+<ul>
+<li>After the load commands, the actual data of the file is organized into one or more segments, as defined by the LC_SEGMENT commands.</li>
+<li>Each segment represents a contiguous region of virtual memory that the dynamic linker maps into the process’s address space. </li>
+<li>Segments are further divided into sections, which contain specific types of code or data (e.g., .text for executable code, .data for initialized data, .bss for uninitialized data).</li>
+<li>The __LINKEDIT segment typically contains linker-specific information like the symbol table, string table, and relocation information used by dyld.</li>
+</ul>
+
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2025-11-15T02:31:59+00:00">2025-11-15</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2025/11/14/ios-apm/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2025/11/14/ios-apm/"  itemprop="url">
+        ios性能监控
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <div class="story post-story"><h2 id="Runloop-整体过程"><a href="#Runloop-整体过程" class="headerlink" title="Runloop 整体过程"></a>Runloop 整体过程</h2><ol>
+<li>Notify observers that the run loop has been entered.</li>
+<li>Notify observers that any ready timers are about to fire.</li>
+<li>Notify observers that any input sources that are not port based are about to fire.</li>
+<li>Fire any non-port-based input sources that are ready to fire.</li>
+<li>If a port-based input source is ready and waiting to fire, process the event immediately. Go to step 9.</li>
+<li>Notify observers that the thread is about to sleep.</li>
+<li>Put the thread to sleep until one of the following events occurs:<ul>
+<li>An event arrives for a port-based input source.</li>
+<li>A timer fires.</li>
+<li>The timeout value set for the run loop expires. (runloop 超时了)</li>
+<li>The run loop is explicitly woken up.</li>
+</ul>
+</li>
+<li>Notify observers that the thread just woke up.</li>
+<li>Process the pending event.<ul>
+<li>If a user-defined timer fired, process the timer event and restart the loop. Go to step 2.</li>
+<li>If an input source fired, deliver the event.</li>
+<li>If the run loop was explicitly woken up but has not yet timed out, restart the loop. Go to step 2.</li>
+</ul>
+</li>
+</ol>
+<p>代码：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.进入loop</span></span><br><span class="line">__CFRunLoopRun(runloop, currentMode, seconds, returnAfterSourceHandled)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.RunLoop 即将触发 Timer 回调。</span></span><br><span class="line">__CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopBeforeTimers);</span><br><span class="line"><span class="comment">// 3.RunLoop 即将触发 Source0 (非port) 回调。</span></span><br><span class="line">__CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopBeforeSources);</span><br><span class="line"><span class="comment">// 4.RunLoop 触发 Source0 (非port) 回调。</span></span><br><span class="line">sourceHandledThisLoop = __CFRunLoopDoSources0(runloop, currentMode, stopAfterHandle)</span><br><span class="line"><span class="comment">// 5.执行被加入的block</span></span><br><span class="line">__CFRunLoopDoBlocks(runloop, currentMode);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6.RunLoop 的线程即将进入休眠(sleep)。</span></span><br><span class="line">__CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopBeforeWaiting);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 7.调用 mach_msg 等待接受 mach_port 的消息。线程将进入休眠, 直到被下面某一个事件唤醒。</span></span><br><span class="line">__CFRunLoopServiceMachPort(waitSet, &amp;msg, <span class="keyword">sizeof</span>(msg_buffer), &amp;livePort)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 进入休眠</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 8.RunLoop 的线程刚刚被唤醒了。</span></span><br><span class="line">__CFRunLoopDoObservers(runloop, currentMode, kCFRunLoopAfterWaiting</span><br><span class="line"></span><br><span class="line"><span class="comment">// 9.如果一个 Timer 到时间了，触发这个Timer的回调</span></span><br><span class="line">__CFRunLoopDoTimers(runloop, currentMode, mach_absolute_time())</span><br><span class="line"></span><br><span class="line"><span class="comment">// 10.如果有dispatch到main_queue的block，执行bloc</span></span><br><span class="line"> __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__(msg);</span><br><span class="line"> </span><br><span class="line"> <span class="comment">// 11.如果一个 Source1 (基于port) 发出事件了，处理这个事件</span></span><br><span class="line">__CFRunLoopDoSource1(runloop, currentMode, source1, msg);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 12.RunLoop 即将退出</span></span><br><span class="line">__CFRunLoopDoObservers(rl, currentMode, kCFRunLoopExit);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+</div><div class="story post-story"><h2 id="监控代码"><a href="#监控代码" class="headerlink" title="监控代码"></a>监控代码</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="type">void</span>)startMonitor &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CFRunLoopObserverContext</span> context = &#123;<span class="number">0</span>,(__bridge <span class="type">void</span>*)<span class="keyword">self</span>,<span class="literal">NULL</span>,<span class="literal">NULL</span>&#125;;</span><br><span class="line">    runLoopObserver = <span class="built_in">CFRunLoopObserverCreate</span>(kCFAllocatorDefault,kCFRunLoopAllActivities,<span class="literal">YES</span>,<span class="number">0</span>,&amp;runLoopObserverCallBack,&amp;context);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建子线程监控</span></span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</span><br><span class="line">        <span class="comment">//子线程开启一个持续的 loop 用来进行监控</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">YES</span>) &#123;</span><br><span class="line">            <span class="type">long</span> semaphoreWait = dispatch_semaphore_wait(dispatchSemaphore, dispatch_time(DISPATCH_TIME_NOW, <span class="number">3</span> * <span class="built_in">NSEC_PER_SEC</span>));</span><br><span class="line">            <span class="keyword">if</span> (semaphoreWait != <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!runLoopObserver) &#123;</span><br><span class="line">                    timeoutCount = <span class="number">0</span>;</span><br><span class="line">                    dispatchSemaphore = <span class="number">0</span>;</span><br><span class="line">                    runLoopActivity = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//BeforeSources 和 AfterWaiting 这两个状态能够检测到是否卡顿</span></span><br><span class="line">                <span class="keyword">if</span> (runLoopActivity == kCFRunLoopBeforeSources || runLoopActivity == kCFRunLoopAfterWaiting) &#123;</span><br><span class="line">                    <span class="comment">//将堆栈信息上报服务器的代码放到这里</span></span><br><span class="line">                &#125; <span class="comment">//end activity</span></span><br><span class="line">            &#125;<span class="comment">// end semaphore wait</span></span><br><span class="line">            timeoutCount = <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="comment">// end while</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="type">void</span> runLoopObserverCallBack(<span class="built_in">CFRunLoopObserverRef</span> observer, <span class="built_in">CFRunLoopActivity</span> activity, <span class="type">void</span> *info) &#123;</span><br><span class="line">    BGPerformanceMonitor *monitor = (__bridge BGPerformanceMonitor*)info;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 记录状态值</span></span><br><span class="line">    monitor-&gt;activity = activity;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 发送信号</span></span><br><span class="line">    dispatch_semaphore_t semaphore = monitor-&gt;semaphore;</span><br><span class="line">    <span class="type">long</span> st = dispatch_semaphore_signal(semaphore);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;dispatch_semaphore_signal:st=%ld,time:%@&quot;</span>,st,[BGPerformanceMonitor getCurTime]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>kCFRunLoopBeforeSources和kCFRunLoopAfterWaiting之间，有人可能会问kCFRunLoopAfterWaiting之后也有一些方法调用，为什么不监测呢，我的理解，大部分导致卡顿的的方法是在kCFRunLoopBeforeSources和kCFRunLoopAfterWaiting之间，比如source0主要是处理App内部事件，App自己负责管理(出发),如UIEvent(Touch事件等，GS发起到RunLoop运行再到事件回调到UI)、CFSocketRef。</p>
+<p>然后再runLoopObserverCallBack中每次都 signal， 如果一个状态卡很久就可以认为是卡顿了，<br>这边可以做一些策略，比方说连续 5 次超过 80ms，或者单次超过 250ms。</p>
+
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2025-11-14T11:35:10+00:00">2025-11-14</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2025/11/14/ios-mesasge-send/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2025/11/14/ios-mesasge-send/"  itemprop="url">
+        ios-mesasge-send
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <p>总体流程：</p>
+<ol>
+<li>查找缓存</li>
+<li>按继承链查找</li>
+<li>动态决议，添加方法</li>
+<li>快速转发</li>
+<li>慢速转发， methodSignatureForSelector, forwardInvocation:invocation  invocation.selector</li>
+</ol>
+<div class="story post-story"><h2 id="方法缓存"><a href="#方法缓存" class="headerlink" title="方法缓存"></a>方法缓存</h2><p>class-&gt;cache_t</p>
+<p>catch_t _buckets</p>
+<p>buckets: buckect_t[]</p>
+<p>buckect_t 包含 SEL, IMP</p>
+<p>通过Hash存储，如果有就直接用<br>慢方法查找的时候，插入 buckets</p>
+<p>线性探测解决 hash 冲突，根据key也就是sel判断是否找到， 扩容的时候重新调整。</p>
+</div><div class="story post-story"><h2 id="实例对象"><a href="#实例对象" class="headerlink" title="实例对象"></a>实例对象</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Ivar object_getInstanceVariable(<span class="type">id</span> obj, <span class="keyword">const</span> <span class="type">char</span> *name, <span class="type">void</span> **value)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (obj  &amp;&amp;  name  &amp;&amp;  !obj-&gt;isTaggedPointer()) &#123;</span><br><span class="line">        Ivar ivar;</span><br><span class="line">        <span class="keyword">if</span> ((ivar = class_getInstanceVariable(obj-&gt;ISA(), name))) &#123;</span><br><span class="line">            <span class="keyword">if</span> (value) *value = (<span class="type">void</span> *)object_getIvar(obj, ivar);</span><br><span class="line">            <span class="keyword">return</span> ivar;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (value) *value = <span class="literal">nil</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">id</span> object_getIvar(<span class="type">id</span> obj, Ivar ivar)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!obj  ||  !ivar  ||  obj-&gt;isTaggedPointer()) <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line"></span><br><span class="line">    ptrdiff_t offset;</span><br><span class="line">    objc_ivar_memory_management_t memoryManagement;</span><br><span class="line">    _class_lookUpIvar(obj-&gt;ISA(), ivar, offset, memoryManagement);</span><br><span class="line"></span><br><span class="line">    <span class="type">id</span> *location = (<span class="type">id</span> *)((<span class="type">char</span> *)obj + offset); <span class="comment">// offset 获取到内容</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (memoryManagement == objc_ivar_memoryWeak) &#123;</span><br><span class="line">        <span class="keyword">return</span> objc_loadWeak(location);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> *location;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上述代码可以看书，对象的实例对象在某个固定的字段后边（ISA），然后根据类的ivars分配内存， 所以可以直接根据offset获取到内容。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">isa </span><br><span class="line"></span><br><span class="line"> <span class="type">uintptr_t</span> nonpointer        : <span class="number">1</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> has_assoc         : <span class="number">1</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> has_cxx_dtor      : <span class="number">1</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> shiftcls          : <span class="number">33</span>; <span class="comment">/*MACH_VM_MAX_ADDRESS 0x1000000000*/</span> \</span><br><span class="line">      <span class="type">uintptr_t</span> magic             : <span class="number">6</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> weakly_referenced : <span class="number">1</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> deallocating      : <span class="number">1</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> has_sidetable_rc  : <span class="number">1</span>;                                       \</span><br><span class="line">      <span class="type">uintptr_t</span> extra_rc          : <span class="number">19</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>shiftcls左移三位找到类对象地址。</p>
+<p>在 64 位系统中，类对象的地址通常是 8 字节对齐的，因此低 3 位总是 0。为了节省空间，runtime 将地址右移 3 位后存储在 shiftcls 中</p>
+</div><div class="story post-story"><h2 id="方法列表"><a href="#方法列表" class="headerlink" title="方法列表"></a>方法列表</h2><p>class_ro_t 只读，编译期间确认的<br>class_rw_t 可读写，动态运行过程中</p>
+
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2025-11-14T02:02:52+00:00">2025-11-14</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
+  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2025/11/12/ios-crash-reportor/">
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="zhuwo's Den">
+  </span>
+  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
+    <meta itemprop="name" content="zhuwo's Den">
+    <meta itemprop="description" content="">
+  </span>
+  
+  
+  
+    <span hidden>
+      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
+    </span>
+  
+  
+    
+    <h2 class="article-title"  itemprop="name headline">
+      <a href="/blog/2025/11/12/ios-crash-reportor/"  itemprop="url">
+        iOS Crash上报原理
+      </a>
+    </h2>
+  
+  <div class='md article-desc' itemprop="articleBody">
+    
+      
+        <div class="story post-story"><h2 id="捕获异常类型"><a href="#捕获异常类型" class="headerlink" title="捕获异常类型"></a>捕获异常类型</h2><ol>
+<li>Objective-C NSException （OC异常）</li>
+<li>Mach异常（底层）</li>
+<li>内存异常（OOM）</li>
+<li>Signal 异常（对Mach的封转）</li>
+<li>C++异常</li>
+<li>Zoombine</li>
+<li>死锁DeadLock</li>
+</ol>
+</div><div class="story post-story"><h2 id="大致代码分布"><a href="#大致代码分布" class="headerlink" title="大致代码分布"></a>大致代码分布</h2><p>intall， 将配置中的所有异常处理安装，会分别调用每个API。</p>
+<p>KSCrashMonitor_XXXException收集和处理不同异常，回调到KSCrashMonitor的notifyException和handleException， notify是接收到异常，handleException是所有处理都结束，context 收集完毕；onExceptionEvent调用KSCrashReportC中的report方法记录异常。</p>
+</div><div class="story post-story"><h2 id="Objective-C-NSException-（OC异常）"><a href="#Objective-C-NSException-（OC异常）" class="headerlink" title="Objective-C NSException （OC异常）"></a>Objective-C NSException （OC异常）</h2><ol>
+<li>通过NSSetUncaughtExceptionHandler 获取异常处理</li>
+<li>获取CPU状态和task所有线程，获取所有线程？后续转换为堆栈？</li>
+<li>尝试从callStackReturnAddresses，异常获取异常堆栈，如果不行，就用系统方法backtrace， 获取当前线程的调用堆栈</li>
+<li>记录异常名、异常 userInfo、Reason等</li>
+</ol>
+<p>补充：shouldRecordAllThreads为true时候，会将所有线程的上述状态记录到context中</p>
+</div><div class="story post-story"><h2 id="Mach异常捕获"><a href="#Mach异常捕获" class="headerlink" title="Mach异常捕获"></a>Mach异常捕获</h2><p>关心的异常：</p>
+<p>EXC_MASK_BAD_ACCESS | EXC_MASK_BAD_INSTRUCTION | EXC_MASK_ARITHMETIC | EXC_MASK_SOFTWARE | EXC_MASK_BREAKPOINT</p>
+<p>简单来说，就是：</p>
+<ol>
+<li>保存系统的异常处理：task_get_exception_ports</li>
+<li>新建一个自己的异常处理：task_set_exception_ports</li>
+<li>拦截后，上报处理后，还原为保存的异常处理器，<br>如果可以处理：发送‘KERN_SUCCESS’消息，线程会重新执行<strong>错误指令</strong>， 原来的异常处理会执行，又出错，然后，结束<br>如果不能处理，发送KERN_FAILURE， 内核会把权限交给 host port， 然后结束此次崩溃</li>
+</ol>
+<h3 id="startNewExceptionHandler-添加自己的异常处理器"><a href="#startNewExceptionHandler-添加自己的异常处理器" class="headerlink" title="startNewExceptionHandler 添加自己的异常处理器"></a>startNewExceptionHandler 添加自己的异常处理器</h3><p><img src="/blog/images/mach_exception_handler.png" class="lazyload" data-srcset="/blog/images/mach_exception_handler.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="自定义Mach异常捕获"> </p>
+<ol>
+<li>初始化ExceptionContext：清除上下文结构体并设置基本信息</li>
+<li>分配Mach端口：通过mach_port_allocate创建接收端口</li>
+<li>插入端口权限：使用mach_port_insert_right添加发送权限</li>
+<li>设置异常端口为ctx-&gt;exceptionPort：通过task_set_exception_ports注册异常处理</li>
+<li>保存恢复点：调用saveExceptionPortsRestorePoint保存当前状态</li>
+<li>创建线程：使用pthread_create创建异常处理线程  （线程监听端口ctx-&gt;exceptionPort， 就能处理异常信息）</li>
+<li>分离线程：调用pthread_detach使线程独立运行</li>
+<li>添加保留线程：通过ksmc_addReservedThread标记为保留线程</li>
+</ol>
+<p>代码<br><code>kern_return_t kr = mach_msg(&amp;ctx-&gt;request-&gt;Head, MACH_RCV_MSG | MACH_RCV_LARGE, 0, ctx-&gt;request-&gt;Head.msgh_size,                                 ctx-&gt;exceptionPort, MACH_MSG_TIMEOUT_NONE, MACH_PORT_NULL);</code>监听了exceptionPort的消息，</p>
+<p>一旦异发生就会受到消息</p>
+</div><div class="story post-story"><h2 id="Signal异常"><a href="#Signal异常" class="headerlink" title="Signal异常"></a>Signal异常</h2><p>FatalSignal<br>[SIGABRT, SIGBUS, SIGFPE, SIGILL, SIGPIPE, SIGSEGV, SIGSYS, SIGTRAP, SIGTERM]</p>
+<p>步骤：</p>
+<ol>
+<li>分配并设置备用信号栈signalStack, 针对堆栈溢出的场景 （当前线程栈可能已损坏，无法在当前栈上安全执行信号处理器。使用备用栈能增加处理器运行成功写报告的概率）</li>
+<li>previousSignalHandlers存储就的信号行为（系统自带的）， </li>
+<li>循环，用sigaction接管关心的异常信号，用handleSignal处理</li>
+<li>如果接管信号失败，就reverse damage， 将信号处理替换为存到previousSignalHandlers的信号处理</li>
+</ol>
+<p>信号处理，替换成以下自己的信号处理，handleSignal</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">handleSignal</span><span class="params">(<span class="type">int</span> sigNum, <span class="type">siginfo_t</span> *signalInfo, <span class="type">void</span> *userContext)</span></span><br></pre></td></tr></table></figure>
+<h3 id="handleSignal"><a href="#handleSignal" class="headerlink" title="handleSignal"></a>handleSignal</h3><p>ksmc_getContextForSignal(userContext, &amp;machineContext);将信号的寄存器快照userContext，拷贝到了machineContext中， 主要是STRUCT_MCONTEXT_L machineContext （包含异常的信息）</p>
+<p>同时记录信号的信息，包括signum(对应信号的具体枚举)，错误地址fault_Adress, 信号码sig_code</p>
+</div><div class="story post-story"><h2 id="C-异常捕获（CPPException）"><a href="#C-异常捕获（CPPException）" class="headerlink" title="C++异常捕获（CPPException）"></a>C++异常捕获（CPPException）</h2><p>set_terminate设置异常捕获的回调， <code>CPPExceptionTerminate</code>。<br>originalTerminateHandler保存之前的系统回调</p>
+<h3 id="CPPExceptionTerminate"><a href="#CPPExceptionTerminate" class="headerlink" title="CPPExceptionTerminate"></a>CPPExceptionTerminate</h3><ul>
+<li><p>__cxxabiv1::__cxa_current_exception_type()获取异常类型</p>
+</li>
+<li><p>排除NSException，让originalTerminateHandler处理。（NSException 异常用 C++异常实现，会重复）</p>
+</li>
+<li><p>rethrow异常， 捕获不同异常类型处理</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span>;</span><br><span class="line">&#125; <span class="built_in">catch</span> (std::exception *exc)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>包含exception类型、string类型、以及其他各种基础类型。</p>
+</li>
+<li><p>descriptionBuff存储异常的字符串， 最后记录到crashReason</p>
+</li>
+<li><p>ksmc_getContextForThread 线程信息都会记录到Context中</p>
+</li>
+</ul>
+<p>__cxa_throw 重新抛出异常， __cxa_throw  内部会调用 unwind，清理函数调用栈，所以重新__cxa_throw， 先捕获stackTrace， 再调用会原来的__cxa_throw</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __cxa_throw(<span class="type">void</span> *thrown_exception, std::type_info *tinfo, <span class="built_in">void</span> (*dest)(<span class="type">void</span> *)) KS_KEEP_FUNCTION_IN_STACKTRACE</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">static</span> cxa_throw_type orig_cxa_throw = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span> (g_state.cxaSwapEnabled == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">captureStackTrace</span>(thrown_exception, tinfo, dest);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">unlikely_if</span>(orig_cxa_throw == <span class="literal">NULL</span>) &#123; orig_cxa_throw = (cxa_throw_type)<span class="built_in">dlsym</span>(RTLD_NEXT, <span class="string">&quot;__cxa_throw&quot;</span>); &#125;</span><br><span class="line">    <span class="built_in">orig_cxa_throw</span>(thrown_exception, tinfo, dest);</span><br><span class="line">    KS_THWART_TAIL_CALL_OPTIMISATION</span><br><span class="line">    __builtin_unreachable();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div><div class="story post-story"><h2 id="主线程-DeadLock"><a href="#主线程-DeadLock" class="headerlink" title="主线程 DeadLock"></a>主线程 DeadLock</h2><p>主要代码</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="type">void</span>)runMonitor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">BOOL</span> cancelled = <span class="literal">NO</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="comment">// Only do a watchdog check if the watchdog interval is &gt; 0.</span></span><br><span class="line">        <span class="comment">// If the interval is &lt;= 0, just idle until the user changes it.</span></span><br><span class="line">        <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">            <span class="built_in">NSTimeInterval</span> sleepInterval = g_watchdogInterval;</span><br><span class="line">            <span class="type">BOOL</span> runWatchdogCheck = sleepInterval &gt; <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (!runWatchdogCheck) &#123;</span><br><span class="line">                sleepInterval = kIdleInterval;</span><br><span class="line">            &#125;</span><br><span class="line">            [<span class="built_in">NSThread</span> sleepForTimeInterval:sleepInterval];</span><br><span class="line">            cancelled = <span class="keyword">self</span>.monitorThread.isCancelled;</span><br><span class="line">            <span class="keyword">if</span> (!cancelled &amp;&amp; runWatchdogCheck) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">self</span>.awaitingResponse) &#123;</span><br><span class="line">                    [<span class="keyword">self</span> handleDeadlock];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    [<span class="keyword">self</span> watchdogPulse];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (!cancelled);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)watchdogPulse</span><br><span class="line">&#123;</span><br><span class="line">    __block <span class="type">id</span> blockSelf = <span class="keyword">self</span>;</span><br><span class="line">    <span class="keyword">self</span>.awaitingResponse = <span class="literal">YES</span>;</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        [blockSelf watchdogAnswer];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="type">void</span>)watchdogAnswer</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span>.awaitingResponse = <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>watchdogPulse</code>子线程awaitingResponse置为true，dispatch到主线程置为 false，下一次，子线程休眠5s后，如果awaitingResponse还是true，说明主线程没有响应，则认为死锁，用handleDeadlock处理</p>
+<h3 id="handleDeadlock"><a href="#handleDeadlock" class="headerlink" title="handleDeadlock"></a>handleDeadlock</h3><p>记录主线程的线程信息</p>
+<p>缺陷：主线程任务多，卡顿等行为也有类似现象，会被误认为是死锁进行处理</p>
+</div><div class="story post-story"><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h3 id="handleException"><a href="#handleException" class="headerlink" title="handleException"></a>handleException</h3><p>和OC异常类似，只不过，先会通过waitForException中的mach_msg，捕获异常消息， 直接将消息起点给了ExceptionRequest。</p>
+<p>ExceptionRequest实际是__Request__exception_raise_t，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">		<span class="type">mach_msg_header_t</span> Head;</span><br><span class="line">		<span class="comment">/* start of the kernel processed data */</span></span><br><span class="line">		<span class="type">mach_msg_body_t</span> msgh_body; <span class="comment">//消息体</span></span><br><span class="line">		<span class="type">mach_msg_port_descriptor_t</span> thread; <span class="comment">// 线程</span></span><br><span class="line">		<span class="type">mach_msg_port_descriptor_t</span> task; <span class="comment">// 任务</span></span><br><span class="line">		<span class="comment">/* end of the kernel processed data */</span></span><br><span class="line">		NDR_record_t NDR;</span><br><span class="line">		<span class="type">exception_type_t</span> exception; <span class="comment">// 异常类型</span></span><br><span class="line">		<span class="type">mach_msg_type_number_t</span> codeCnt;</span><br><span class="line">		<span class="type">integer_t</span> code[<span class="number">2</span>];</span><br><span class="line">	&#125; __Request__exception_raise_t __attribute__((unused));</span><br></pre></td></tr></table></figure>
+
+<p>task，可以获取到所有相关的线程，</p>
+<p>context-&gt;</p>
+<p>request-&gt;exception 错误类型获取，<br>request-&gt;code[0] 错误码，code<br>request-&gt;code[1] 子错误码，subcode</p>
+<p>ksmc_getContextForThread复用函数，和KSCrashMonitor_NSException一样，获取thread， threadList。</p>
+<p>stackCursor初始化，大概是为了还原堆栈用的。</p>
+</div><div class="story post-story"><h2 id="Zombie-Monitor"><a href="#Zombie-Monitor" class="headerlink" title="Zombie Monitor"></a>Zombie Monitor</h2><p>僵尸对象监控器通过一种精巧的内存追踪机制来发现对已释放对象的非法访问。它通过替换 NSObject 和 NSProxy 的 dealloc 方法，在对象被释放时记录下对象的地址和类型信息。这些信息被存储在一个经过优化的哈希表中，当程序试图访问一个已释放的对象时，监控器能够快速定位到这个对象的原始类型，帮助开发者准确定位内存访问问题。除了跟踪对象的释放信息，该监控器还能捕获对象释放过程中可能发生的 NSException 异常，为内存问题的诊断提供更全面的信息。</p>
+<p><img src="/blog/images/Zombie_Monitor.png" class="lazyload" data-srcset="/blog/images/Zombie_Monitor.png" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Zombie Monitor"> </p>
+</div><div class="story post-story"><h2 id="Memory-Monitor"><a href="#Memory-Monitor" class="headerlink" title="Memory Monitor"></a>Memory Monitor</h2><p>内存状态：</p>
+<ul>
+<li>Normal (&lt; 25%): Full functionality, optimal performance</li>
+<li>Warning (25-50%): Begin reducing memory usage, optimize caches</li>
+<li>Urgent (50-75%): Significant memory reduction needed</li>
+<li>Critical (75-90%): Aggressive cleanup required</li>
+<li>Terminal (&gt; 90%): Imminent termination risk, emergency measures</li>
+</ul>
+<p>ksmemory_map, 会把g_memoryURL对应的文件和内存g_memory映射，当内存写入的时候，文件也会被写入；所以启动的时候直接读取ksmemory_map。</p>
+<p>因为OOM的处理，在信号、Mach异常等异常的后边，所以OOM上报是上一次APP崩溃的时候是OOM情况。</p>
+<h3 id="KSCrashAppMemoryTracker"><a href="#KSCrashAppMemoryTracker" class="headerlink" title="KSCrashAppMemoryTracker"></a>KSCrashAppMemoryTracker</h3><ol>
+<li>包装了Memory Pressure, 比didReceiveMemoryWarning更有用，支持不同级别的内存压力level。</li>
+<li>支持内存级别（memory level）</li>
+</ol>
+<p>大致流程：<br>dispatch source（调度源）监听内存压力<code>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</code>，监听到pressure变化的时候，通知observers。</p>
+<p>timer 监听，DISPATCH_SOURCE_TYPE_TIMER，每100ms触发hearBeat, 内存变化超过1MB，通知observers，发出通知。</p>
+<p>footprint 占比超过 95%，认为是KSCrashAppMemoryStateTerminal，表示即将或者已经OOM。</p>
+<h3 id="其他OOM监控方法"><a href="#其他OOM监控方法" class="headerlink" title="其他OOM监控方法"></a>其他OOM监控方法</h3><p>可以 hook系统的malloc方法， malloc_logger，然后根据它里边的参数信息判断是否分配过大的内存。</p>
+</div><div class="story post-story"><h2 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">bool</span> <span class="title function_">kscm_addMonitor</span><span class="params">(<span class="type">const</span> KSCrashMonitorAPI *api)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">static</span> KSCrash_ExceptionHandlerCallbacks exceptionCallbacks = &#123;</span><br><span class="line">        .notify = notifyException,</span><br><span class="line">        .handle = handleException,</span><br><span class="line">    &#125;;</span><br><span class="line">    api-&gt;init(&amp;exceptionCallbacks);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>setMonitor 的时候，就注册了 callback回调， notify 和 handle</p>
+<p>notifify猜测是刚开始处理异常的时候调用的，没有研读内容<br>handle 是获取上下文内容以后调用，g_state.callbacks.handle(monitorCtx);</p>
+<h3 id="notifyException"><a href="#notifyException" class="headerlink" title="notifyException"></a>notifyException</h3><p>处理异常的一些状态：</p>
+<ol>
+<li>no other exceptions， 正常状态</li>
+<li>a non-fatal exception 正在处理，不用关心</li>
+<li>a fatal exception正在处理，block 当前处理线程</li>
+<li>在同一个线程遇到一样的异常，按 recrash 处理</li>
+<li>同样的线程递归崩溃， 陷入了崩溃的循环，则需要exit APP, 不能abort，会进一步抛出异常</li>
+<li>shouldRecordAllThreads的时候，将所有相关线程挂起（以方便记录）</li>
+</ol>
+<h3 id="handleException-1"><a href="#handleException-1" class="headerlink" title="handleException"></a>handleException</h3><ol>
+<li>Context添加更详细的上下文信息addContextualInfoToEvent， 比方说Mach_Exception）， 添加信号类型：EXC_BAD_ACCESS、EXC_BAD_INSTRUCTION、EXC_ARITHMETIC （针对 Mach_Exception）</li>
+<li>onExceptionEvent， 异常发生处理，进行上报</li>
+<li>isFatal异常，则将自己卸载(uninstall), 让其他异常处理库能进行</li>
+<li>将挂起的线程重新恢复</li>
+</ol>
+</div><div class="story post-story"><h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>由于崩溃发生时网络可能不可用，建议将崩溃信息先写入本地存储（如文件系统或数据库），然后在下次启动时再尝试上传</p>
+</div><div class="story post-story"><h2 id="WriteReport"><a href="#WriteReport" class="headerlink" title="WriteReport"></a>WriteReport</h2><ol>
+<li>Mach信息和Signal信息都会尝试输出，比较底层</li>
+</ol>
+<p>StackCursor 通过 Context 的 machineContext， 然后用KSCPU_arm64的方法可以把堆栈复现</p>
+</div><div class="story post-story"><h2 id="KSCPU-arm64"><a href="#KSCPU-arm64" class="headerlink" title="KSCPU_arm64"></a>KSCPU_arm64</h2><p>获取寄存器内容, pc, sp, lr(link register)…</p>
+</div><div class="story post-story"><h2 id="KSCrashAppStateTracker"><a href="#KSCrashAppStateTracker" class="headerlink" title="KSCrashAppStateTracker"></a>KSCrashAppStateTracker</h2><p>APP状态变化，可以添加Observer</p>
+</div><div class="story post-story"><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>KSCrashMonitor_AppState， app状态： forground\background\isactive 等等</li>
+<li>KSCrashMonitor_System， 系统信息：os版本、app版本、uuid 等等</li>
+<li>KSCrashMonitor_User， 自定义的异常上报</li>
+</ul>
+</div><div class="story post-story"><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7370526031700377652">APM - iOS Crash 异常捕获原理</a></li>
+</ul>
+<p>Task相关概念</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://kiprey.github.io/2021/12/mach_ipc_intro/">MacOSX Mach IPC 入门</a></li>
+</ul>
+
+</div>
+      
+    
+  </div>
+  
+    <div class='meta-v3' line_style='solid'>
+      <div>
+        
+          
+          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
+          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
+            <meta itemprop="name" content="zhuwo">
+            <meta itemprop="url" content="https://github.com/zhuwo/">
+          </span>
+        
+        <time itemprop="dateCreated datePublished" datetime="2025-11-12T19:49:15+00:00">2025-11-12</time>
+        
+          <span class="dot"></span>
+          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
+            </span>
+          
+            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
+              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
+            </span>
+          
+        
+      </div>
+      
+    </div>
+  
+
+</div>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
   <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2025/09/03/fellou-use-experience/">
   <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="zhuwo's Den">
@@ -3209,7 +3706,7 @@ JS的传统模型只在一个主线程运行代码，遇到复杂计算的过程
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-09-18T10:17:00+00:00">2023-09-18</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-18T02:17:00+00:00">2023-09-18</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E9%9D%A2%E8%AF%95/">面试</a>
@@ -3309,363 +3806,7 @@ JS的传统模型只在一个主线程运行代码，遇到复杂计算的过程
             <meta itemprop="url" content="https://github.com/zhuwo/">
           </span>
         
-        <time itemprop="dateCreated datePublished" datetime="2023-09-15T13:54:32+00:00">2023-09-15</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
-            </span>
-          
-        
-      </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/11/iOS_Doc_Collection/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="zhuwo's Den">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="zhuwo's Den">
-    <meta itemprop="description" content="">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/11/iOS_Doc_Collection/"  itemprop="url">
-        iOS文档集合
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        <div class="story post-story"><h2 id="苹果官方文档"><a href="#苹果官方文档" class="headerlink" title="苹果官方文档"></a>苹果官方文档</h2><ol>
-<li>Apple Developer Forums: <a target="_blank" rel="noopener" href="https://forums.developer.apple.com/welcome">https://forums.developer.apple.com/welcome</a></li>
-<li>UIKit | Apple Developer Documentation: <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit">https://developer.apple.com/documentation/uikit</a></li>
-<li>Apple Developer Documentation：<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/">https://developer.apple.com/documentation/</a></li>
-<li>Apple Developer：<a target="_blank" rel="noopener" href="https://developer.apple.com/">https://developer.apple.com/</a></li>
-<li>Guides and Sample Code： <a target="_blank" rel="noopener" href="https://developer.apple.com/library/content/navigation/">https://developer.apple.com/library/content/navigation/</a></li>
-<li>Apple Open Source: <a target="_blank" rel="noopener" href="https://opensource.apple.com/">https://opensource.apple.com/</a></li>
-</ol>
-</div><div class="story post-story"><h2 id="语言文档（Swift-amp-Objective-C）"><a href="#语言文档（Swift-amp-Objective-C）" class="headerlink" title="语言文档（Swift &amp; Objective-C）"></a>语言文档（Swift &amp; Objective-C）</h2><ol>
-<li>Swift官方文档：<a target="_blank" rel="noopener" href="https://www.cnswift.org/">https://www.cnswift.org/</a></li>
-<li>Swift代码规范： <a target="_blank" rel="noopener" href="http://yy.phiwifi.com/commdoc/code_standard/swift.html">http://yy.phiwifi.com/commdoc/code_standard/swift.html</a></li>
-<li>object-c文档：<a target="_blank" rel="noopener" href="https://www.tutorialspoint.com/objective_c/objective_c_functions.htm">https://www.tutorialspoint.com/objective_c/objective_c_functions.htm</a></li>
-<li>Objective-C 代码规范：<a target="_blank" rel="noopener" href="https://www.zybuluo.com/Sweetfish/note/509066">https://www.zybuluo.com/Sweetfish/note/509066</a></li>
-<li>Objective-C api文档：<a target="_blank" rel="noopener" href="https://developer.apple.com/reference/uikit">https://developer.apple.com/reference/uikit</a></li>
-</ol>
-</div><div class="story post-story"><h2 id="Programming-Guide"><a href="#Programming-Guide" class="headerlink" title="Programming Guide"></a>Programming Guide</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/introStrings.html#//apple_ref/doc/uid/10000035-SW1">String Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/AttributedStrings/AttributedStrings.html#//apple_ref/doc/uid/10000036i">Attributed String Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/DatesAndTimes/DatesAndTimes.html">Date and Time Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542-CH1-SW1">Text Programming Guide for iOS</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/StringsTextFonts/Conceptual/CoreText_Programming/Introduction/Introduction.html#//apple_ref/doc/uid/TP40005533">Core Text Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html">Thread Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672-CH1-SW1">File System Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingResources/Introduction/Introduction.html#//apple_ref/doc/uid/10000051i">Resource Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFBundles/Introduction/Introduction.html#//apple_ref/doc/uid/10000123i">Bundle Programming Guide</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html?changes=latest_major&language=objc#//apple_ref/doc/uid/TP30001066">Quartz 2D Programming Guide</a></li>
-</ol>
-
-</div>
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="zhuwo">
-            <meta itemprop="url" content="https://github.com/zhuwo/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-09-11T02:16:39+00:00">2023-09-11</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
-            </span>
-          
-        
-      </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/09/producer-consumer/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="zhuwo's Den">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="zhuwo's Den">
-    <meta itemprop="description" content="">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/09/producer-consumer/"  itemprop="url">
-        iOS 实现解决生产者消费者问题
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        <ol>
-<li>先是生产者要解决生产者过剩的问题， 消费者没有可消费的产品要等待</li>
-<li>考虑CPU，++操作可能不是原子操作，需要对齐进行加锁，解决线程不安全问题</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">@proppery(nonatomic, strong) dispatch_semaphore_t pro_semaphore;</span><br><span class="line">@proppery(nonatomic, strong) dispatch_semaphore_t cus_semaphore;</span><br><span class="line"></span><br><span class="line">@proppery(nonatomic, strong) NSInterger producer_count;</span><br><span class="line">@proppery(nonatomic, strong) NSLock lock;</span><br><span class="line"></span><br><span class="line">#define BUFFER_SIZE 5;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)init &#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        self.pro_semaphore = dispatch_semaphore_create(BUFFER_SIZE);</span><br><span class="line">        self.cus_semaphore = dispatch_semaphore_create(0);</span><br><span class="line">        self.producer_count = 0;</span><br><span class="line">        self.lock = [[NSLock alloc] init];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (void)producer &#123;</span><br><span class="line">    dispath_async(dispath_global_queue(0, 0), ^&#123;</span><br><span class="line">        dispatch_semaphore_wait(_pro_semaphore);</span><br><span class="line">        [self.lock lock];</span><br><span class="line">        producer_count++;</span><br><span class="line">        [self.lock unlock];</span><br><span class="line">        dispatch_semaphore_signal(_cus_semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)consumer &#123;</span><br><span class="line">     dispath_async(dispath_global_queue(0, 0), ^&#123;</span><br><span class="line">        dispatch_semaphore_wait(_cus_semaphore);</span><br><span class="line">        [self.lock lock];</span><br><span class="line">        producer_count--;</span><br><span class="line">        [self.lock unlock];</span><br><span class="line">        dispatch_semaphore_signal(_pro_semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<div class="story post-story"><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://crmo.github.io/2019/06/16/GCD%20%E8%A7%A3%E5%86%B3%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98/">GCD解决生产者消费者问题</a></li>
-</ul>
-
-</div>
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="zhuwo">
-            <meta itemprop="url" content="https://github.com/zhuwo/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-09-09T02:42:40+00:00">2023-09-09</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url"><span itemprop="name">操作系统</span></a>
-            </span>
-          
-        
-      </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/04/iOS_Third_Library/AFNetworking-Reading-Notes/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="zhuwo's Den">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="zhuwo's Den">
-    <meta itemprop="description" content="">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/04/iOS_Third_Library/AFNetworking-Reading-Notes/"  itemprop="url">
-        AFNetworking-Reading-Notes
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        <p>  知名的网络第三方开源库。</p>
-<div class="story post-story"><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
-<li>session的任务的回调收拢，和任务绑定进度回调</li>
-<li>可扩展性增强，AFURLSessionManager封装底层的upload&#x2F;download&#x2F;dataTask，AFHTTPSessionManager,专门负责http协议的处理；也可以扩展出FTP的类进行FTP处理</li>
-<li>单独处理https安全问题</li>
-</ol>
-</div><div class="story post-story"><h2 id="类AFHTTPSessionManager"><a href="#类AFHTTPSessionManager" class="headerlink" title="类AFHTTPSessionManager"></a>类AFHTTPSessionManager</h2><p>AFHTTPSessionManager继承自AFURLSessionManager，使用AFJSONResponseSerializer，AFSecurityPolicy（https）,AFNetworkReachabilityManager（网络状态）NSURLSessionConfiguration（URLSession配置，关于http协议的很多实现，例如http2.0支持keep-alive，保留tcp连接）</p>
-<p>NSURLSession设置的delegateQueue，是回调的时候的处理队列，当设置maxConcurrentOperationCount为1, 可以达到并发的请求串行的进行回调的效果。</p>
-</div><div class="story post-story"><h2 id="核心类AFURLSessionManager"><a href="#核心类AFURLSessionManager" class="headerlink" title="核心类AFURLSessionManager"></a>核心类AFURLSessionManager</h2><p>首先对所有dataTask,uploadTask,downLoadTask，添加监听代理（可以获取进度）和通知。<br>taskDidResume&#x2F;taskDidSuspend，接收taskResume，并发出通知AFNetworkingTaskDidResumeNotification，taskDidSuspend同理</p>
-<p>所有代理有统一词典管理mutableTaskDelegatesKeyedByTaskIdentifier。任务结束didCompleteWithError，移除代理，并调用taskDidComplete回调。tasksForKeyPath，获取对应任务，留给子类使用。</p>
-<p>hook resume&#x2F;suspend方法，发送对应通知<br>    1. 给请求封装了进度的回调，包括上传&#x2F;下载&#x2F;数据任务.<br>    2. 将NSURLSession的所有代理，包装成了block，跟任务绑定进度</p>
-<p>接收挑战时（didReceiveChallenge），用securityPolicy进行证书认证等SSL流程。</p>
-<h3 id="AFURLSessionTaskSwizzling"><a href="#AFURLSessionTaskSwizzling" class="headerlink" title="_AFURLSessionTaskSwizzling"></a>_AFURLSessionTaskSwizzling</h3><p>傀儡类，给localDataTask(sessionTask)添加af_resume方法，af_suspend方法，并hook系统的resume&#x2F;suspend方法，获取resume和suspend的通知，发送对应通知给AFURLSessionManager。</p>
-<h3 id="AFURLSessionManagerTaskDelegate"><a href="#AFURLSessionManagerTaskDelegate" class="headerlink" title="AFURLSessionManagerTaskDelegate"></a>AFURLSessionManagerTaskDelegate</h3><p>主要是记录进度，并持有进度回调block以便任务能添加进度回调，以及完成任务的回调，同时收拢不同任务（比方说都跟下载进度相关有数据任务、下载任务等都统一收拢到downloadProgress）。</p>
-<p>通过KVO，用来接收进度变化，并回调进度和完成的任务，包含NSURLSessionTaskDelegate、NSURLSessionDataDelegate（下载、上传）、NSURLSessionDownloadDelegate（下载）。</p>
-<h3 id="AFSecurityPolicy"><a href="#AFSecurityPolicy" class="headerlink" title="AFSecurityPolicy"></a>AFSecurityPolicy</h3><pre><code>猜测大概是https的应用，模式有pinningModeCertificate/publicKey/None，none就是什么也不验证，Certificate验证证书所有字段，包括有效期之内，publicKey只验证证书中的公钥。
-
-pinningModeCertificate模式下，会建立ssl，认证domain的有效性
-</code></pre>
-<h3 id="AFNetworkReachabilityManager"><a href="#AFNetworkReachabilityManager" class="headerlink" title="AFNetworkReachabilityManager"></a>AFNetworkReachabilityManager</h3><pre><code>网络状态检测单例，AFNetworkReachabilityStatus网络状态，wifi/4g/无？，初始化就会用linux系统方法获取reachability，然后startMonitoring方法会注册监听网络状态的变化，并发送通知（如果网络状态变化，SCNetworkReachability系列系统方法）。
-</code></pre>
-<h3 id="AFJSONResponseSerializer"><a href="#AFJSONResponseSerializer" class="headerlink" title="AFJSONResponseSerializer"></a>AFJSONResponseSerializer</h3><p>AFJSONResponseSerializer继承自AFHTTPResponseSerializer，拥有acceptableStatusCodes（2**）和acceptableContentTypes（MINE中的），AFJSONResponseSerializer包含”application&#x2F;json”, @”text&#x2F;json”, @”text&#x2F;javascript”，其中responseObjectForResponse方法，会将错误包装返回</p>
-</div><div class="story post-story"><h2 id="AFHTTPSessionManager"><a href="#AFHTTPSessionManager" class="headerlink" title="AFHTTPSessionManager"></a>AFHTTPSessionManager</h2><p>对外接口，http协议的get&#x2F;post&#x2F;put&#x2F;delete&#x2F;…</p>
-<p>请求使用AFURLRequestSerialization构建，并用父类方法dataTaskWithRequest发起请求</p>
-<h3 id="AFURLRequestSerialization"><a href="#AFURLRequestSerialization" class="headerlink" title="AFURLRequestSerialization"></a>AFURLRequestSerialization</h3><p>请求的封装（封装复杂的http请求构建）</p>
-<h3 id="AFURLResponseSerialization"><a href="#AFURLResponseSerialization" class="headerlink" title="AFURLResponseSerialization"></a>AFURLResponseSerialization</h3><p>对response的反序列化。</p>
-</div><div class="story post-story"><h2 id="UIKit"><a href="#UIKit" class="headerlink" title="UIKit"></a>UIKit</h2><h3 id="AFNetworkActivityIndicatorManager"><a href="#AFNetworkActivityIndicatorManager" class="headerlink" title="AFNetworkActivityIndicatorManager"></a>AFNetworkActivityIndicatorManager</h3><pre><code>如何处理网络请求过快？用timer
-如何处理网络请求过多? 用计数器表示
-</code></pre>
-</div><div class="story post-story"><h2 id="iOS基础知识"><a href="#iOS基础知识" class="headerlink" title="iOS基础知识"></a>iOS基础知识</h2><p>NSLock, NSOperationQueue, SCNetworkReachability</p>
-
-</div>
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="zhuwo">
-            <meta itemprop="url" content="https://github.com/zhuwo/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-09-04T06:25:29+00:00">2023-09-04</time>
-        
-          <span class="dot"></span>
-          <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/" itemprop="url"><span itemprop="name">技术</span></a>
-            </span>
-          
-            <span hidden itemprop="about" itemscope itemtype="http://schema.org/Thing">
-              <a href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" itemprop="url"><span itemprop="name">iOS</span></a>
-            </span>
-          
-        
-      </div>
-      
-    </div>
-  
-
-</div>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <div class="post post-v3 white-box reveal shadow floatable blur"  itemscope itemtype="http://schema.org/Article" >
-  <link itemprop="mainEntityOfPage" href="https://zhuwo.github.io/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/">
-  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="zhuwo's Den">
-  </span>
-  <span hidden itemprop="post" itemscope itemtype="http://schema.org/Post">
-    <meta itemprop="name" content="zhuwo's Den">
-    <meta itemprop="description" content="">
-  </span>
-  
-  
-  
-    <span hidden>
-      <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-    </span>
-  
-  
-    
-    <h2 class="article-title"  itemprop="name headline">
-      <a href="/blog/2023/09/03/iOS_Third_Library/YYCache-Reading-Notes/"  itemprop="url">
-        YYCache-Reading-Notes
-      </a>
-    </h2>
-  
-  <div class='md article-desc' itemprop="articleBody">
-    
-      
-        <p>  优秀的Cache库，使用LRU实现，拥有较好的性能。</p>
-<div class="story post-story"><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>  YYCache由DiskCache和MemoryCache组成，主要Api: containsObjectForKey，setObjectForKey, removeObjectForKey，removeAllObjects等等。</p>
-</div><div class="story post-story"><h2 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h2><p>mutex保证线程安全，所有操作都加互斥锁</p>
-<p>关于剪枝：<br>trimToCost：不断的删除末尾节点，知道消耗和小雨costLimit<br>autoTrimInterval:每隔5s，定时减末尾的枝</p>
-<p>LRU:<br>    所有操作都会将当前节点放到头部节点，保证最近使用的放到最前。</p>
-</div><div class="story post-story"><h2 id="DiskCache"><a href="#DiskCache" class="headerlink" title="DiskCache"></a>DiskCache</h2><p>globalCache存储所有storage的最大NSMapTable<br>使用YYKVStorage存储到文件或数据库<br>YYLinkedMapNode：双向链表，存储节点，<br>YYLinkedMap， _head， _tail</p>
-<p>dispatch_semaphore_t保证线程安全</p>
-<p>使用LRU删除节点，删除访问时间最老的数据，直到满足大小&#x2F;个数条件为止</p>
-<p>所有操作都是YYKVStorage的操作，添加队列操作，增加一些功能（进度。。。），以及加锁保证线程安全。</p>
-<h3 id="YYKVStorage"><a href="#YYKVStorage" class="headerlink" title="YYKVStorage"></a>YYKVStorage</h3><p>saveItemWithKey：优先存文件，存文件失败村sqlite<br>removeItemForKey: 根据类型，删除文件或数据库内容<br>removeItemsLargerThan（Size&#x2F;Time）:数据库字段已经存入，根据条件找到对应FileNames并删除<br>剩下都是数据库操作</p>
-<h3 id="iOS知识要点"><a href="#iOS知识要点" class="headerlink" title="iOS知识要点"></a>iOS知识要点</h3><p>NSMapTable, 对key，value弱引用<br>NSKeyedArchiver</p>
-
-</div>
-      
-    
-  </div>
-  
-    <div class='meta-v3' line_style='solid'>
-      <div>
-        
-          
-          <a class='avatar' target="_blank" rel="noopener" href='https://github.com/zhuwo/'><img src='https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png'></a>
-          <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="image" content="https://unpkg.com/volantis-static@0.0.1654736714924/media/org.volantis/blog/favicon/apple-touch-icon.png">
-            <meta itemprop="name" content="zhuwo">
-            <meta itemprop="url" content="https://github.com/zhuwo/">
-          </span>
-        
-        <time itemprop="dateCreated datePublished" datetime="2023-09-03T04:47:34+00:00">2023-09-03</time>
+        <time itemprop="dateCreated datePublished" datetime="2023-09-15T05:54:32+00:00">2023-09-15</time>
         
           <span class="dot"></span>
           <a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="sep"></span><a class="category-link" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/">iOS</a>
@@ -3827,7 +3968,7 @@ pinningModeCertificate模式下，会建立ssl，认证domain的有效性
           <li><a class="flat-box"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/" href="/blog/categories/%E6%8A%80%E6%9C%AF/"
             active-action="action-blogcategoriesE68A80E69CAF"
-            ><div class='name'>技术</div><div class='badge'>(13)</div></a></li>
+            ><div class='name'>技术</div><div class='badge'>(17)</div></a></li>
         
           <li><a class="flat-box child"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/AI/" href="/blog/categories/%E6%8A%80%E6%9C%AF/AI/"
@@ -3847,7 +3988,7 @@ pinningModeCertificate模式下，会建立ssl，认证domain的有效性
           <li><a class="flat-box child"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/" href="/blog/categories/%E6%8A%80%E6%9C%AF/iOS/"
             active-action="action-blogcategoriesE68A80E69CAFiOS"
-            ><div class='name'>iOS</div><div class='badge'>(6)</div></a></li>
+            ><div class='name'>iOS</div><div class='badge'>(10)</div></a></li>
         
           <li><a class="flat-box child"
             title="/blog/categories/%E6%8A%80%E6%9C%AF/javascript/" href="/blog/categories/%E6%8A%80%E6%9C%AF/javascript/"
@@ -3907,7 +4048,7 @@ pinningModeCertificate模式下，会建立ssl，认证domain的有效性
 
 
     <div class='content'>
-      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/blog/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/blog/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/compiler/" style="font-size: 14px; color: #999">compiler</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/blog/tags/%E4%B8%B4%E5%AE%89/" style="font-size: 14px; color: #999">临安</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%9B%9E%E9%A1%BE/" style="font-size: 17.33px; color: #828282">回顾</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 20.67px; color: #6c6c6c">多线程</a> <a href="/blog/tags/%E6%80%BB%E7%BB%93/" style="font-size: 17.33px; color: #828282">总结</a> <a href="/blog/tags/%E6%84%9F%E6%83%B3/" style="font-size: 20.67px; color: #6c6c6c">感想</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E6%95%A3%E6%96%87/" style="font-size: 20.67px; color: #6c6c6c">散文</a> <a href="/blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 14px; color: #999">游玩</a> <a href="/blog/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 14px; color: #999">表达式</a> <a href="/blog/tags/%E9%9D%92%E5%B1%B1%E6%B9%96/" style="font-size: 14px; color: #999">青山湖</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 17.33px; color: #828282">面试</a>
+      <a href="/blog/tags/AFNetworking/" style="font-size: 14px; color: #999">AFNetworking</a> <a href="/blog/tags/AI/" style="font-size: 14px; color: #999">AI</a> <a href="/blog/tags/APM/" style="font-size: 14px; color: #999">APM</a> <a href="/blog/tags/C/" style="font-size: 14px; color: #999">C++</a> <a href="/blog/tags/CPP/" style="font-size: 14px; color: #999">CPP</a> <a href="/blog/tags/Cache/" style="font-size: 14px; color: #999">Cache</a> <a href="/blog/tags/Documents/" style="font-size: 14px; color: #999">Documents</a> <a href="/blog/tags/ImagePicker/" style="font-size: 14px; color: #999">ImagePicker</a> <a href="/blog/tags/LRU/" style="font-size: 14px; color: #999">LRU</a> <a href="/blog/tags/Mach-O/" style="font-size: 14px; color: #999">Mach-O</a> <a href="/blog/tags/algorithms/" style="font-size: 14px; color: #999">algorithms</a> <a href="/blog/tags/blog/" style="font-size: 14px; color: #999">blog</a> <a href="/blog/tags/compiler/" style="font-size: 14px; color: #999">compiler</a> <a href="/blog/tags/iOS/" style="font-size: 24px; color: #555">iOS</a> <a href="/blog/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/blog/tags/runtime/" style="font-size: 14px; color: #999">runtime</a> <a href="/blog/tags/%E4%B8%B4%E5%AE%89/" style="font-size: 14px; color: #999">临安</a> <a href="/blog/tags/%E4%B9%A6%E5%8D%95/" style="font-size: 14px; color: #999">书单</a> <a href="/blog/tags/%E5%90%AF%E5%8A%A8/" style="font-size: 14px; color: #999">启动</a> <a href="/blog/tags/%E5%9B%9E%E9%A1%BE/" style="font-size: 17.33px; color: #828282">回顾</a> <a href="/blog/tags/%E5%9F%BA%E9%87%91/" style="font-size: 14px; color: #999">基金</a> <a href="/blog/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 20.67px; color: #6c6c6c">多线程</a> <a href="/blog/tags/%E6%80%BB%E7%BB%93/" style="font-size: 17.33px; color: #828282">总结</a> <a href="/blog/tags/%E6%84%9F%E6%83%B3/" style="font-size: 20.67px; color: #6c6c6c">感想</a> <a href="/blog/tags/%E6%8A%95%E8%B5%84/" style="font-size: 14px; color: #999">投资</a> <a href="/blog/tags/%E6%95%A3%E6%96%87/" style="font-size: 20.67px; color: #6c6c6c">散文</a> <a href="/blog/tags/%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91/" style="font-size: 14px; color: #999">消息转发</a> <a href="/blog/tags/%E6%B8%B8%E7%8E%A9/" style="font-size: 14px; color: #999">游玩</a> <a href="/blog/tags/%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 14px; color: #999">表达式</a> <a href="/blog/tags/%E9%9D%92%E5%B1%B1%E6%B9%96/" style="font-size: 14px; color: #999">青山湖</a> <a href="/blog/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 20.67px; color: #6c6c6c">面试</a>
     </div>
   </section>
 
@@ -5121,7 +5262,7 @@ window.matchMedia('(prefers-color-scheme: light)').addListener(darkModelListener
 
 
   <script>
-  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp"];
+  let imgs = ["https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/042.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/051.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/033.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/001.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/004.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/052.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/002.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/025.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/039.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/046.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/006.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/012.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/038.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/003.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/054.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/056.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/005.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/016.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/034.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/035.webp","https://unpkg.com/volantis-static@0.0.1654736714924/media/wallpaper/minimalist/2020/019.webp"];
   let index = 0;
   let IntervalParallax = null;
 
